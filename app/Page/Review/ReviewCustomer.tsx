@@ -61,7 +61,7 @@ export default function TestimonialSection() {
               </div>
 
               <p className="text-zinc-300 italic mb-6 leading-relaxed relative z-10">
-                "{review.text}"
+                {review.text}
               </p>
 
               <div>

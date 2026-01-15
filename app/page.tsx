@@ -62,7 +62,7 @@ export default function Home() {
             <span className="font-serif italic text-pink-500">Anjali</span>{" "}
             Makeover
           </h1>
-          <div className="h-[1px] w-24 bg-pink-500 mx-auto opacity-50"></div>
+          <div className="h-px w-24 bg-pink-500 mx-auto opacity-50"></div>
         </div>
 
         {/* The Clickable Menu */}
@@ -124,7 +124,7 @@ export default function Home() {
               <h2 className="text-white text-5xl md:text-8xl font-black uppercase tracking-tighter transition-transform duration-500 group-hover:tracking-widest">
                 {section.title}
               </h2>
-              <span className="text-white/0 group-hover:text-white/100 transition-all duration-700 translate-y-4 group-hover:translate-y-0 text-xs tracking-[0.5em] mt-4 uppercase font-light">
+              <span className="text-white/0 group-hover:text-white transition-all duration-700 translate-y-4 group-hover:translate-y-0 text-xs tracking-[0.5em] mt-4 uppercase font-light">
                 Explore Now
               </span>
             </div>
