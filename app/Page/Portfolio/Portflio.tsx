@@ -1,60 +1,76 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, X } from "lucide-react";
 import Image from "next/image";
 
 // Sample Data - You can move this to a separate constants file later
-const portfolioData = [
-  {
-    id: 1,
-    category: "Bridal",
-    title: "Classic Indian Bride",
-    image: "/images/AP_07783.jpg",
-  },
-  {
-    id: 2,
-    category: "Fashion",
-    title: "Editorial Glow",
-    image: "/images/AP_07799.jpg",
-  },
-  {
-    id: 3,
-    category: "Party",
-    title: "Reception Glam",
-    image: "/images/AP_08179.jpg",
-  },
-  {
-    id: 4,
-    category: "Bridal",
-    title: "Minimalist Nude",
-    image: "/images/AP_08328.jpg",
-  },
-  {
-    id: 5,
-    category: "Fashion",
-    title: "Vogue Editorial",
-    image: "/images/AP_08718.jpg",
-  },
-  {
-    id: 6,
-    category: "Party",
-    title: "Cocktail Night",
-    image: "/images/AP_08744.jpg",
-  },
-];
+// const portfolioData = [
+//   {
+//     id: 1,
+//     category: "Bridal",
+//     title: "Classic Indian Bride",
+//     image: "/images/AP_07783.jpg",
+//   },
+//   {
+//     id: 2,
+//     category: "Fashion",
+//     title: "Editorial Glow",
+//     image: "/images/AP_07799.jpg",
+//   },
+//   {
+//     id: 3,
+//     category: "Party",
+//     title: "Reception Glam",
+//     image: "/images/AP_08179.jpg",
+//   },
+//   {
+//     id: 4,
+//     category: "Bridal",
+//     title: "Minimalist Nude",
+//     image: "/images/AP_08328.jpg",
+//   },
+//   {
+//     id: 5,
+//     category: "Fashion",
+//     title: "Vogue Editorial",
+//     image: "/images/AP_08718.jpg",
+//   },
+//   {
+//     id: 6,
+//     category: "Party",
+//     title: "Cocktail Night",
+//     image: "/images/AP_08744.jpg",
+//   },
+// ];
 
 const categories = ["All", "Bridal", "Fashion", "Party"];
 
 export default function PortfolioPage() {
   const [filter, setFilter] = useState("All");
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
+  const [portfolioData, setPortfolioData] = useState<any>(null);
 
-  const filteredItems =
-    filter === "All"
-      ? portfolioData
-      : portfolioData.filter((item) => item.category === filter);
+  useEffect(() => {
+    fetch(
+      "https://gist.githubusercontent.com/akashkurmi/760a6b1bffca62c40f2e6a1e90419c1c/raw/2dc26c12098733eb364d2940f36d309050c831be/gistfile1.txt"
+    )
+      .then((res: any) => res.json())
+      .then((res: any) => {
+        console.log(res);
+        setPortfolioData(res);
+      });
+  }, []);
 
+  const filteredItems = useMemo(
+    () =>
+      filter === "All"
+        ? portfolioData
+        : portfolioData.filter((item: any) => item.category === filter),
+    [portfolioData]
+  );
+
+  if (!portfolioData) return <>null</>;
   return (
     <main className="min-h-screen bg-black text-white px-6 py-12">
       {/* Header */}
@@ -96,7 +112,7 @@ export default function PortfolioPage() {
 
       {/* Masonry Grid */}
       <div className="max-w-7xl mx-auto columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-        {filteredItems.map((item) => (
+        {filteredItems.map((item: any) => (
           <div
             key={item.id}
             className="relative break-inside-avoid group cursor-pointer overflow-hidden rounded-sm"
