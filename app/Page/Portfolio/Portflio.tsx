@@ -53,7 +53,7 @@ export default function PortfolioPage() {
 
   useEffect(() => {
     fetch(
-      "https://gist.githubusercontent.com/akashkurmi/760a6b1bffca62c40f2e6a1e90419c1c/raw/2dc26c12098733eb364d2940f36d309050c831be/gistfile1.txt"
+      "https://gist.githubusercontent.com/akashkurmi/760a6b1bffca62c40f2e6a1e90419c1c/raw/998fa6ba41b776e5e3b7e221f32fc13a377feaf4/gistfile1.txt"
     )
       .then((res: any) => res.json())
       .then((res: any) => {
