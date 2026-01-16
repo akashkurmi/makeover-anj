@@ -52,13 +52,18 @@ export default function PortfolioPage() {
   const [portfolioData, setPortfolioData] = useState<any>(null);
 
   useEffect(() => {
-    fetch(
-      "https://gist.githubusercontent.com/akashkurmi/760a6b1bffca62c40f2e6a1e90419c1c/raw/998fa6ba41b776e5e3b7e221f32fc13a377feaf4/gistfile1.txt"
-    )
-      .then((res: any) => res.json())
-      .then((res: any) => {
-        console.log(res);
+    // This creates a unique string based on the current time
+    const cacheBuster = `?t=${new Date().getTime()}`;
+    const url =
+      "https://gist.githubusercontent.com/akashkurmi/760a6b1bffca62c40f2e6a1e90419c1c/raw/4b8f4b90dd36a8d554815b92fd02793e06a1fb61/gistfile1.txt";
+
+    fetch(url + cacheBuster)
+      .then((res) => res.json())
+      .then((res) => {
         setPortfolioData(res);
+      })
+      .catch((err) => {
+        console.error("Fetch error:", err);
       });
   }, []);
 
@@ -67,9 +72,9 @@ export default function PortfolioPage() {
       filter === "All"
         ? portfolioData
         : portfolioData.filter((item: any) => item.category === filter),
-    [portfolioData]
+    [portfolioData, filter]
   );
-
+  console.log(portfolioData);
   if (!portfolioData) return <>null</>;
   return (
     <main className="min-h-screen bg-black text-white px-6 py-12">
@@ -113,27 +118,31 @@ export default function PortfolioPage() {
       {/* Masonry Grid */}
       <div className="max-w-7xl mx-auto columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
         {filteredItems.map((item: any) => (
-          <div
+          <Link
             key={item.id}
-            className="relative break-inside-avoid group cursor-pointer overflow-hidden rounded-sm"
-            onClick={() => setSelectedImg(item.image)}
+            href="https://www.instagram.com/reel/DTXocLTEe0l/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
           >
-            {/* Container for the Image to ensure zoom stays inside borders */}
-            <div className="overflow-hidden">
-              <img
-                src={item.image}
-                alt={item.title}
-                className="w-full h-auto object-cover transition-transform duration-1000 ease-in-out group-hover:scale-110"
-              />
-            </div>
+            <div
+              className="relative break-inside-avoid group cursor-pointer overflow-hidden rounded-sm"
+              // onClick={() => setSelectedImg(item.image)}
+            >
+              {/* Container for the Image to ensure zoom stays inside borders */}
+              <div className="overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-auto object-cover transition-transform duration-1000 ease-in-out group-hover:scale-110"
+                />
+              </div>
 
-            {/* Optional: Subtle title that only appears on hover without a dark background */}
-            <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
-              <h3 className="text-white text-xs uppercase tracking-[0.3em] drop-shadow-md">
-                {item.title}
-              </h3>
+              {/* Optional: Subtle title that only appears on hover without a dark background */}
+              <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
+                <h3 className="text-white text-xs uppercase tracking-[0.3em] drop-shadow-md">
+                  {item.title}
+                </h3>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
