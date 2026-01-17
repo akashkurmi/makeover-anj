@@ -2,49 +2,28 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, X } from "lucide-react";
-import Image from "next/image";
-
-// Sample Data - You can move this to a separate constants file later
-// const portfolioData = [
-//   {
-//     id: 1,
-//     category: "Bridal",
-//     title: "Classic Indian Bride",
-//     image: "/images/AP_07783.jpg",
-//   },
-//   {
-//     id: 2,
-//     category: "Fashion",
-//     title: "Editorial Glow",
-//     image: "/images/AP_07799.jpg",
-//   },
-//   {
-//     id: 3,
-//     category: "Party",
-//     title: "Reception Glam",
-//     image: "/images/AP_08179.jpg",
-//   },
-//   {
-//     id: 4,
-//     category: "Bridal",
-//     title: "Minimalist Nude",
-//     image: "/images/AP_08328.jpg",
-//   },
-//   {
-//     id: 5,
-//     category: "Fashion",
-//     title: "Vogue Editorial",
-//     image: "/images/AP_08718.jpg",
-//   },
-//   {
-//     id: 6,
-//     category: "Party",
-//     title: "Cocktail Night",
-//     image: "/images/AP_08744.jpg",
-//   },
-// ];
+import Image from "next/image"; // Ensure this is imported
 
 const categories = ["All", "Bridal", "Fashion", "Party"];
+
+const shimmer = (w: number, h: number) => `
+<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="g">
+      <stop stop-color="#18181b" offset="20%" />
+      <stop stop-color="#27272a" offset="50%" />
+      <stop stop-color="#18181b" offset="70%" />
+    </linearGradient>
+  </defs>
+  <rect width="${w}" height="${h}" fill="#18181b" />
+  <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
+  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
+</svg>`;
+
+const toBase64 = (str: string) =>
+  typeof window === "undefined"
+    ? Buffer.from(str).toString("base64")
+    : window.btoa(str);
 
 export default function PortfolioPage() {
   const [filter, setFilter] = useState("All");
@@ -52,29 +31,29 @@ export default function PortfolioPage() {
   const [portfolioData, setPortfolioData] = useState<any>(null);
 
   useEffect(() => {
-    // This creates a unique string based on the current time
     const cacheBuster = `?t=${new Date().getTime()}`;
     const url = "https://makeover-data.vercel.app/data.json";
 
     fetch(url + cacheBuster)
       .then((res) => res.json())
-      .then((res) => {
-        setPortfolioData(res);
-      })
-      .catch((err) => {
-        console.error("Fetch error:", err);
-      });
+      .then((res) => setPortfolioData(res))
+      .catch((err) => console.error("Fetch error:", err));
   }, []);
 
-  const filteredItems = useMemo(
-    () =>
-      filter === "All"
-        ? portfolioData
-        : portfolioData.filter((item: any) => item.category === filter),
-    [portfolioData, filter]
-  );
-  console.log(portfolioData);
-  if (!portfolioData) return <>null</>;
+  const filteredItems = useMemo(() => {
+    if (!portfolioData) return [];
+    return filter === "All"
+      ? portfolioData
+      : portfolioData.filter((item: any) => item.category === filter);
+  }, [portfolioData, filter]);
+
+  if (!portfolioData)
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center text-zinc-500">
+        Loading Artistry...
+      </div>
+    );
+
   return (
     <main className="min-h-screen bg-black text-white px-6 py-12">
       {/* Header */}
@@ -94,7 +73,7 @@ export default function PortfolioPage() {
         <h1 className="text-4xl md:text-6xl font-serif italic text-center">
           Our Artistry
         </h1>
-        <div className="w-[100px] hidden md:block"></div> {/* Spacer */}
+        <div className="w-[100px] hidden md:block"></div>
       </div>
 
       {/* Filter Bar */}
@@ -117,35 +96,35 @@ export default function PortfolioPage() {
       {/* Masonry Grid */}
       <div className="max-w-7xl mx-auto columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
         {filteredItems.map((item: any) => (
-          <Link
-            key={item.id}
-            href="https://www.instagram.com/reel/DTXocLTEe0l/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
-          >
-            <div
-              className="relative break-inside-avoid group cursor-pointer overflow-hidden rounded-sm"
-              // onClick={() => setSelectedImg(item.image)}
-            >
-              {/* Container for the Image to ensure zoom stays inside borders */}
-              <div className="overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-auto object-cover transition-transform duration-1000 ease-in-out group-hover:scale-110"
-                />
-              </div>
+          <div key={item.id} className="break-inside-avoid">
+            <Link href="https://www.instagram.com/reel/DTXocLTEe0l/">
+              <div className="relative group cursor-pointer overflow-hidden rounded-sm bg-zinc-900">
+                <div className="overflow-hidden">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    width={500}
+                    height={700}
+                    placeholder={`data:image/svg+xml;base64,${toBase64(
+                      shimmer(500, 700)
+                    )}`}
+                    unoptimized
+                    className="w-full h-auto object-cover transition-all duration-1000 group-hover:scale-110"
+                  />
+                </div>
 
-              {/* Optional: Subtle title that only appears on hover without a dark background */}
-              <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
-                <h3 className="text-white text-xs uppercase tracking-[0.3em] drop-shadow-md">
-                  {item.title}
-                </h3>
+                <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
+                  <h3 className="text-white text-xs uppercase tracking-[0.3em] drop-shadow-md">
+                    {item.title}
+                  </h3>
+                </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </div>
         ))}
       </div>
 
-      {/* Lightbox - Click to enlarge */}
+      {/* Lightbox */}
       {selectedImg && (
         <div className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4">
           <button
@@ -154,14 +133,17 @@ export default function PortfolioPage() {
           >
             <X size={40} strokeWidth={1} />
           </button>
-          <img
-            src={selectedImg}
-            className="max-h-[90vh] max-w-full object-contain"
-          />
+          <div className="relative w-full h-full max-h-[90vh]">
+            <Image
+              src={selectedImg}
+              alt="Enlarged view"
+              fill
+              className="object-contain"
+            />
+          </div>
         </div>
       )}
 
-      {/* Simple Footer */}
       <footer className="mt-24 text-center pb-10">
         <p className="text-zinc-700 text-[10px] tracking-[1em] uppercase">
           Makeover Anj Artistry
