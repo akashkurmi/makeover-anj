@@ -54,8 +54,7 @@ export default function PortfolioPage() {
   useEffect(() => {
     // This creates a unique string based on the current time
     const cacheBuster = `?t=${new Date().getTime()}`;
-    const url =
-      "https://gist.githubusercontent.com/akashkurmi/760a6b1bffca62c40f2e6a1e90419c1c/raw/4b8f4b90dd36a8d554815b92fd02793e06a1fb61/gistfile1.txt";
+    const url = "https://makeover-data.vercel.app/data.json";
 
     fetch(url + cacheBuster)
       .then((res) => res.json())
