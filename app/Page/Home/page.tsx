@@ -1,14 +1,11 @@
-import React, { Component } from "react";
 import Home from "./Home";
 
-class page extends Component {
-  render() {
-    return (
-      <>
-        <Home />
-      </>
-    );
-  }
-}
+const page = () => {
+  return (
+    <>
+      <Home />
+    </>
+  );
+};
 
 export default page;
