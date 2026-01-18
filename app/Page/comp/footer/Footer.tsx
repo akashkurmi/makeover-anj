@@ -9,19 +9,19 @@ class Footer extends Component {
           <div className="grid md:grid-cols-3 gap-8 text-sm tracking-widest uppercase text-gray-400">
             <div>
               <p className="text-white mb-2">Location</p>
-              <p>Mumbai, India</p>
+              <p>Bangalore, India</p>
             </div>
             <div>
               <p className="text-white mb-2">Email</p>
-              <p>hello@makeoveranj.com</p>
+              <p>anjaligour761@gmail.com</p>
             </div>
             <div>
               <p className="text-white mb-2">Phone</p>
-              <p>+91 98765 43210</p>
+              <p>+91 78794 58655</p>
             </div>
           </div>
           <p className="mt-16 text-[10px] text-zinc-600 tracking-[0.5em]">
-            © 2024 MAKEOVER ANJ. ALL RIGHTS RESERVED.
+            © 2026 ANJALI MAKEOVER. ALL RIGHTS RESERVED.
           </p>
         </div>
       </>
