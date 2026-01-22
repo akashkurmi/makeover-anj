@@ -2,33 +2,13 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, X } from "lucide-react";
-import Image from "next/image"; // Ensure this is imported
 
 const categories = ["All", "Bridal", "Fashion", "Party"];
 
-const shimmer = (w: number, h: number) => `
-<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <defs>
-    <linearGradient id="g">
-      <stop stop-color="#18181b" offset="20%" />
-      <stop stop-color="#27272a" offset="50%" />
-      <stop stop-color="#18181b" offset="70%" />
-    </linearGradient>
-  </defs>
-  <rect width="${w}" height="${h}" fill="#18181b" />
-  <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
-  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
-</svg>`;
-
-const toBase64 = (str: string) =>
-  typeof window === "undefined"
-    ? Buffer.from(str).toString("base64")
-    : window.btoa(str);
-
 export default function PortfolioPage() {
   const [filter, setFilter] = useState("All");
-  const [selectedImg, setSelectedImg] = useState<string | null>(null);
-  const [portfolioData, setPortfolioData] = useState<any>(null);
+  const [selectedItem, setSelectedItem] = useState<any | null>(null);
+  const [portfolioData, setPortfolioData] = useState<any[] | null>(null);
 
   useEffect(() => {
     const cacheBuster = `?t=${new Date().getTime()}`;
@@ -93,53 +73,64 @@ export default function PortfolioPage() {
         ))}
       </div>
 
-      {/* Masonry Grid */}
-      <div className="max-w-7xl mx-auto columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+      {/* Grid: Clean Image Presentation */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {filteredItems.map((item: any) => (
-          <div key={item.id} className="break-inside-avoid">
-            <Link href="https://www.instagram.com/reel/DTXocLTEe0l/">
-              <div className="relative group cursor-pointer overflow-hidden rounded-sm bg-zinc-900">
-                <div className="overflow-hidden">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    width={500}
-                    height={700}
-                    placeholder={`data:image/svg+xml;base64,${toBase64(
-                      shimmer(500, 700)
-                    )}`}
-                    unoptimized
-                    className="w-full h-auto object-cover transition-all duration-1000 group-hover:scale-110"
-                  />
-                </div>
+          <div key={item.id} className="w-full">
+            <div
+              className="relative group cursor-pointer overflow-hidden rounded-sm bg-zinc-900 aspect-[9/16]"
+              onClick={() => setSelectedItem(item)}
+            >
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105"
+              />
 
-                <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
-                  <h3 className="text-white text-xs uppercase tracking-[0.3em] drop-shadow-md">
-                    {item.title}
-                  </h3>
-                </div>
+              {/* Title overlay on hover */}
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4">
+                <h3 className="text-white text-[10px] uppercase tracking-[0.3em] drop-shadow-md">
+                  {item.title}
+                </h3>
               </div>
-            </Link>
+            </div>
           </div>
         ))}
       </div>
 
-      {/* Lightbox */}
-      {selectedImg && (
-        <div className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4">
+      {/* Lightbox / Popup */}
+      {selectedItem && (
+        <div className="fixed inset-0 z-[100] bg-black/95 flex flex-col items-center overflow-y-auto p-4 md:p-10">
           <button
-            className="absolute top-8 right-8 text-white hover:text-pink-500 transition-colors"
-            onClick={() => setSelectedImg(null)}
+            className="fixed top-8 right-8 text-white hover:text-pink-500 transition-colors z-[110]"
+            onClick={() => setSelectedItem(null)}
           >
             <X size={40} strokeWidth={1} />
           </button>
-          <div className="relative w-full h-full max-h-[90vh]">
-            <Image
-              src={selectedImg}
-              alt="Enlarged view"
-              fill
-              className="object-contain"
-            />
+
+          <div className="w-full max-w-4xl mt-12 space-y-6">
+            {/* Main Image */}
+            <div className="flex justify-center">
+              <img
+                src={selectedItem.image}
+                alt="Enlarged view"
+                className="max-h-[85vh] w-auto object-contain rounded-sm"
+              />
+            </div>
+
+            {/* Sub-images Display */}
+            {selectedItem.subimages && selectedItem.subimages.length > 0 && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-20">
+                {selectedItem.subimages.map((subImg: string, idx: number) => (
+                  <img
+                    key={idx}
+                    src={subImg}
+                    alt={`Detail ${idx}`}
+                    className="w-full h-auto object-cover rounded-sm"
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       )}
