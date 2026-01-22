@@ -1,6 +1,4 @@
 "use client";
-import React from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Maximize2 } from "lucide-react"; // Added Maximize2 for gallery feel
 import TestimonialSection from "../Review/ReviewCustomer";
