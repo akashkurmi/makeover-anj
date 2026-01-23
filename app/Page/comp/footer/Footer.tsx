@@ -26,7 +26,7 @@ class Footer extends Component {
                   fill
                   sizes="(max-width: 768px) 128px, 160px"
                   className="object-contain p-2"
-                  loading="lazy"
+                  fetchPriority="high"
                 />
 
                 {/* Hover Overlay */}
