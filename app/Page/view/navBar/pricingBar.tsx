@@ -4,7 +4,6 @@ import Link from "next/link";
 const PricingBar = () => {
   return (
     <>
-      {" "}
       <Link
         href="/pricing"
         className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden group border-b border-white/10 bg-black"
@@ -63,9 +62,6 @@ const PricingBar = () => {
             Tap to View Full Rates
           </span>
         </div>
-
-        {/* SCANNER LINE (Keep it for mobile too, looks cool!) */}
-        <div className="absolute left-0 w-full h-[1px] bg-pink-500/20 top-0 animate-scan pointer-events-none" />
       </Link>
     </>
   );

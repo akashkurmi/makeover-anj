@@ -31,6 +31,7 @@ const PortfolioBar = () => {
                   alt="Portfolio Preview"
                   fill
                   /* Mobile: grayscale-0 | Desktop: grayscale (0 on hover) */
+                  loading="lazy"
                   className="object-cover transition-all duration-700 rounded-sm grayscale-0 md:grayscale md:group-hover:grayscale-0"
                 />
               </div>

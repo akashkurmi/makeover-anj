@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import React, { Component } from "react";
 
 class Footer extends Component {
@@ -8,28 +10,32 @@ class Footer extends Component {
       <footer className="w-full bg-black py-16 border-t border-zinc-900">
         <div className="max-w-6xl mx-auto px-8">
           <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-12">
-            {/* Left Section: QR Code with Hover Effect */}
+            {/* Left Section: QR Code */}
             <div className="flex flex-col items-center shrink-0 group">
-              <a
+              <Link
                 href={instaLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative block bg-white p-3 rounded-xl shadow-lg transition-all duration-500 hover:shadow-pink-500/20"
+                /* FIX: Added width and height classes so 'fill' has a container size */
+                className="relative block bg-white p-3 rounded-xl shadow-lg w-32 h-32 md:w-40 md:h-40 transition-all duration-500 hover:shadow-pink-500/20 overflow-hidden"
               >
                 {/* QR Code Image */}
-                <img
+                <Image
                   src="/insta.png"
                   alt="Instagram QR Code"
-                  className="w-32 h-32 md:w-40 md:h-40 object-contain"
+                  fill
+                  sizes="(max-width: 768px) 128px, 160px"
+                  className="object-contain p-2"
+                  loading="lazy"
                 />
 
-                {/* Hover Overlay: Displays Link in Middle */}
-                <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl flex items-center justify-center p-4">
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4 z-10">
                   <span className="text-white text-[9px] font-medium tracking-tighter break-all text-center leading-tight">
                     @anjalimakeover7879
                   </span>
                 </div>
-              </a>
+              </Link>
 
               <p className="mt-4 text-[11px] tracking-[0.2em] uppercase text-pink-500 font-medium">
                 Follow us on Instagram
@@ -60,7 +66,7 @@ class Footer extends Component {
             </div>
           </div>
 
-          {/* Copyright Section */}
+          {/* Copyright */}
           <div className="mt-20 pt-8 border-t border-zinc-900 text-center">
             <p className="text-[10px] text-zinc-600 tracking-[0.5em] uppercase">
               © 2026 ANJALI MAKEOVER. ALL RIGHTS RESERVED.
