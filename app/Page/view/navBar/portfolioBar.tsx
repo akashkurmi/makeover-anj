@@ -42,7 +42,7 @@ const PortfolioBar = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/60 flex flex-col items-center justify-center">
           <div className="overflow-hidden border-y border-pink-500/30 py-4 px-12 transform -rotate-2 group-hover:rotate-0 transition-transform duration-700">
             <h2 className="text-white text-6xl md:text-9xl font-black uppercase italic tracking-tighter">
-              Portfolio
+              <span className="text-pink-500">Por</span>tfolio
             </h2>
           </div>
           <span className="mt-8 text-pink-500 text-xs tracking-[1em] uppercase font-bold animate-pulse">

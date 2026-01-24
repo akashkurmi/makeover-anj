@@ -1,0 +1,11 @@
+import PricingPage from "./PricingPage";
+
+const page = () => {
+  return (
+    <>
+      <PricingPage />
+    </>
+  );
+};
+
+export default page;

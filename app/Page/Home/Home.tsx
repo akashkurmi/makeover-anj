@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { ArrowRight, Maximize2 } from "lucide-react"; // Added Maximize2 for gallery feel
+import { ArrowRight } from "lucide-react";
 import TestimonialSection from "../Review/ReviewCustomer";
 import Bookingform from "../view/booking/Bookingform";
 import PortfolioBar from "../view/navBar/portfolioBar";
@@ -24,7 +24,8 @@ const Home = () => {
             src={heroImageUrl}
             alt="Hero Background"
             fill
-            priority
+            fetchPriority="high"
+            loading="lazy"
             className="object-cover opacity-40 grayscale-[20%]"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black" />

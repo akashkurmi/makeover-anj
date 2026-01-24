@@ -2,6 +2,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, X } from "lucide-react";
+import Image from "next/image";
 
 const categories = ["All", "Bridal", "Fashion", "Party"];
 
@@ -88,10 +89,13 @@ export default function PortfolioPage() {
               className="relative group cursor-pointer overflow-hidden rounded-sm bg-zinc-900 aspect-[9/16]"
               // onClick={() => setSelectedItem(item)}
             >
-              <img
+              <Image
                 src={item.image}
                 alt={item.title}
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                fill // 2. Use fill for aspect-ratio containers
+                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw" // 3. Tell browser how big image will be
+                className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                priority={item.id < 5} // 4. Prioritize first few images (LCP)
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex items-end p-3">
                 <h3 className="text-white text-[9px] uppercase tracking-[0.2em] drop-shadow-md">

@@ -135,7 +135,10 @@ const Bookingform = () => {
 
         {/* Date */}
         <div className="flex flex-col space-y-2">
-          <label className="text-zinc-400 text-[10px] uppercase tracking-widest ml-1">
+          <label
+            htmlFor="eventDate"
+            className="text-zinc-400 text-[10px] uppercase tracking-widest ml-1"
+          >
             Event Date
           </label>
           <input
@@ -150,10 +153,14 @@ const Bookingform = () => {
 
         {/* Service Type */}
         <div className="flex flex-col space-y-2 md:col-span-2">
-          <label className="text-zinc-400 text-[10px] uppercase tracking-widest ml-1">
+          <label
+            htmlFor="serviceType"
+            className="text-zinc-400 text-[10px] uppercase tracking-widest ml-1"
+          >
             Service Required
           </label>
           <select
+            id="serviceType"
             name="service"
             value={formData.service}
             onChange={handleChange}

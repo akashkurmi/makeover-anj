@@ -5,7 +5,7 @@ const PricingBar = () => {
   return (
     <>
       <Link
-        href="/pricing"
+        href="/Page/Pricing"
         className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden group border-b border-white/10 bg-black"
       >
         {/* BACKGROUND LAYER */}
@@ -54,7 +54,7 @@ const PricingBar = () => {
         {/* CENTER TEXT LAYER */}
         <div className="relative z-20 h-full flex flex-col items-center justify-center">
           <h2 className="text-white text-5xl md:text-9xl font-black uppercase italic tracking-tighter">
-            Pricing
+            <span className="text-pink-500">Pr</span>icing
           </h2>
 
           {/* Mobile-only CTA */}

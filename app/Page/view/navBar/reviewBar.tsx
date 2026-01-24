@@ -8,14 +8,13 @@ const ReviewPanel = () => {
       className="relative w-full h-[50vh] md:h-[65vh] overflow-hidden group border-b border-white/10 bg-black"
     >
       {/* Image Layer */}
-      <Image
-        src="https://images.unsplash.com/photo-1526045612212-70caf35c11bc?q=80&w=1600&auto=format&fit=crop"
+      {/* <Image
+        src="/#"
         alt="Reviews"
         fill
         sizes="100vw"
-        /* Mobile: Color & Scale | Desktop: Grayscale until hover */
         className="object-cover transition-all duration-1000 grayscale-0 md:grayscale-[80%] md:group-hover:grayscale-0 scale-105 md:scale-100 md:group-hover:scale-105"
-      />
+      /> */}
 
       {/* Dynamic Overlay */}
       <div className="absolute inset-0 bg-black/40 md:bg-black/60 md:group-hover:bg-black/20 transition-all duration-500" />
@@ -24,7 +23,7 @@ const ReviewPanel = () => {
       <div className="relative h-full flex flex-col items-center justify-center p-4">
         {/* Title: Updated to match Portfolio/Pricing style */}
         <h2 className="text-white text-6xl md:text-9xl font-black uppercase italic tracking-tighter transition-all duration-700 md:group-hover:tracking-normal">
-          Reviews
+          <span className="text-pink-500">Re</span>views
         </h2>
 
         {/* Action Line: Always visible on mobile, reveal on desktop hover */}

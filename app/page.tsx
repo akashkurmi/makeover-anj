@@ -1,7 +1,6 @@
 "use client";
 import { Instagram, Youtube, MessageCircleCode } from "lucide-react";
 import Link from "next/link";
-import Footer from "./Page/comp/footer/Footer";
 import Home from "./Page/Home/Home";
 
 export default function Page() {
@@ -61,10 +60,6 @@ export default function Page() {
       </div>
 
       <Home />
-
-      <section className="py-20 border-t border-zinc-900 bg-zinc-950/50">
-        <Footer />
-      </section>
     </main>
   );
 }
