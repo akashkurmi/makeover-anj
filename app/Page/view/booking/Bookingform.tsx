@@ -6,9 +6,11 @@ interface BForm {
   name: string;
   email: string;
   phn: string;
-  eventDate: string; // Changed to string for input compatibility
+  eventDate: string;
   service: string;
   message: string;
+  state: string;
+  city: string;
 }
 
 const Bookingform = () => {
@@ -20,7 +22,48 @@ const Bookingform = () => {
     eventDate: "",
     service: "Bridal Makeup",
     message: "",
+    state: "",
+    city: "",
   });
+
+  const indianStates = [
+    "Andhra Pradesh",
+    "Arunachal Pradesh",
+    "Assam",
+    "Bihar",
+    "Chhattisgarh",
+    "Goa",
+    "Gujarat",
+    "Haryana",
+    "Himachal Pradesh",
+    "Jharkhand",
+    "Karnataka",
+    "Kerala",
+    "Madhya Pradesh",
+    "Maharashtra",
+    "Manipur",
+    "Meghalaya",
+    "Mizoram",
+    "Nagaland",
+    "Odisha",
+    "Punjab",
+    "Rajasthan",
+    "Sikkim",
+    "Tamil Nadu",
+    "Telangana",
+    "Tripura",
+    "Uttar Pradesh",
+    "Uttarakhand",
+    "West Bengal",
+    "Andaman and Nicobar Islands",
+    "Chandigarh",
+    "Dadra and Nagar Haveli and Daman and Diu",
+    "Delhi",
+    "Jammu and Kashmir",
+    "Ladakh",
+    "Lakshadweep",
+    "Puducherry",
+  ];
 
   const [status, setStatus] = useState<
     "idle" | "sending" | "success" | "error"
@@ -60,6 +103,8 @@ const Bookingform = () => {
           eventDate: "",
           service: "Bridal Makeup",
           message: "",
+          state: "",
+          city: "",
         });
         formRef.current?.reset();
       })
@@ -148,6 +193,50 @@ const Bookingform = () => {
             name="eventDate"
             required
             className="bg-zinc-950 border border-zinc-800 p-4 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none"
+          />
+        </div>
+        <div className="flex flex-col space-y-2">
+          <label
+            htmlFor="state"
+            className="text-zinc-400 text-[10px] uppercase tracking-widest ml-1"
+          >
+            State
+          </label>
+          <select
+            id="state"
+            name="state"
+            required
+            value={formData.state}
+            onChange={handleChange}
+            className="bg-zinc-950 border border-zinc-800 p-4 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none"
+          >
+            <option value="" disabled>
+              Select State
+            </option>
+            {indianStates.map((state) => (
+              <option key={state} value={state}>
+                {state}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="flex flex-col space-y-2">
+          <label
+            htmlFor="city"
+            className="text-zinc-400 text-[10px] uppercase tracking-widest ml-1"
+          >
+            City
+          </label>
+          <input
+            id="city"
+            type="text"
+            name="city"
+            required
+            placeholder="Enter your city"
+            value={formData.city}
+            onChange={handleChange}
+            className="bg-zinc-950 border border-zinc-800 p-4 text-white focus:outline-none focus:border-pink-500 transition-colors"
           />
         </div>
 

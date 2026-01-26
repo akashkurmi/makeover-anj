@@ -2,18 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 
 const portfolioPreview = [
-  "https://storage.googleapis.com/anjali-makeover/1.JPG",
-  "https://storage.googleapis.com/anjali-makeover/2.JPG",
-  "https://storage.googleapis.com/anjali-makeover/3.JPG",
-  "https://storage.googleapis.com/anjali-makeover/4.JPG",
-  "https://storage.googleapis.com/anjali-makeover/5.JPG",
+  "/images/_1.jpg",
+  "/images/_3.jpg",
+  "/images/_10.jpg",
+  "/images/_11.jpg",
 ];
-
 const PortfolioBar = () => {
   return (
     <>
       <Link
-        //   key={index}
         href="/Page/Portfolio"
         className="relative w-full h-[50vh] md:h-[65vh] overflow-hidden group border-b border-white/10 bg-black"
       >

@@ -1,4 +1,6 @@
-import { Star, Quote } from "lucide-react";
+import React, { useState } from "react";
+import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import ReviewCard from "./ReviewCard";
 
 const reviews = [
   {
@@ -19,61 +21,109 @@ const reviews = [
     text: "I've never felt more beautiful. She really knows how to enhance your natural features without making it look heavy.",
     stars: 5,
   },
+  {
+    name: "Ananya Iyer",
+    role: "Bridal Client",
+    text: "The best makeover experience ever. She listens to what you want and executes it perfectly.",
+    stars: 5,
+  },
 ];
 
 export default function TestimonialSection() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex + 1 >= reviews.length ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? reviews.length - 1 : prevIndex - 1
+    );
+  };
+
+  // Logic to determine visible reviews
+  // On Desktop: Slice 3 reviews (with wrap-around logic)
+  // On Mobile: Only the current review
+  const getVisibleReviews = () => {
+    const visible = [];
+    for (let i = 0; i < 3; i++) {
+      visible.push(reviews[(currentIndex + i) % reviews.length]);
+    }
+    return visible;
+  };
+
   return (
-    <section className="bg-black py-20 border-t border-white/5">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
-          <div>
-            <h2 className="text-white text-4xl md:text-6xl font-serif italic">
-              Voices of Beauty
-            </h2>
-            <p className="text-pink-500 uppercase tracking-[0.3em] text-[10px] mt-2 font-bold">
-              What my clients say
-            </p>
-          </div>
-          <div className="text-zinc-500 text-xs tracking-widest uppercase">
-            Over 200+ Happy Brides
+    <section className="bg-black py-20 border-t border-white/5 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 md:px-12">
+        {/* Centered Heading */}
+        <div className="text-center mb-16">
+          <h2 className="text-white text-4xl md:text-6xl font-serif italic">
+            Voices of Beauty
+          </h2>
+          <p className="text-pink-500 uppercase tracking-[0.3em] text-[10px] mt-2 font-bold">
+            What my clients say
+          </p>
+        </div>
+
+        {/* Carousel Wrapper */}
+        <div className="relative group px-4 md:px-16">
+          {/* LEFT ARROW */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 p-2 md:p-4 text-white/50 hover:text-pink-500 transition-all duration-300 bg-zinc-900/50 rounded-full backdrop-blur-sm border border-white/5 hover:border-pink-500/50"
+            aria-label="Previous"
+          >
+            <ChevronLeft size={28} strokeWidth={1} />
+          </button>
+
+          {/* RIGHT ARROW */}
+          <button
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 p-2 md:p-4 text-white/50 hover:text-pink-500 transition-all duration-300 bg-zinc-900/50 rounded-full backdrop-blur-sm border border-white/5 hover:border-pink-500/50"
+            aria-label="Next"
+          >
+            <ChevronRight size={28} strokeWidth={1} />
+          </button>
+
+          {/* Grid Content */}
+          <div className="relative">
+            {/* Desktop: Grid of 3 */}
+            <div className="hidden md:grid grid-cols-3 gap-6">
+              {getVisibleReviews().map((review, index) => (
+                <div
+                  key={`desktop-${index}`}
+                  className="animate-in fade-in duration-700"
+                >
+                  <ReviewCard review={review} />
+                </div>
+              ))}
+            </div>
+
+            {/* Mobile: Single Card */}
+            <div className="md:hidden animate-in slide-in-from-right-5 duration-500">
+              <ReviewCard review={reviews[currentIndex]} />
+            </div>
           </div>
         </div>
 
-        {/* Review Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {reviews.map((review, index) => (
-            <div
-              key={index}
-              className="group p-8 bg-zinc-950 border border-zinc-900 hover:border-pink-500/30 transition-all duration-500 relative overflow-hidden"
-            >
-              <Quote className="absolute -top-2 -right-2 w-20 h-20 text-white/[0.03] group-hover:text-pink-500/10 transition-colors" />
-
-              <div className="flex gap-1 mb-4">
-                {[...Array(review.stars)].map((_, i) => (
-                  <Star
-                    key={i}
-                    size={12}
-                    className="fill-pink-500 text-pink-500"
-                  />
-                ))}
-              </div>
-
-              <p className="text-zinc-300 italic mb-6 leading-relaxed relative z-10">
-                {review.text}
-              </p>
-
-              <div>
-                <p className="text-white font-bold tracking-widest uppercase text-xs">
-                  {review.name}
-                </p>
-                <p className="text-zinc-500 text-[10px] uppercase tracking-tighter mt-1">
-                  {review.role}
-                </p>
-              </div>
-            </div>
+        {/* Pagination Dots */}
+        <div className="flex justify-center gap-3 mt-12">
+          {reviews.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentIndex(i)}
+              className={`h-1 transition-all duration-500 ${
+                i === currentIndex ? "w-12 bg-pink-500" : "w-3 bg-zinc-800"
+              }`}
+            />
           ))}
         </div>
       </div>
     </section>
   );
 }
+
+// Sub-component for the Review Card to keep code clean

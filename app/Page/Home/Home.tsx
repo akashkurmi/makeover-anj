@@ -6,6 +6,7 @@ import Bookingform from "../view/booking/Bookingform";
 import PortfolioBar from "../view/navBar/portfolioBar";
 import PricingBar from "../view/navBar/pricingBar";
 import ReviewPanel from "../view/navBar/reviewBar";
+import Highlight from "./Highlight";
 
 const Home = () => {
   const heroImageUrl = "/anjHome.png";
@@ -59,6 +60,7 @@ const Home = () => {
       <div className="flex flex-col">
         <PortfolioBar />
         <PricingBar />
+        <Highlight />
         <ReviewPanel />
       </div>
 

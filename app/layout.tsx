@@ -26,10 +26,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}
       >
-        {children}
-        <section className="py-20 border-t border-zinc-900 bg-zinc-950/50">
+        <main>{children}</main>
+
+        <section className="mt-[5px] p-0 border-t border-zinc-900 bg-zinc-950/50">
           <Footer />
         </section>
       </body>
