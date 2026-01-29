@@ -23,7 +23,7 @@ const Home = () => {
         <div className="absolute inset-0 z-0">
           <Image
             src={heroImageUrl}
-            alt="Hero Background"
+            alt="Bridal HD Makeup look for Indian wedding by Anjali Makeover, Makeup artist"
             fill
             fetchPriority="high"
             loading="lazy"
@@ -56,7 +56,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 3. NAVIGATION BANNERS (Now visible in the bottom 30% and beyond) */}
       <div className="flex flex-col">
         <PortfolioBar />
         <PricingBar />

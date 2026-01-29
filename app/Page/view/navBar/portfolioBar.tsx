@@ -25,7 +25,7 @@ const PortfolioBar = () => {
               >
                 <Image
                   src={src}
-                  alt="Portfolio Preview"
+                  alt="Bridal HD Makeup look for Indian wedding by Anjali Makeover, Anjali Makeup artist"
                   fill
                   fetchPriority="high"
                   className="object-cover transition-all duration-700 rounded-sm grayscale-0 md:grayscale md:group-hover:grayscale-0"

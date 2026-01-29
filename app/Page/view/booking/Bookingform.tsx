@@ -14,7 +14,6 @@ interface BForm {
 }
 
 const Bookingform = () => {
-  // Initialize with empty strings to avoid uncontrolled/controlled input warnings
   const [formData, setFormData] = useState<BForm>({
     name: "",
     email: "",
@@ -121,7 +120,7 @@ const Bookingform = () => {
           Reserve Your Date
         </h2>
         <p className="text-zinc-500 uppercase tracking-[0.3em] text-xs">
-          Book your transformation session
+          Book your look
         </p>
       </div>
 
