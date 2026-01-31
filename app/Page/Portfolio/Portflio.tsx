@@ -91,7 +91,7 @@ export default function PortfolioPage() {
             >
               <Image
                 src={item.image}
-                alt={item.title}
+                alt={item.alt}
                 fill // 2. Use fill for aspect-ratio containers
                 sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw" // 3. Tell browser how big image will be
                 className="object-cover transition-transform duration-1000 group-hover:scale-105"

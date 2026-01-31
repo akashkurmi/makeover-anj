@@ -7,6 +7,7 @@ import PortfolioBar from "../view/navBar/portfolioBar";
 import PricingBar from "../view/navBar/pricingBar";
 import ReviewPanel from "../view/navBar/reviewBar";
 import Highlight from "./Highlight";
+import Link from "next/link";
 
 const Home = () => {
   const heroImageUrl = "/anjHome.png";
@@ -52,10 +53,24 @@ const Home = () => {
                 className="text-pink-500 group-hover:translate-x-1 transition-transform"
               />
             </button>
+
+            <Link
+              href="/Page/About"
+              className="group flex items-center space-x-4 cursor-pointer bg-black/30 backdrop-blur-sm px-6 py-2 rounded-full border border-white/10 hover:border-pink-500 transition-all duration-300"
+            >
+              <span className="text-sm md:text-lg font-light uppercase tracking-[0.3em] text-gray-300 group-hover:text-white">
+                About
+              </span>
+              <ArrowRight
+                size={18}
+                className="text-pink-500 group-hover:translate-x-1 transition-transform"
+              />
+            </Link>
           </nav>
         </div>
       </section>
 
+      {/* 3. NAVIGATION BANNERS (Now visible in the bottom 30% and beyond) */}
       <div className="flex flex-col">
         <PortfolioBar />
         <PricingBar />

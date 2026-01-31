@@ -97,11 +97,6 @@ const Highlight = () => {
                 fill
                 className="object-cover transition-all duration-700"
               />
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-end p-3">
-                <p className="text-white text-[9px] tracking-widest uppercase">
-                  Reception
-                </p>
-              </div>
             </div>
           </div>
 
