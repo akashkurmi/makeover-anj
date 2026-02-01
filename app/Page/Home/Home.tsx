@@ -55,10 +55,10 @@ const Home = () => {
 
             <Link
               href="/Page/About"
-              className="group flex items-center space-x-4 cursor-pointer bg-black/30 backdrop-blur-sm px-6 py-2 rounded-full border border-white/10 hover:border-pink-500 transition-all duration-300"
+              className="group flex items-center space-x-4 cursor-pointer bg-black/40 backdrop-blur-sm px-6 py-1.5 rounded-full border border-white/10 hover:border-pink-500 transition-all duration-300"
             >
               <span className="text-sm md:text-lg font-light uppercase tracking-[0.3em] text-gray-300 group-hover:text-white">
-                About
+                About us
               </span>
               <ArrowRight
                 size={18}
