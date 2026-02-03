@@ -65,6 +65,11 @@ export default function RootLayout({
         url: domain,
         telephone: "+917879458655",
         image: `${domain}/images/_5.jpg`,
+        sameAs: [
+          "https://www.instagram.com/anjalimakeover7879/",
+          "https://www.youtube.com/@anjaligourmakeover",
+          "https://www.threads.net/@anjalimakeover7879",
+        ],
         address: {
           "@type": "PostalAddress",
           postalCode: "560036",
