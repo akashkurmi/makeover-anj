@@ -47,6 +47,36 @@ export default function PortfolioPage() {
     }
   };
 
+  // Inside your component...
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  // Minimum distance required to trigger a slide (in pixels)
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null); // Reset end touch
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      nextImage();
+    } else if (isRightSwipe) {
+      prevImage();
+    }
+  };
+
   const filteredItems = useMemo(() => {
     if (!portfolioData) return [];
     return filter === "All"
@@ -73,7 +103,7 @@ export default function PortfolioPage() {
             size={18}
             className="group-hover:-translate-x-1 transition-transform"
           />
-          <span className="uppercase tracking-[0.3em] text-[10px]">
+          <span className="uppercase tracking-[0.4em] text-[10px]">
             Back to Home
           </span>
         </Link>
@@ -179,15 +209,21 @@ export default function PortfolioPage() {
             <X size={32} strokeWidth={1} />
           </button>
 
-          <div className="relative w-full max-w-5xl flex flex-col items-center">
+          <div className="relative w-full max-w-5xl flex flex-col items-center pt-12">
             {/* Main Image Container */}
-            <div className="relative group w-full flex justify-center items-center min-h-[50vh]">
+            <div
+              className="relative group w-full flex justify-center items-center touch-pan-y"
+              // --- ADD TOUCH HANDLERS HERE ---
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+            >
               {/* Instagram Icon */}
               {selectedItem.link && (
                 <Link
                   href={selectedItem.link || "#"}
                   target="_blank"
-                  className="absolute top-4 right-4 z-[110] bg-white/90 text-black p-2 rounded-full shadow-xl hover:bg-pink-500 hover:text-white transition-all duration-300"
+                  className="absolute top-4 left-4 z-[110] bg-white/90 text-black p-2 rounded-full shadow-xl hover:bg-pink-500 hover:text-white transition-all duration-300"
                 >
                   <svg
                     width="18"
@@ -231,43 +267,46 @@ export default function PortfolioPage() {
               )}
 
               {/* Optimized Main Image */}
-              <div className="relative w-full h-[75vh] md:h-[80vh]">
+
+              <div className="relative w-full h-[75vh] md:h-[80vh] pointer-events-none select-none">
                 <Image
                   src={allImages[currentIndex]}
                   alt="Gallery View"
                   fill
-                  priority // Loads this image immediately
+                  priority
                   className="object-contain rounded-sm shadow-2xl transition-all duration-500"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                  sizes="(max-width: 768px) 100vw, 80vw"
                 />
               </div>
             </div>
 
             {/* Thumbnail Strip */}
-            {allImages.length > 1 && (
-              <div className="flex gap-2 mt-6 overflow-x-auto max-w-[90vw] px-2 py-2 no-scrollbar">
-                {allImages.map((img: string, idx: number) => (
-                  <button
-                    key={idx}
-                    onClick={() => setCurrentIndex(idx)}
-                    className={`relative flex-shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-sm overflow-hidden border-2 transition-all ${
-                      currentIndex === idx
-                        ? "border-pink-500 scale-105"
-                        : "border-transparent opacity-40"
-                    }`}
-                  >
-                    <Image
-                      src={img}
-                      alt={`Thumbnail ${idx}`}
-                      fill
-                      className="object-cover"
-                      sizes="64px"
-                    />
-                  </button>
-                ))}
-              </div>
-            )}
-
+            <div className="flex gap-2 mt-6 overflow-x-auto max-w-[90vw] px-4 py-3 no-scrollbar bg-white/5 rounded-lg backdrop-blur-sm">
+              {allImages.length > 1 && (
+                <div className="flex gap-2 mt-6 overflow-x-auto max-w-[90vw] px-2 py-2 no-scrollbar">
+                  {allImages.map((img: string, idx: number) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentIndex(idx)}
+                      // Added bg-white and adjusted border logic
+                      className={`relative flex-shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-sm overflow-hidden border-2 transition-all bg-white ${
+                        currentIndex === idx
+                          ? "border-pink-500 scale-105 opacity-100"
+                          : "border-transparent opacity-60 hover:opacity-80"
+                      }`}
+                    >
+                      <Image
+                        src={img}
+                        alt={`Thumbnail ${idx}`}
+                        fill
+                        className="object-cover"
+                        sizes="64px"
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
             {/* Footer Text */}
             <div className="mt-4 text-center pointer-events-none">
               <h2 className="text-[11px] tracking-[0.3em] uppercase text-white font-medium">

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const pricingData = [
   {
     category: "Bridal Makeup",
@@ -39,6 +41,14 @@ const pricingData = [
 const PricingPage = () => {
   return (
     <div className="bg-black text-white min-h-screen py-20 px-8">
+      <div className="relative flex flex-col items-center justify-center mb-24">
+        <Link href={"/"}>
+          <h2 className="text-white text-4xl md:text-6xl font-black uppercase italic tracking-tighter">
+            <span className="text-pink-500">Anjali</span> Makeover
+          </h2>
+        </Link>
+      </div>
+
       <div className="max-w-4xl mx-auto">
         <h1 className="text-5xl font-serif italic text-center mb-16 text-pink-500">
           Our Services & Rates

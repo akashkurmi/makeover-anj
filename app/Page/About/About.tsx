@@ -1,14 +1,17 @@
 import Image from "next/image";
 import { MapPin, CheckCircle2, Globe, Plane } from "lucide-react";
+import Link from "next/link";
 
 const About = () => {
   return (
     <section className="bg-black py-20 px-6 md:px-12 border-b border-white/5 relative">
       {/* Brand Header (Consistent with Nav Bars) */}
       <div className="relative flex flex-col items-center justify-center mb-24">
-        <h2 className="text-white text-4xl md:text-6xl font-black uppercase italic tracking-tighter">
-          <span className="text-pink-500">Anjali</span> Makeover
-        </h2>
+        <Link href={"/"}>
+          <h2 className="text-white text-4xl md:text-6xl font-black uppercase italic tracking-tighter">
+            <span className="text-pink-500">Anjali</span> Makeover
+          </h2>
+        </Link>
         <div className="mt-4 flex items-center space-x-4">
           <span className="h-px w-8 md:w-12 bg-pink-500"></span>
           <span className="text-white text-[10px] tracking-[0.6em] uppercase font-bold">
