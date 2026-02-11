@@ -276,6 +276,7 @@ export default function PortfolioPage() {
                   priority
                   className="object-contain rounded-sm shadow-2xl transition-all duration-500"
                   sizes="(max-width: 768px) 100vw, 80vw"
+                  unoptimized
                 />
               </div>
             </div>
@@ -301,6 +302,7 @@ export default function PortfolioPage() {
                         fill
                         className="object-cover"
                         sizes="64px"
+                        unoptimized
                       />
                     </button>
                   ))}
