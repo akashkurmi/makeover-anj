@@ -11,6 +11,7 @@ const PortfolioBar = () => {
   return (
     <>
       <Link
+        id="portfolioSection"
         href="/Page/Portfolio"
         className="relative w-full h-[50vh] md:h-[65vh] overflow-hidden group border-b border-white/10 bg-black"
       >

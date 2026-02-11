@@ -20,8 +20,16 @@ const Highlight = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const handleScroll = () => {
+    const element = document.getElementById("portfolioSection");
+    element?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <section className="bg-black py-16 md:py-20 px-4 md:px-10">
+    <section
+      className="bg-black py-16 md:py-20 px-4 md:px-10"
+      onClick={handleScroll}
+    >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-5xl font-serif italic text-pink-500 mb-2">
