@@ -1,3 +1,4 @@
+import { InstagramIcon, LucideInstagram } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -18,7 +19,7 @@ const Footer = () => {
             >
               <Image
                 src="/insta.png"
-                alt="Instagram QR Code"
+                alt="@anjalimakeover7879"
                 fill
                 sizes="(max-width: 768px) 128px, 160px"
                 className="object-contain p-2"
@@ -30,9 +31,12 @@ const Footer = () => {
                 </span>
               </div>
             </Link>
-            <p className="mt-4 text-[11px] tracking-[0.2em] uppercase text-pink-500 font-medium">
-              Follow us on Instagram
-            </p>
+            <Link href={instaLink} className="flex">
+              <InstagramIcon size={15} />
+              <p className="mt-4 text-[11px] tracking-[0.2em] text-pink-500 font-medium">
+                Follow us on Instagram @anjalimakeover7879
+              </p>
+            </Link>
           </div>
 
           {/* Right Section: Contact Info & Certification */}
