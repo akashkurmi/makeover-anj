@@ -1,0 +1,78 @@
+{
+  "Karnataka": [
+    {
+      "id": 1,
+      "name": "Basic Makeup",
+      "price": "2,500",
+      "details": "Subtle, natural, and radiant"
+    },
+    {
+      "id": 2,
+      "name": "Pre-wedding Makeup",
+      "price": "5,000",
+      "details": "Perfect for camera and outdoor shoots"
+    },
+    {
+      "id": 3,
+      "name": "Engagement Makeup",
+      "price": "5,500",
+      "details": "Glamorous evening transformation"
+    },
+    {
+      "id": 4,
+      "name": "Basic Bridal Makeup",
+      "price": "15,000",
+      "details": "Traditional elegance and grace"
+    },
+    {
+      "id": 5,
+      "name": "HD Bridal Makeup",
+      "price": "20,000",
+      "details": "High-definition, long-lasting finish"
+    },
+    {
+      "id": 6,
+      "name": "Airbrush & Glass Skin",
+      "price": "25,000",
+      "details": "Celebrity-style waterproof glow"
+    }
+  ],
+  "Madhya Pradesh": [
+    {
+      "id": 1,
+      "name": "Basic Makeup",
+      "price": "1,500",
+      "details": "Subtle, natural, and radiant"
+    },
+    {
+      "id": 2,
+      "name": "Pre-wedding Makeup",
+      "price": "3,000",
+      "details": "Perfect for camera and outdoor shoots"
+    },
+    {
+      "id": 3,
+      "name": "Engagement Makeup",
+      "price": "3,500",
+      "details": "Glamorous evening transformation"
+    },
+    {
+      "id": 4,
+      "name": "Basic Bridal Makeup",
+      "price": "8,000",
+      "details": "Traditional elegance and grace"
+    },
+    {
+      "id": 5,
+      "name": "HD Bridal Makeup",
+      "price": "15,000",
+      "details": "High-definition, long-lasting finish"
+    },
+    {
+      "id": 6,
+      "name": "Airbrush & Glass Skin",
+      "price": "20,000",
+      "details": "Celebrity-style waterproof glow"
+    }
+  ]
+}
