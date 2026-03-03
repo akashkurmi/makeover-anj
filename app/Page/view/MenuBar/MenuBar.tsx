@@ -4,7 +4,6 @@ import {
   Instagram,
   MessageCircleCode,
   Youtube,
-  Menu,
   X,
   Home,
   User,
@@ -12,6 +11,7 @@ import {
   ReceiptIndianRupee,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const pageLinks = [
   { name: "Home", href: "/", icon: Home },
@@ -41,10 +41,9 @@ const socialLinks = [
   },
 ];
 
-export default function Navbar() {
+export default function MenuBar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Close drawer/popup on window resize to prevent UI glitches
   useEffect(() => {
     const handleResize = () => setIsOpen(false);
     window.addEventListener("resize", handleResize);
@@ -53,16 +52,35 @@ export default function Navbar() {
 
   return (
     <>
-      {/* MENU BUTTON - Fixed Top Right for all screens */}
-      <div className="fixed top-6 right-6 z-[70]">
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] md:hidden animate-in fade-in duration-300"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
+      {/* MENU BUTTON */}
+      <div className="fixed top-3 right-3 z-[70]">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="p-3 bg-zinc-900/80 backdrop-blur rounded-full border border-zinc-800 text-white hover:border-pink-500 transition-all active:scale-95 shadow-2xl"
+          className="p-2 bg-zinc-900/80 backdrop-blur rounded-full border border-zinc-800 text-white hover:border-pink-500 transition-all active:scale-95 shadow-2xl flex items-center justify-center group"
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          {isOpen ? (
+            <X size={24} className="animate-in spin-in-90 duration-300" />
+          ) : (
+            <div className="relative w-6 h-6 transition-transform duration-500 group-hover:scale-110">
+              <Image
+                src="/icons/burger-menu.png"
+                alt="Menu"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+          )}
         </button>
 
-        {/* DESKTOP POPUP (Shows only on MD+) */}
+        {/* DESKTOP POPUP (Dropdown) */}
         {isOpen && (
           <div className="hidden md:block absolute right-0 mt-4 w-48 bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-200">
             <div className="flex flex-col py-2">
@@ -81,14 +99,13 @@ export default function Navbar() {
         )}
       </div>
 
-      {/* MOBILE DRAWER (Left Side - MD Hidden) */}
+      {/* MOBILE DRAWER */}
       <div
         className={`fixed inset-y-0 left-0 z-[60] w-72 bg-black border-r border-zinc-900 transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-500 ease-in-out md:hidden`}
+        } transition-transform duration-500 ease-in-out md:hidden shadow-[10px_0_30px_rgba(0,0,0,0.5)]`}
       >
         <div className="flex flex-col h-full p-8 pt-20">
-          {/* Section 1: Page Links */}
           <div className="space-y-6 mb-12">
             <p className="text-zinc-600 text-[10px] uppercase tracking-[0.3em] font-bold">
               Navigation
@@ -108,7 +125,6 @@ export default function Navbar() {
 
           <div className="h-[1px] bg-zinc-900 w-full mb-10" />
 
-          {/* Section 2: Social Links */}
           <div className="space-y-6">
             <p className="text-zinc-600 text-[10px] uppercase tracking-[0.3em] font-bold">
               Socials
@@ -130,7 +146,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* DESKTOP SIDEBAR (Keep current behavior or remove if no longer needed) */}
+      {/* DESKTOP SIDEBAR */}
       <div className="hidden md:flex fixed top-8 left-8 flex-col gap-8 z-50">
         {socialLinks.map((link) => (
           <Link
