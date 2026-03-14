@@ -9,9 +9,13 @@ import {
   User,
   Briefcase,
   ReceiptIndianRupee,
+  Sparkles,
+  ArrowRight,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+
+const lehengaThumb = "/anjali-makeover-collection.png";
 
 const pageLinks = [
   { name: "Home", href: "/", icon: Home },
@@ -123,8 +127,39 @@ export default function MenuBar() {
             ))}
           </div>
 
-          <div className="h-[1px] bg-zinc-900 w-full mb-10" />
+          <div className=" ">
+            <Link href="/Page/Gayatri-Collection" className="group block">
+              <div className="flex items-center bg-white/5 backdrop-blur-xl border border-white/10 pl-4 pr-1.5 py-1.5 rounded-full hover:border-pink-500/50 hover:bg-white/10 transition-all duration-500">
+                <Sparkles
+                  size={14}
+                  className="text-pink-500 mr-3 group-hover:rotate-12 transition-transform"
+                />
 
+                <div className="flex flex-col pr-4 border-r border-white/10">
+                  <h2 className="text-[11px] md:text-xs font-serif italic text-white tracking-wider">
+                    The Gayatri{" "}
+                    <span className="not-italic font-sans text-[8px] uppercase opacity-50 ml-1">
+                      Collection
+                    </span>
+                  </h2>
+                </div>
+
+                <div className="relative h-8 w-8 ml-2 overflow-hidden rounded-full border border-white/20">
+                  <Image
+                    src={lehengaThumb}
+                    alt="Gayatri"
+                    fill
+                    className="object-cover grayscale group-hover:grayscale-0 scale-110 transition-all duration-700"
+                  />
+                </div>
+
+                <div className="w-0 group-hover:w-5 overflow-hidden transition-all duration-300">
+                  <ArrowRight size={12} className="text-pink-500 ml-1" />
+                </div>
+              </div>
+            </Link>
+          </div>
+          <div className="h-[1px] bg-zinc-900 w-full mb-10" />
           <div className="space-y-6">
             <p className="text-zinc-600 text-[10px] uppercase tracking-[0.3em] font-bold">
               Socials

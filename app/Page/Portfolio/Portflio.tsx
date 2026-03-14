@@ -156,6 +156,7 @@ export default function PortfolioPage() {
                 sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                 className="object-cover transition-transform duration-1000 group-hover:scale-105"
                 priority={item.id < 5}
+                // placeholder="blur"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex items-end p-3">
                 <h3 className="text-white text-[9px] uppercase tracking-[0.2em] drop-shadow-md">
@@ -289,7 +290,6 @@ export default function PortfolioPage() {
                     <button
                       key={idx}
                       onClick={() => setCurrentIndex(idx)}
-                      // Added bg-white and adjusted border logic
                       className={`relative flex-shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-sm overflow-hidden border-2 transition-all bg-white ${
                         currentIndex === idx
                           ? "border-pink-500 scale-105 opacity-100"
@@ -302,7 +302,6 @@ export default function PortfolioPage() {
                         fill
                         className="object-cover"
                         sizes="64px"
-                        unoptimized
                       />
                     </button>
                   ))}
