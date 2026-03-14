@@ -9,8 +9,6 @@ import ReviewPanel from "../view/navBar/reviewBar";
 import Highlight from "./Highlight";
 import Link from "next/link";
 
-// ... other imports
-
 const Home = () => {
   const heroImageUrl = "/anjHome.png";
   const lehengaThumb = "/anjali-makeover-collection.png";
@@ -44,7 +42,7 @@ const Home = () => {
                   src={lehengaThumb}
                   alt="Gayatri"
                   fill
-                  className="object-cover grayscale group-hover:grayscale-0 scale-110 transition-all duration-700"
+                  className="object-cover  group-hover:grayscale-0 scale-110 transition-all duration-700"
                 />
               </div>
 

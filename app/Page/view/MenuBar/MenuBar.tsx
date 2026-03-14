@@ -128,7 +128,11 @@ export default function MenuBar() {
           </div>
 
           <div className=" ">
-            <Link href="/Page/Gayatri-Collection" className="group block">
+            <Link
+              href="/Page/Gayatri-Collection"
+              className="group block"
+              onClick={() => setIsOpen(false)}
+            >
               <div className="flex items-center bg-white/5 backdrop-blur-xl border border-white/10 pl-4 pr-1.5 py-1.5 rounded-full hover:border-pink-500/50 hover:bg-white/10 transition-all duration-500">
                 <Sparkles
                   size={14}
@@ -149,7 +153,7 @@ export default function MenuBar() {
                     src={lehengaThumb}
                     alt="Gayatri"
                     fill
-                    className="object-cover grayscale group-hover:grayscale-0 scale-110 transition-all duration-700"
+                    className="object-cover group-hover:grayscale-0 scale-110 transition-all duration-700"
                   />
                 </div>
 
