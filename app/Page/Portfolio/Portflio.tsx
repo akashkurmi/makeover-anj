@@ -137,7 +137,6 @@ export default function PortfolioPage() {
       </div>
 
       {/* Main Grid */}
-      {/* Main Grid */}
       <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
         {filteredItems.map((item: any) => (
           <div

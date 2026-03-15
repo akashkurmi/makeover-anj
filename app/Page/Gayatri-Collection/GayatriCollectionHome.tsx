@@ -1,10 +1,18 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Sparkles, SlidersHorizontal, X, MapPin, Loader2 } from "lucide-react";
+import {
+  Sparkles,
+  SlidersHorizontal,
+  X,
+  MapPin,
+  Loader2,
+  ArrowLeft,
+} from "lucide-react";
 import SidebarFilter from "./SideFilter";
 import { getCollectionData } from "./getCollectionData";
+import ProductCard from "../comp/ProductCard";
 
 const GayatriCollection = () => {
   const [outfits, setOutfits] = useState<any[]>([]);
@@ -14,6 +22,33 @@ const GayatriCollection = () => {
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [location, setLocation] = useState("Khurai");
 
+  // Inside GayatriCollection component
+  const [selectedItem, setSelectedItem] = useState<any | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Combine main image and sub-images into one array
+  const allImages = useMemo(() => {
+    if (!selectedItem) return [];
+    // Adjust key names based on your JSON (e.g., item.imageUrl or item.image)
+    const main = selectedItem.imageUrl || selectedItem.image;
+    const subs = selectedItem.subImages || [];
+    return [main, ...subs];
+  }, [selectedItem]);
+
+  const openLightbox = (item: any) => {
+    setSelectedItem(item);
+    setCurrentIndex(0);
+  };
+
+  const nextImage = () =>
+    setCurrentIndex((prev) => (prev + 1) % allImages.length);
+  const prevImage = () =>
+    setCurrentIndex((prev) => (prev - 1 + allImages.length) % allImages.length);
+
+  // Handle Click Outside to close
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) setSelectedItem(null);
+  };
   // State for Mobile Filter Overlay
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
@@ -116,39 +151,90 @@ const GayatriCollection = () => {
                 /* Added gap-4 for mobile and gap-x-6 gap-y-12 for desktop */
                 <div className="grid grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-x-6 md:gap-y-12">
                   {filteredOutfits.map((item) => (
-                    <div key={item.id} className="group cursor-pointer">
-                      <div className="aspect-[3/4] relative overflow-hidden bg-zinc-900 mb-3 md:mb-4">
-                        <Image
-                          src={item.imageUrl}
-                          alt={item.name}
-                          fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
-                        />
-                      </div>
-                      <div className="space-y-1">
-                        {/* Adjusted text size for mobile (text-[10px]) vs desktop (text-sm) */}
-                        <h3 className="text-[10px] md:text-sm font-light uppercase tracking-wider text-gray-200 line-clamp-1">
-                          {item.name}
-                        </h3>
-                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1">
-                          <p className="text-pink-500 font-serif italic text-sm md:text-lg">
-                            ₹{item.pricePerDay.toLocaleString()}
-                            <span className="text-[8px] md:text-[10px] text-gray-500 not-italic ml-1 uppercase">
-                              / Day
-                            </span>
-                          </p>
-                          <Link
-                            href={`/inquire/${item.id}`}
-                            className="text-[8px] md:text-[10px] uppercase tracking-widest text-gray-400 border-b border-gray-800 pb-0.5 hover:text-white hover:border-pink-500 transition-all"
-                          >
-                            Inquire
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
+                    <ProductCard
+                      key={item.id}
+                      item={item}
+                      onOpenLightbox={openLightbox}
+                    />
                   ))}
                 </div>
               )}
+            </div>
+          </div>
+        )}
+        {/* --- LIGHTBOX MODAL --- */}
+        {selectedItem && (
+          <div
+            onClick={handleBackdropClick}
+            className="fixed inset-0 z-[150] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center animate-in fade-in duration-300"
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setSelectedItem(null)}
+              className="absolute top-8 right-8 text-white/50 hover:text-white z-[160] transition-colors"
+            >
+              <X size={40} strokeWidth={1} />
+            </button>
+
+            <div className="relative w-full max-w-5xl h-[70vh] md:h-[80vh] flex flex-col items-center">
+              {/* Navigation Arrows */}
+              {allImages.length > 1 && (
+                <>
+                  <button
+                    onClick={prevImage}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 z-[160] p-4 text-white/20 hover:text-white transition-all"
+                  >
+                    <ArrowLeft size={48} strokeWidth={1} />
+                  </button>
+                  <button
+                    onClick={nextImage}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 z-[160] p-4 text-white/20 hover:text-white transition-all rotate-180"
+                  >
+                    <ArrowLeft size={48} strokeWidth={1} />
+                  </button>
+                </>
+              )}
+
+              {/* Main Image Display */}
+              <div className="relative w-full h-full p-4">
+                <Image
+                  src={allImages[currentIndex]}
+                  alt="Gallery"
+                  fill
+                  className="object-contain"
+                  priority
+                  unoptimized={true} // Set true if fetching from external URLs
+                />
+              </div>
+
+              {/* Thumbnails & Info */}
+              <div className="mt-8 text-center">
+                <h2 className="text-[10px] uppercase tracking-[0.5em] text-pink-500 mb-2">
+                  {selectedItem.name}
+                </h2>
+
+                {/* Thumbnail Strip */}
+                <div className="flex gap-2 justify-center mt-4">
+                  {allImages.map((img, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentIndex(idx)}
+                      className={`w-12 h-16 relative overflow-hidden border transition-all ${
+                        currentIndex === idx
+                          ? "border-pink-500 opacity-100 scale-110"
+                          : "border-transparent opacity-40"
+                      }`}
+                    >
+                      <Image
+                        src={img}
+                        alt="thumb"
+                        fill
+                        className="object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         )}
