@@ -19,7 +19,7 @@ const Footer = () => {
             >
               <Image
                 src="/insta.png"
-                alt="@anjalimakeover7879"
+                alt="anjali gour anjalimakeover7879"
                 fill
                 sizes="(max-width: 768px) 128px, 160px"
                 className="object-contain p-2"
@@ -31,7 +31,7 @@ const Footer = () => {
                 </span>
               </div>
             </Link>
-            <Link href={instaLink} className="flex">
+            <Link href={instaLink} className="flex" aria-label="anjali gour">
               <InstagramIcon size={15} />
               <p className="mt-4 text-[11px] tracking-[0.2em] text-pink-500 font-medium">
                 Follow us on Instagram @anjalimakeover7879
