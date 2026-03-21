@@ -47,6 +47,8 @@ export function ProductCard({ item, onOpenLightbox }: ProductCardProps) {
           <h3 className="text-white text-[9px] uppercase tracking-[0.2em] drop-shadow-md mb-1">
             {item.name}
           </h3>
+          {/* 
+          PRICE DISPLAY
           {item.pricePerDay && (
             <p className="text-pink-500 font-serif italic text-sm">
               ₹{item.pricePerDay.toLocaleString()}
@@ -54,7 +56,7 @@ export function ProductCard({ item, onOpenLightbox }: ProductCardProps) {
                 / Day
               </span>
             </p>
-          )}
+          )} */}
         </div>
       </div>
 

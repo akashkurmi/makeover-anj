@@ -65,7 +65,7 @@ const SidebarFilter = ({
       </div>
 
       {/* Price Range Filter */}
-      <div>
+      {/* <div>
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-[10px] uppercase tracking-[0.4em] text-pink-500 font-bold">
             Max Price
@@ -83,10 +83,10 @@ const SidebarFilter = ({
           onChange={(e) => setPriceRange(parseInt(e.target.value))}
           className="w-full h-1 bg-zinc-800 accent-pink-500 appearance-none cursor-pointer"
         />
-      </div>
+      </div> */}
 
       {/* Color Palette Filter */}
-      <div>
+      {/* <div>
         <h3 className="text-[10px] uppercase tracking-[0.4em] text-pink-500 mb-6 font-bold">
           Palette
         </h3>
@@ -118,7 +118,7 @@ const SidebarFilter = ({
             Clear Color Filter [x]
           </button>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
