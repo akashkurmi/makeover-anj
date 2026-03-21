@@ -271,12 +271,12 @@ export default function PortfolioPage() {
               <div className="relative w-full h-[75vh] md:h-[80vh] pointer-events-none select-none">
                 <Image
                   src={allImages[currentIndex]}
-                  alt="Gallery View"
+                  alt={selectedItem.title || "Gallery View"}
                   fill
                   priority
                   className="object-contain rounded-sm shadow-2xl transition-all duration-500"
-                  sizes="(max-width: 768px) 100vw, 80vw"
-                  unoptimized
+                  // On mobile, it's roughly full width. On desktop (max-5xl), it's about 80-90% of the viewport.
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                 />
               </div>
             </div>
@@ -295,12 +295,14 @@ export default function PortfolioPage() {
                           : "border-transparent opacity-60 hover:opacity-80"
                       }`}
                     >
+                      {/* Thumbnail Image inside the map */}
                       <Image
                         src={img}
-                        alt={`Thumbnail ${idx}`}
+                        alt={`${selectedItem.title} thumbnail ${idx}`}
                         fill
                         className="object-cover"
-                        sizes="64px"
+                        // These are tiny icons, so we tell the browser to fetch a tiny version.
+                        sizes="(max-width: 768px) 48px, 64px"
                       />
                     </button>
                   ))}

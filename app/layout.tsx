@@ -2,7 +2,7 @@ import { Instagram, MessageCircleCode, Youtube } from "lucide-react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
-import Script from "next/script"; // Import the Script component
+import Script from "next/script";
 import "./globals.css";
 import Footer from "./Page/comp/footer/Footer";
 import MenuBar from "./Page/view/MenuBar/MenuBar";

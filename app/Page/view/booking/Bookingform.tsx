@@ -244,6 +244,7 @@ const Bookingform = () => {
             onChange={handleChange}
             value={formData.eventDate}
             type="date"
+            id="eventDate"
             name="eventDate"
             required
             className="bg-zinc-950 border border-zinc-800 p-4 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none"

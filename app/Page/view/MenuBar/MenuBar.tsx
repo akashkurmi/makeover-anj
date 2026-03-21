@@ -29,18 +29,21 @@ const socialLinks = [
     icon: Instagram,
     label: "Instagram",
     href: "https://www.instagram.com/anjalimakeover7879/",
+    desc: "anjali gour anjalimakeover7879",
     color: "hover:text-pink-500",
   },
   {
     icon: Youtube,
     label: "YouTube",
     href: "https://www.youtube.com/@anjaligourmakeover",
+    desc: "anjali gour anjalimakeover7879",
     color: "hover:text-gray-400",
   },
   {
     icon: MessageCircleCode,
     label: "Threads",
     href: "https://www.threads.com/@anjalimakeover7879",
+    desc: "anjali gour anjalimakeover7879",
     color: "hover:text-blue-500",
   },
 ];
@@ -171,6 +174,7 @@ export default function MenuBar() {
             <div className="flex flex-col gap-5">
               {socialLinks.map((link) => (
                 <Link
+                  aria-label={`instagram: ${link.desc}`}
                   key={link.label}
                   href={link.href}
                   target="_blank"
@@ -189,6 +193,7 @@ export default function MenuBar() {
       <div className="hidden md:flex fixed top-8 left-8 flex-col gap-8 z-50">
         {socialLinks.map((link) => (
           <Link
+            aria-label={link.desc}
             key={link.label}
             href={link.href}
             target="_blank"

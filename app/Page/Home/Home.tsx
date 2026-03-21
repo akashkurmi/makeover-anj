@@ -108,7 +108,6 @@ const Home = () => {
       </div>
 
       <TestimonialSection />
-
       <section
         id="booking"
         className="bg-black py-24 px-6 border-t border-white/5"

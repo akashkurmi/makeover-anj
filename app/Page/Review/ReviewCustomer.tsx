@@ -113,6 +113,8 @@ export default function TestimonialSection() {
         <div className="flex justify-center gap-3 mt-12">
           {reviews.map((_, i) => (
             <button
+              name="move-display"
+              aria-label="move-display"
               key={i}
               onClick={() => setCurrentIndex(i)}
               className={`h-1 transition-all duration-500 ${
