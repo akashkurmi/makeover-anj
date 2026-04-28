@@ -15,8 +15,18 @@ export default function PortfolioPage() {
     // Fetch dynamically from our new Cloudinary API route
     fetch("/api/portfolio")
       .then((res) => res.json())
-      .then((res) => setPortfolioData(res))
-      .catch((err) => console.error("Fetch error:", err));
+      .then((res) => {
+        if (Array.isArray(res)) {
+          setPortfolioData(res);
+        } else {
+          console.error("API did not return an array:", res);
+          setPortfolioData([]); // Set to empty array to avoid crashes
+        }
+      })
+      .catch((err) => {
+        console.error("Fetch error:", err);
+        setPortfolioData([]);
+      });
   }, []);
   // Inside PortfolioPage component
   const [currentIndex, setCurrentIndex] = useState(0);
