@@ -44,7 +44,6 @@ export default function ImageUpload({
         clientAllowedFormats: ["png", "jpeg", "webp", "jpg"],
         maxImageWidth: 2000, 
         maxImageHeight: 2000,
-        format: "webp",
         tags: tagsToApply,
         multiple: multiple,
         // Only attach context (title/link/order) to the Main Image
