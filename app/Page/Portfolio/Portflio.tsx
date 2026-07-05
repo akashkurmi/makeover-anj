@@ -12,13 +12,21 @@ export default function PortfolioPage() {
   const [portfolioData, setPortfolioData] = useState<any[] | null>(null);
 
   useEffect(() => {
-    const cacheBuster = `?t=${new Date().getTime()}`;
-    const url = "https://makeover-data.vercel.app/data.json";
-
-    fetch(url + cacheBuster)
+    // Fetch dynamically from our new Cloudinary API route
+    fetch("/api/portfolio")
       .then((res) => res.json())
-      .then((res) => setPortfolioData(res))
-      .catch((err) => console.error("Fetch error:", err));
+      .then((res) => {
+        if (Array.isArray(res)) {
+          setPortfolioData(res);
+        } else {
+          console.error("API did not return an array:", res);
+          setPortfolioData([]); // Set to empty array to avoid crashes
+        }
+      })
+      .catch((err) => {
+        console.error("Fetch error:", err);
+        setPortfolioData([]);
+      });
   }, []);
   // Inside PortfolioPage component
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -150,7 +158,7 @@ export default function PortfolioPage() {
             >
               <Image
                 src={item.image}
-                alt={item.alt}
+                alt={item.title || "anjalimakeover7879"}
                 fill
                 sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                 className="object-cover transition-transform duration-1000 group-hover:scale-105"
@@ -271,7 +279,7 @@ export default function PortfolioPage() {
               <div className="relative w-full h-[75vh] md:h-[80vh] pointer-events-none select-none">
                 <Image
                   src={allImages[currentIndex]}
-                  alt={selectedItem.title || "Gallery View"}
+                  alt={selectedItem.title || "anjalimakeover7879"}
                   fill
                   priority
                   className="object-contain rounded-sm shadow-2xl transition-all duration-500"
@@ -298,7 +306,7 @@ export default function PortfolioPage() {
                       {/* Thumbnail Image inside the map */}
                       <Image
                         src={img}
-                        alt={`${selectedItem.title} thumbnail ${idx}`}
+                        alt={`${selectedItem.title || "anjalimakeover7879"} thumbnail ${idx}`}
                         fill
                         className="object-cover"
                         // These are tiny icons, so we tell the browser to fetch a tiny version.
