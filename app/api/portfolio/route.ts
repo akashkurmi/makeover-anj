@@ -20,7 +20,8 @@ export async function GET() {
       .max_results(500)
       .execute();
 
-    const portfolioGroups: Record<string, any> = {};
+    const portfolioGroups: Record<string, { mainImages: any[], subImages: string[] }> = {};
+    const formattedData: any[] = [];
 
     results.resources.forEach((img: any) => {
       // Find the group tag (starts with 'group_')
@@ -28,54 +29,43 @@ export async function GET() {
       if (!groupTag) return; // Ignore if no group tag
 
       if (!portfolioGroups[groupTag]) {
-        portfolioGroups[groupTag] = { subImages: [] };
+        portfolioGroups[groupTag] = { mainImages: [], subImages: [] };
       }
 
       // Check if it's a sub-image
       if (img.tags?.includes('sub_image')) {
         portfolioGroups[groupTag].subImages.push(img.secure_url);
       } else {
-        // It's the main image! We extract category, title, and link from it.
+        // It's a main image!
         const categoryTag = img.tags?.find((t: string) => t !== 'portfolio' && !t.startsWith('group_') && t !== 'sub_image') || 'All';
-        
-        portfolioGroups[groupTag].mainImage = img;
-        portfolioGroups[groupTag].category = categoryTag;
+        portfolioGroups[groupTag].mainImages.push({
+          img,
+          category: categoryTag
+        });
       }
     });
 
-    // If there are legacy images (no group tags), return them so the portfolio doesn't look empty!
-    if (results.resources.length > 0 && Object.keys(portfolioGroups).length === 0) {
-      const legacyData = results.resources.map((img: any, index: number) => {
-        const categoryTag = img.tags?.find((tag: string) => tag !== 'portfolio') || 'All';
-        return {
-          id: img.asset_id || index,
-          title: img.context?.alt || img.filename || 'Makeover Anj',
-          category: categoryTag,
-          image: img.secure_url,
-          subImages: [],
-          link: img.context?.caption || '',
-        };
-      });
-      return NextResponse.json(legacyData);
-    }
-
     // Format the groups into the final array
-    const formattedData = Object.values(portfolioGroups)
-      .filter((group) => group.mainImage) // Only include groups that have a main image
-      .map((group) => {
-        const img = group.mainImage;
-        return {
+    Object.keys(portfolioGroups).forEach(groupTag => {
+      const group = portfolioGroups[groupTag];
+      
+      // Each main image in the group becomes its own portfolio item
+      group.mainImages.forEach((main) => {
+        const img = main.img;
+        formattedData.push({
           id: img.asset_id,
           title: img.context?.alt || 'Makeover Anj',
-          category: group.category,
+          category: main.category,
           image: img.secure_url,
           subImages: group.subImages,
           link: img.context?.caption || '',
           order: img.context?.order || '',
-        };
+          createdAt: img.created_at, // Store for sorting
+        });
       });
+    });
 
-    // Sort by order priority first, then created_at of main image (newest first)
+    // Sort by order priority first, then created_at (newest first)
     if (formattedData.length > 0) {
       formattedData.sort((a, b) => {
         const orderA = a.order ? parseInt(a.order, 10) : Infinity;
@@ -85,14 +75,14 @@ export async function GET() {
           return orderA - orderB; // Lower numbers come first
         }
 
-        // If order is the same (or both have no order), sort by date
-        const timeA = new Date(portfolioGroups[Object.keys(portfolioGroups).find(k => portfolioGroups[k].mainImage?.asset_id === a.id)!].mainImage.created_at).getTime();
-        const timeB = new Date(portfolioGroups[Object.keys(portfolioGroups).find(k => portfolioGroups[k].mainImage?.asset_id === b.id)!].mainImage.created_at).getTime();
-        return timeB - timeA;
+        // If order is the same, sort by date
+        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
       });
     }
 
-    return NextResponse.json(formattedData);
+    // Clean up temporary createdAt before sending response
+    const finalData = formattedData.map(({ createdAt, ...rest }) => rest);
+    return NextResponse.json(finalData);
   } catch (error: any) {
     console.error('Cloudinary API Error:', error);
     return NextResponse.json({ error: 'Failed to fetch portfolio images', details: error.message || String(error) }, { status: 500 });
