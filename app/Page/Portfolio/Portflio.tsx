@@ -94,18 +94,18 @@ export default function PortfolioPage() {
 
   if (!portfolioData)
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center text-zinc-500">
+      <div className="min-h-screen bg-stone-50 flex items-center justify-center text-stone-600">
         Loading Artistry...
       </div>
     );
 
   return (
-    <main className="min-h-screen bg-black text-white px-3 md:px-6 py-12">
+    <main className="min-h-screen bg-stone-50 text-stone-900 px-3 md:px-6 py-12">
       {/* Header */}
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center mb-16 gap-8">
         <Link
           href="/"
-          className="flex items-center gap-2 text-zinc-500 hover:text-pink-500 transition-colors group"
+          className="flex items-center gap-2 text-stone-600 hover:text-pink-500 transition-colors group"
         >
           <ArrowLeft
             size={18}
@@ -134,8 +134,8 @@ export default function PortfolioPage() {
               }}
               className={`uppercase tracking-[0.2em] md:tracking-[0.4em] text-[10px] pb-2 border-b-2 transition-all duration-500 ${
                 filter === cat
-                  ? "border-pink-500 text-white"
-                  : "border-transparent text-zinc-600 hover:text-zinc-400"
+                  ? "border-pink-500 text-stone-900"
+                  : "border-transparent text-stone-500 hover:text-stone-700"
               }`}
             >
               {cat}
@@ -149,7 +149,7 @@ export default function PortfolioPage() {
         {filteredItems.map((item: any) => (
           <div
             key={item.id}
-            className="relative group overflow-hidden rounded-sm bg-zinc-900 aspect-[9/16]"
+            className="relative group overflow-hidden rounded-sm bg-stone-200 aspect-[9/16]"
           >
             {/* 1. Main Image Link */}
             <div
@@ -166,7 +166,7 @@ export default function PortfolioPage() {
                 // placeholder="blur"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex items-end p-3">
-                <h3 className="text-white text-[9px] uppercase tracking-[0.2em] drop-shadow-md">
+                <h3 className="text-stone-900 text-[9px] uppercase tracking-[0.2em] drop-shadow-md">
                   {item.title}
                 </h3>
               </div>
@@ -179,7 +179,7 @@ export default function PortfolioPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 // Reduced padding to p-1.5 to match the smaller icon scale
-                className="absolute top-2 right-2 z-20 p-1.5 bg-black/60 backdrop-blur-md rounded-full text-white hover:text-pink-500 hover:bg-white transition-all duration-300 transform md:translate-y-[-10px] md:opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
+                className="absolute top-2 right-2 z-20 p-1.5 bg-white/80 backdrop-blur-md rounded-full text-stone-900 hover:text-pink-500 hover:bg-white transition-all duration-300 transform md:translate-y-[-10px] md:opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
                 onClick={(e) => e.stopPropagation()}
               >
                 <svg
@@ -319,10 +319,10 @@ export default function PortfolioPage() {
             </div>
             {/* Footer Text */}
             <div className="mt-4 text-center pointer-events-none">
-              <h2 className="text-[11px] tracking-[0.3em] uppercase text-white font-medium">
+              <h2 className="text-[11px] tracking-[0.3em] uppercase text-stone-900 font-medium">
                 {selectedItem.title}
               </h2>
-              <p className="text-[9px] text-zinc-400 mt-1 tracking-widest">
+              <p className="text-[9px] text-stone-700 mt-1 tracking-widest">
                 {currentIndex + 1} / {allImages.length}
               </p>
             </div>

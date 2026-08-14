@@ -6,17 +6,17 @@ const PricingBar = () => {
     <>
       <Link
         href="/Page/Pricing"
-        className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden group border-b border-white/10 bg-black"
+        className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden group border-b border-white/10 bg-stone-50"
       >
         {/* BACKGROUND LAYER */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/wpp.jpeg"
+            src="https://img.magnific.com/premium-photo/different-luxury-makeup-products-pink-background-flat-lay-top-view_106006-6326.jpg?semt=ais_test_b&w=740&q=80"
             alt="Pricing Background"
             fill
             className="object-cover opacity-50 md:opacity-30 grayscale-0 md:grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[3000ms] ease-out"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black" />
+          <div className="absolute inset-0 bg-gradient-to-t from-stone-50 via-transparent to-stone-50" />
         </div>
 
         {/* FLOATING PRICE ELEMENTS */}
@@ -24,7 +24,7 @@ const PricingBar = () => {
         <div className="absolute inset-0 z-10 pointer-events-none">
           {/* Price Tag 1 */}
           <div className="absolute top-[15%] left-[8%] md:top-[20%] md:left-[15%] opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-700 translate-y-0 md:translate-y-4 md:group-hover:translate-y-0">
-            <p className="text-white/60 md:text-white/40 text-[9px] md:text-[10px] tracking-widest uppercase">
+            <p className="text-stone-500 md:text-stone-400 text-[9px] md:text-[10px] tracking-widest uppercase">
               Bridal
             </p>
             <p className="text-pink-500 text-xl md:text-2xl font-light">
@@ -34,7 +34,7 @@ const PricingBar = () => {
 
           {/* Price Tag 2 */}
           <div className="absolute bottom-[20%] right-[8%] md:bottom-[25%] md:right-[15%] text-right opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-700 translate-y-0 md:translate-y-4 md:group-hover:translate-y-0">
-            <p className="text-white/60 md:text-white/40 text-[9px] md:text-[10px] tracking-widest uppercase">
+            <p className="text-stone-500 md:text-stone-400 text-[9px] md:text-[10px] tracking-widest uppercase">
               Party
             </p>
             <p className="text-pink-500 text-xl md:text-2xl font-light">
@@ -53,7 +53,7 @@ const PricingBar = () => {
 
         {/* CENTER TEXT LAYER */}
         <div className="relative z-20 h-full flex flex-col items-center justify-center">
-          <h2 className="text-white text-5xl md:text-9xl font-black uppercase italic tracking-tighter">
+          <h2 className="text-stone-900 text-5xl md:text-9xl font-black uppercase italic tracking-tighter">
             <span className="text-pink-500">Pr</span>icing
           </h2>
 

@@ -1,4 +1,5 @@
 "use client";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { ArrowRight, Sparkles } from "lucide-react";
 import TestimonialSection from "../Review/ReviewCustomer";
@@ -10,11 +11,27 @@ import Highlight from "./Highlight";
 import Link from "next/link";
 
 const Home = () => {
-  const heroImageUrl = "/anjHome.png";
+  const heroImages = [
+    "/anjHome.png",
+    "/images/_1.jpg",
+    "/images/_3.jpg",
+    "/images/_5.jpg",
+    "/images/_10.jpg",
+    "/images/_11.jpg"
+  ];
   const lehengaThumb = "/anjali-makeover-collection.png";
 
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <div className="bg-black">
+    <div className="bg-stone-50">
       <section className="relative h-[70vh] flex flex-col items-center px-4 overflow-hidden">
         {/* --- THE GAYATRI PORTAL: MINIMALIST PILL --- */}
         <div className="hidden md:block absolute top-3.5 right-15 z-20">
@@ -28,7 +45,7 @@ const Home = () => {
 
               {/* Center: Branding */}
               <div className="flex flex-col pr-4 border-r border-white/10">
-                <h2 className="text-[11px] md:text-xs font-serif italic text-white tracking-wider">
+                <h2 className="text-[11px] md:text-xs font-serif italic text-stone-900 tracking-wider">
                   The Gayatri{" "}
                   <span className="not-italic font-sans text-[8px] uppercase opacity-50 ml-1">
                     Collection
@@ -55,13 +72,23 @@ const Home = () => {
         </div>
 
         {/* --- MAIN HERO CONTENT --- */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={heroImageUrl}
-            alt="Anjali Makeover"
-            fill
-            className="object-cover opacity-40"
-          />
+        <div className="absolute inset-0 z-0 bg-black">
+          {heroImages.map((src, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                index === currentImageIndex ? "opacity-100" : "opacity-0"
+              } ${index === 0 ? "md:opacity-100" : "md:opacity-0"}`}
+            >
+              <Image
+                src={src}
+                alt={`Anjali Makeover Hero ${index + 1}`}
+                fill
+                priority={index === 0}
+                className="object-cover"
+              />
+            </div>
+          ))}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black" />
         </div>
 
@@ -110,7 +137,7 @@ const Home = () => {
       <TestimonialSection />
       <section
         id="booking"
-        className="bg-black py-24 px-6 border-t border-white/5"
+        className="bg-stone-50 py-24 px-6 border-t border-white/5"
       >
         <Bookingform />
       </section>

@@ -6,7 +6,7 @@ const Footer = () => {
   const instaLink = "https://www.instagram.com/anjalimakeover7879/";
 
   return (
-    <footer className="w-full bg-black py-16 border-t border-zinc-900">
+    <footer className="w-full bg-stone-950 py-16 border-t border-stone-800 text-stone-300">
       <div className="max-w-6xl mx-auto px-8">
         <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-12">
           {/* Left Section: QR Code */}
@@ -31,9 +31,9 @@ const Footer = () => {
                 </span>
               </div>
             </Link>
-            <Link href={instaLink} className="flex" aria-label="anjali gour">
-              <InstagramIcon size={15} />
-              <p className="mt-4 text-[11px] tracking-[0.2em] text-pink-500 font-medium">
+            <Link href={instaLink} className="flex items-center gap-1.5 mt-4" aria-label="anjali gour">
+              <InstagramIcon size={15} className="text-pink-500" />
+              <p className="text-[11px] tracking-[0.2em] text-pink-500 font-medium">
                 Follow us on Instagram @anjalimakeover7879
               </p>
             </Link>
@@ -47,7 +47,7 @@ const Footer = () => {
                 <h2 className="text-4xl font-serif italic mb-10 text-white">
                   Get in Touch
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 text-sm tracking-[0.2em] uppercase text-gray-400">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 text-sm tracking-[0.2em] uppercase text-stone-400">
                   <div className="space-y-2">
                     <p className="text-white font-semibold">Location</p>
                     <p className="leading-relaxed">Bangalore, India</p>
@@ -86,8 +86,8 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="mt-20 pt-8 border-t border-zinc-900 text-center">
-          <p className="text-[10px] text-zinc-600 tracking-[0.5em] uppercase">
+        <div className="mt-20 pt-8 border-t border-stone-800 text-center">
+          <p className="text-[10px] text-stone-500 tracking-[0.5em] uppercase">
             © 2026 ANJALI MAKEOVER. ALL RIGHTS RESERVED.
           </p>
         </div>

@@ -5,10 +5,10 @@ const ReviewPanel = () => {
     <Link
       href="https://share.google/gzG2G7fj9Mk3MkOEn"
       // Changed mobile height to 15vh or 20vh to ensure it is "small"
-      className="relative w-full h-[18vh] md:h-[65vh] overflow-hidden group border-b border-white/10 bg-black block"
+      className="relative w-full h-[18vh] md:h-[65vh] overflow-hidden group border-b border-white/10 bg-stone-950 block"
     >
       {/* Dynamic Overlay */}
-      <div className="absolute inset-0 bg-black/40 md:bg-black/60 md:group-hover:bg-black/20 transition-all duration-500" />
+      <div className="absolute inset-0 bg-black/20 md:bg-black/40 md:group-hover:bg-black/10 transition-all duration-500" />
 
       {/* Content */}
       <div className="relative h-full flex flex-col items-center justify-center p-2">
@@ -20,7 +20,7 @@ const ReviewPanel = () => {
         {/* Action Line: Compact spacing for mobile */}
         <div className="mt-2 md:mt-8 flex items-center space-x-4 opacity-100 translate-y-0 md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-700">
           <span className="h-px w-6 md:w-0 md:group-hover:w-12 bg-pink-500 transition-all duration-700"></span>
-          <span className="text-white text-[8px] md:text-[10px] tracking-[0.4em] md:tracking-[1em] uppercase font-bold">
+          <span className="text-stone-300 text-[8px] md:text-[10px] tracking-[0.4em] md:tracking-[1em] uppercase font-bold">
             Client Stories
           </span>
           <span className="h-px w-6 md:w-0 md:group-hover:w-12 bg-pink-500 transition-all duration-700"></span>

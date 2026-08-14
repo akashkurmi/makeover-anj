@@ -27,7 +27,7 @@ const Highlight = () => {
 
   return (
     <section
-      className="bg-black py-16 md:py-20 px-4 md:px-10"
+      className="bg-stone-50 py-16 md:py-20 px-4 md:px-10"
       onClick={handleScroll}
     >
       <div className="max-w-7xl mx-auto">
@@ -42,7 +42,7 @@ const Highlight = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4 h-auto md:h-[650px]">
           {/* COLUMN 1: The Carousel Highlight (60% Width on Desktop) */}
-          <div className="col-span-2 md:col-span-3 relative overflow-hidden group rounded-sm h-[350px] md:h-full bg-zinc-900">
+          <div className="col-span-2 md:col-span-3 relative overflow-hidden group rounded-sm h-[350px] md:h-full bg-stone-200">
             {carouselImages.map((src, index) => (
               <div
                 key={index}
@@ -63,7 +63,7 @@ const Highlight = () => {
             {/* Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-6 z-10">
               <div className="flex flex-col gap-2">
-                <p className="text-white text-xs md:text-lg tracking-[0.3em] uppercase font-light">
+                <p className="text-stone-900 text-xs md:text-lg tracking-[0.3em] uppercase font-light">
                   The Signature Bride
                 </p>
                 {/* Carousel Indicators */}
@@ -93,7 +93,7 @@ const Highlight = () => {
                 className="object-cover transition-all duration-700"
               />
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-end p-3">
-                <p className="text-white text-[9px] tracking-widest uppercase">
+                <p className="text-stone-900 text-[9px] tracking-widest uppercase">
                   Glam
                 </p>
               </div>
@@ -118,7 +118,7 @@ const Highlight = () => {
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-black/20 flex items-end p-3">
-                <p className="text-white text-[8px] tracking-widest uppercase">
+                <p className="text-stone-900 text-[8px] tracking-widest uppercase">
                   Eyes
                 </p>
               </div>
@@ -131,7 +131,7 @@ const Highlight = () => {
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-black/20 flex items-end p-3">
-                <p className="text-white text-[8px] tracking-widest uppercase">
+                <p className="text-stone-900 text-[8px] tracking-widest uppercase">
                   Hair
                 </p>
               </div>

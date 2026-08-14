@@ -125,10 +125,10 @@ const Bookingform = () => {
       {/* SUCCESS/ERROR MODAL */}
       {showModal && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-          <div className="bg-zinc-950 border border-zinc-800 p-8 max-w-sm w-full relative animate-in fade-in zoom-in duration-300">
+          <div className="bg-stone-100 border border-stone-400 p-8 max-w-sm w-full relative animate-in fade-in zoom-in duration-300">
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 text-zinc-500 hover:text-white"
+              className="absolute top-4 right-4 text-stone-600 hover:text-white"
             >
               <X size={20} />
             </button>
@@ -139,10 +139,10 @@ const Bookingform = () => {
                   <div className="flex justify-center text-pink-500">
                     <CheckCircle2 size={48} />
                   </div>
-                  <h3 className="text-white text-2xl font-serif italic">
+                  <h3 className="text-stone-900 text-2xl font-serif italic">
                     Thank You, {formData.name}!
                   </h3>
-                  <p className="text-zinc-400 text-sm leading-relaxed">
+                  <p className="text-stone-700 text-sm leading-relaxed">
                     Your request has been submitted. We will reach out to you
                     soon.
                   </p>
@@ -152,10 +152,10 @@ const Bookingform = () => {
                   <div className="flex justify-center text-red-500">
                     <AlertCircle size={48} />
                   </div>
-                  <h3 className="text-white text-2xl font-serif italic">
+                  <h3 className="text-stone-900 text-2xl font-serif italic">
                     Oops!
                   </h3>
-                  <p className="text-zinc-400 text-sm leading-relaxed">
+                  <p className="text-stone-700 text-sm leading-relaxed">
                     Something went wrong. Please try again after some time or
                     contact us directly.
                   </p>
@@ -174,10 +174,10 @@ const Bookingform = () => {
       )}
 
       <div className="text-center mb-16">
-        <h2 className="text-white text-4xl md:text-6xl font-serif italic mb-4">
+        <h2 className="text-pink-500 text-4xl md:text-6xl font-serif italic mb-4">
           Reserve Your Date
         </h2>
-        <p className="text-zinc-500 uppercase tracking-[0.3em] text-xs">
+        <p className="text-stone-600 uppercase tracking-[0.3em] text-xs">
           Book your look
         </p>
       </div>
@@ -189,7 +189,7 @@ const Bookingform = () => {
       >
         {/* ... (Your existing input fields remain exactly the same) ... */}
         <div className="flex flex-col space-y-2">
-          <label className="text-zinc-400 text-[10px] uppercase tracking-widest ml-1">
+          <label className="text-stone-700 text-[10px] uppercase tracking-widest ml-1">
             Full Name
           </label>
           <input
@@ -199,12 +199,12 @@ const Bookingform = () => {
             name="name"
             required
             placeholder="Enter your name"
-            className="bg-zinc-950 border border-zinc-800 p-4 text-white focus:outline-none focus:border-pink-500 transition-colors"
+            className="bg-stone-100 border border-stone-400 p-4 text-stone-900 focus:outline-none focus:border-pink-500 transition-colors"
           />
         </div>
 
         <div className="flex flex-col space-y-2">
-          <label className="text-zinc-400 text-[10px] uppercase tracking-widest ml-1">
+          <label className="text-stone-700 text-[10px] uppercase tracking-widest ml-1">
             Email Address
           </label>
           <input
@@ -214,12 +214,12 @@ const Bookingform = () => {
             name="email"
             required
             placeholder="email@example.com"
-            className="bg-zinc-950 border border-zinc-800 p-4 text-white focus:outline-none focus:border-pink-500 transition-colors"
+            className="bg-stone-100 border border-stone-400 p-4 text-stone-900 focus:outline-none focus:border-pink-500 transition-colors"
           />
         </div>
 
         <div className="flex flex-col space-y-2">
-          <label className="text-zinc-400 text-[10px] uppercase tracking-widest ml-1">
+          <label className="text-stone-700 text-[10px] uppercase tracking-widest ml-1">
             Phone Number
           </label>
           <input
@@ -229,14 +229,14 @@ const Bookingform = () => {
             name="phn"
             required
             placeholder="+91 00000 00000"
-            className="bg-zinc-950 border border-zinc-800 p-4 text-white focus:outline-none focus:border-pink-500 transition-colors"
+            className="bg-stone-100 border border-stone-400 p-4 text-stone-900 focus:outline-none focus:border-pink-500 transition-colors"
           />
         </div>
 
         <div className="flex flex-col space-y-2">
           <label
             htmlFor="eventDate"
-            className="text-zinc-400 text-[10px] uppercase tracking-widest ml-1"
+            className="text-stone-700 text-[10px] uppercase tracking-widest ml-1"
           >
             Event Date
           </label>
@@ -247,14 +247,14 @@ const Bookingform = () => {
             id="eventDate"
             name="eventDate"
             required
-            className="bg-zinc-950 border border-zinc-800 p-4 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none"
+            className="bg-stone-100 border border-stone-400 p-4 text-stone-900 focus:outline-none focus:border-pink-500 transition-colors appearance-none"
           />
         </div>
 
         <div className="flex flex-col space-y-2">
           <label
             htmlFor="state"
-            className="text-zinc-400 text-[10px] uppercase tracking-widest ml-1"
+            className="text-stone-700 text-[10px] uppercase tracking-widest ml-1"
           >
             State
           </label>
@@ -264,7 +264,7 @@ const Bookingform = () => {
             required
             value={formData.state}
             onChange={handleChange}
-            className="bg-zinc-950 border border-zinc-800 p-4 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none"
+            className="bg-stone-100 border border-stone-400 p-4 text-stone-900 focus:outline-none focus:border-pink-500 transition-colors appearance-none"
           >
             <option value="" disabled>
               Select State
@@ -280,7 +280,7 @@ const Bookingform = () => {
         <div className="flex flex-col space-y-2">
           <label
             htmlFor="city"
-            className="text-zinc-400 text-[10px] uppercase tracking-widest ml-1"
+            className="text-stone-700 text-[10px] uppercase tracking-widest ml-1"
           >
             City
           </label>
@@ -292,14 +292,14 @@ const Bookingform = () => {
             placeholder="Enter your city"
             value={formData.city}
             onChange={handleChange}
-            className="bg-zinc-950 border border-zinc-800 p-4 text-white focus:outline-none focus:border-pink-500 transition-colors"
+            className="bg-stone-100 border border-stone-400 p-4 text-stone-900 focus:outline-none focus:border-pink-500 transition-colors"
           />
         </div>
 
         <div className="flex flex-col space-y-2 md:col-span-2">
           <label
             htmlFor="serviceType"
-            className="text-zinc-400 text-[10px] uppercase tracking-widest ml-1"
+            className="text-stone-700 text-[10px] uppercase tracking-widest ml-1"
           >
             Service Required
           </label>
@@ -308,7 +308,7 @@ const Bookingform = () => {
             name="service"
             value={formData.service}
             onChange={handleChange}
-            className="bg-zinc-950 border border-zinc-800 p-4 text-white focus:outline-none focus:border-pink-500 transition-colors"
+            className="bg-stone-100 border border-stone-400 p-4 text-stone-900 focus:outline-none focus:border-pink-500 transition-colors"
           >
             <option>Bridal Makeup</option>
             <option>Party/Event Look</option>
@@ -318,7 +318,7 @@ const Bookingform = () => {
         </div>
 
         <div className="flex flex-col space-y-2 md:col-span-2">
-          <label className="text-zinc-400 text-[10px] uppercase tracking-widest ml-1">
+          <label className="text-stone-700 text-[10px] uppercase tracking-widest ml-1">
             Additional Details
           </label>
           <textarea
@@ -327,7 +327,7 @@ const Bookingform = () => {
             onChange={handleChange}
             rows={4}
             placeholder="Tell us more about your event..."
-            className="bg-zinc-950 border border-zinc-800 p-4 text-white focus:outline-none focus:border-pink-500 transition-colors"
+            className="bg-stone-100 border border-stone-400 p-4 text-stone-900 focus:outline-none focus:border-pink-500 transition-colors"
           />
         </div>
 
@@ -335,7 +335,7 @@ const Bookingform = () => {
           <button
             type="submit"
             disabled={status === "sending"}
-            className="w-full bg-white text-black py-4 uppercase font-bold tracking-[0.4em] text-xs hover:bg-pink-500 hover:text-white transition-all duration-500 disabled:bg-zinc-800 disabled:cursor-not-allowed"
+            className="w-full bg-pink-500 text-white py-4 uppercase font-bold tracking-[0.4em] text-xs hover:bg-pink-600 transition-all duration-500 disabled:bg-stone-300 disabled:cursor-not-allowed shadow-lg hover:shadow-pink-500/25"
           >
             {status === "sending" ? "Processing..." : "Send Booking Request"}
           </button>

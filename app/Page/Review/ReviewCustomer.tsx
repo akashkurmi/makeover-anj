@@ -56,11 +56,11 @@ export default function TestimonialSection() {
   };
 
   return (
-    <section className="bg-black py-20 border-t border-white/5 overflow-hidden">
+    <section className="bg-stone-50 py-20 border-t border-white/5 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-12">
         {/* Centered Heading */}
         <div className="text-center mb-16">
-          <h2 className="text-white text-4xl md:text-6xl font-serif italic">
+          <h2 className="text-pink-500 text-4xl md:text-6xl font-serif italic">
             Voices of Beauty
           </h2>
           <p className="text-pink-500 uppercase tracking-[0.3em] text-[10px] mt-2 font-bold">
@@ -73,7 +73,7 @@ export default function TestimonialSection() {
           {/* LEFT ARROW */}
           <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 p-2 md:p-4 text-white/50 hover:text-pink-500 transition-all duration-300 bg-zinc-900/50 rounded-full backdrop-blur-sm border border-white/5 hover:border-pink-500/50"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 p-2 md:p-4 text-white/50 hover:text-pink-500 transition-all duration-300 bg-stone-200/50 rounded-full backdrop-blur-sm border border-white/5 hover:border-pink-500/50"
             aria-label="Previous"
           >
             <ChevronLeft size={28} strokeWidth={1} />
@@ -82,7 +82,7 @@ export default function TestimonialSection() {
           {/* RIGHT ARROW */}
           <button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 p-2 md:p-4 text-white/50 hover:text-pink-500 transition-all duration-300 bg-zinc-900/50 rounded-full backdrop-blur-sm border border-white/5 hover:border-pink-500/50"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 p-2 md:p-4 text-white/50 hover:text-pink-500 transition-all duration-300 bg-stone-200/50 rounded-full backdrop-blur-sm border border-white/5 hover:border-pink-500/50"
             aria-label="Next"
           >
             <ChevronRight size={28} strokeWidth={1} />
@@ -118,7 +118,7 @@ export default function TestimonialSection() {
               key={i}
               onClick={() => setCurrentIndex(i)}
               className={`h-1 transition-all duration-500 ${
-                i === currentIndex ? "w-12 bg-pink-500" : "w-3 bg-zinc-800"
+                i === currentIndex ? "w-12 bg-pink-500" : "w-3 bg-stone-300"
               }`}
             />
           ))}

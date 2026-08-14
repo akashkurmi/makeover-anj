@@ -70,7 +70,7 @@ export default function MenuBar() {
       <div className="fixed top-3 right-3 z-[70]">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="p-2 bg-zinc-900/80 backdrop-blur rounded-full border border-zinc-800 text-white hover:border-pink-500 transition-all active:scale-95 shadow-2xl flex items-center justify-center group"
+          className="p-2 bg-stone-200/80 backdrop-blur rounded-full border border-stone-400 text-stone-900 hover:border-pink-500 transition-all active:scale-95 shadow-2xl flex items-center justify-center group"
         >
           {isOpen ? (
             <X size={24} className="animate-in spin-in-90 duration-300" />
@@ -89,14 +89,14 @@ export default function MenuBar() {
 
         {/* DESKTOP POPUP (Dropdown) */}
         {isOpen && (
-          <div className="hidden md:block absolute right-0 mt-4 w-48 bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-200">
+          <div className="hidden md:block absolute right-0 mt-4 w-48 bg-stone-200 border border-stone-400 rounded-xl overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-200">
             <div className="flex flex-col py-2">
               {pageLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="px-4 py-3 text-sm font-medium text-zinc-300 hover:bg-zinc-800 hover:text-pink-500 transition-colors"
+                  className="px-4 py-3 text-sm font-medium text-stone-800 hover:bg-stone-300 hover:text-pink-500 transition-colors"
                 >
                   {link.name}
                 </Link>
@@ -108,13 +108,13 @@ export default function MenuBar() {
 
       {/* MOBILE DRAWER */}
       <div
-        className={`fixed inset-y-0 left-0 z-[60] w-72 bg-black border-r border-zinc-900 transform ${
+        className={`fixed inset-y-0 left-0 z-[60] w-72 bg-stone-50 border-r border-stone-300 transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-500 ease-in-out md:hidden shadow-[10px_0_30px_rgba(0,0,0,0.5)]`}
       >
         <div className="flex flex-col h-full p-8 pt-20">
           <div className="space-y-6 mb-12">
-            <p className="text-zinc-600 text-[10px] uppercase tracking-[0.3em] font-bold">
+            <p className="text-stone-500 text-[10px] uppercase tracking-[0.3em] font-bold">
               Navigation
             </p>
             {pageLinks.map((link) => (
@@ -122,7 +122,7 @@ export default function MenuBar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-4 text-2xl font-serif italic text-white hover:text-pink-500 transition-all"
+                className="flex items-center gap-4 text-2xl font-serif italic text-stone-900 hover:text-pink-500 transition-all"
               >
                 <link.icon size={20} className="text-pink-500" />
                 {link.name}
@@ -143,7 +143,7 @@ export default function MenuBar() {
                 />
 
                 <div className="flex flex-col pr-4 border-r border-white/10">
-                  <h2 className="text-[11px] md:text-xs font-serif italic text-white tracking-wider">
+                  <h2 className="text-[11px] md:text-xs font-serif italic text-stone-900 tracking-wider">
                     The Gayatri{" "}
                     <span className="not-italic font-sans text-[8px] uppercase opacity-50 ml-1">
                       Collection
@@ -166,9 +166,9 @@ export default function MenuBar() {
               </div>
             </Link>
           </div>
-          <div className="h-[1px] bg-zinc-900 w-full mb-10" />
+          <div className="h-[1px] bg-stone-200 w-full mb-10" />
           <div className="space-y-6">
-            <p className="text-zinc-600 text-[10px] uppercase tracking-[0.3em] font-bold">
+            <p className="text-stone-500 text-[10px] uppercase tracking-[0.3em] font-bold">
               Socials
             </p>
             <div className="flex flex-col gap-5">
@@ -178,7 +178,7 @@ export default function MenuBar() {
                   key={link.label}
                   href={link.href}
                   target="_blank"
-                  className="flex items-center gap-4 text-zinc-400 hover:text-white transition-colors group"
+                  className="flex items-center gap-4 text-stone-700 hover:text-white transition-colors group"
                 >
                   <link.icon size={22} className={link.color} />
                   <span className="text-sm tracking-wide">{link.label}</span>
@@ -198,7 +198,7 @@ export default function MenuBar() {
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className={`group relative transition-all hover:-translate-y-1 ${link.color} text-white`}
+            className={`group relative transition-all hover:-translate-y-1 ${link.color} text-stone-900`}
           >
             <link.icon size={22} />
           </Link>
