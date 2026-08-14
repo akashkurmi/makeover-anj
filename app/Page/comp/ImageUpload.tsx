@@ -67,7 +67,7 @@ export default function ImageUpload({
             type="button"
             className={`font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-300 ${
               isSubImage 
-                ? 'bg-gray-700 hover:bg-gray-600 text-white' 
+                ? 'bg-gray-700 hover:bg-gray-600 text-stone-900' 
                 : 'bg-pink-600 hover:bg-pink-700 text-white'
             }`}
             onClick={() => {

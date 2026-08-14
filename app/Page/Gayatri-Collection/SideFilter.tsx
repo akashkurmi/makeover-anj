@@ -26,7 +26,7 @@ const SidebarFilter = ({
     { name: "Emerald", class: "bg-emerald-800" },
     { name: "Gold", class: "bg-yellow-600" },
     { name: "Pink", class: "bg-pink-300" },
-    { name: "Black", class: "bg-zinc-900" },
+    { name: "Black", class: "bg-stone-200" },
   ];
 
   return (
@@ -53,7 +53,7 @@ const SidebarFilter = ({
               <span
                 className={`text-xs font-light uppercase tracking-widest transition-colors ${
                   selectedCategory === cat
-                    ? "text-white"
+                    ? "text-stone-900"
                     : "text-gray-400 group-hover:text-white"
                 }`}
               >
@@ -81,7 +81,7 @@ const SidebarFilter = ({
           step="500"
           value={priceRange}
           onChange={(e) => setPriceRange(parseInt(e.target.value))}
-          className="w-full h-1 bg-zinc-800 accent-pink-500 appearance-none cursor-pointer"
+          className="w-full h-1 bg-stone-300 accent-pink-500 appearance-none cursor-pointer"
         />
       </div> */}
 

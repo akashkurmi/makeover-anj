@@ -72,7 +72,7 @@ const GayatriCollection = () => {
   });
 
   return (
-    <div className="bg-black min-h-screen text-white font-sans">
+    <div className="bg-stone-50 min-h-screen text-stone-900 font-sans">
       {/* --- HEADER SECTION --- */}
       <section className="pt-24 pb-12 px-6 text-center border-b border-white/5">
         <div className="flex items-center justify-center gap-2 mb-3">
@@ -92,7 +92,7 @@ const GayatriCollection = () => {
           <select
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            className="bg-zinc-900 border border-white/10 text-gray-300 text-[10px] uppercase tracking-[0.2em] rounded-full py-2 pl-10 pr-8 appearance-none focus:outline-none focus:border-pink-500 cursor-pointer transition-all"
+            className="bg-stone-200 border border-white/10 text-gray-300 text-[10px] uppercase tracking-[0.2em] rounded-full py-2 pl-10 pr-8 appearance-none focus:outline-none focus:border-pink-500 cursor-pointer transition-all"
           >
             <option value="Khurai">Khurai</option>
             <option value="Bangalore">Bangalore</option>
@@ -121,7 +121,7 @@ const GayatriCollection = () => {
             <div className="md:hidden mb-8">
               <button
                 onClick={() => setIsMobileFilterOpen(true)}
-                className="w-full flex items-center justify-center gap-3 py-4 border border-white/10 bg-zinc-900/50 rounded-lg text-[10px] uppercase tracking-[0.3em] hover:bg-zinc-900 transition-colors"
+                className="w-full flex items-center justify-center gap-3 py-4 border border-white/10 bg-stone-200/50 rounded-lg text-[10px] uppercase tracking-[0.3em] hover:bg-stone-200 transition-colors"
               >
                 <SlidersHorizontal size={16} className="text-pink-500" />
                 Filter Collection
@@ -242,11 +242,11 @@ const GayatriCollection = () => {
 
       {/* --- MOBILE FILTER OVERLAY --- */}
       {isMobileFilterOpen && (
-        <div className="fixed inset-0 z-[100] bg-black p-8 overflow-y-auto animate-in fade-in slide-in-from-bottom duration-300">
+        <div className="fixed inset-0 z-[100] bg-stone-50 p-8 overflow-y-auto animate-in fade-in slide-in-from-bottom duration-300">
           <div className="flex justify-between items-center mb-12">
             <div className="flex items-center gap-2">
               <SlidersHorizontal size={14} className="text-pink-500" />
-              <span className="text-xs uppercase tracking-[0.3em] text-white">
+              <span className="text-xs uppercase tracking-[0.3em] text-stone-900">
                 Filters
               </span>
             </div>

@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 const portfolioPreview = [
+  "/images/uploaded_1.jpg",
+  "/images/uploaded_2.jpg",
   "/images/_1.jpg",
   "/images/_3.jpg",
   "/images/_10.jpg",
@@ -13,11 +15,10 @@ const PortfolioBar = () => {
       <Link
         id="portfolioSection"
         href="/Page/Portfolio"
-        className="relative w-full h-[50vh] md:h-[65vh] overflow-hidden group border-b border-white/10 bg-black"
+        className="relative w-full h-[50vh] md:h-[65vh] overflow-hidden group border-b border-white/10 bg-stone-50"
       >
         {/* The Moving Track */}
-        {/* Mobile: opacity-80 | Desktop: opacity-40 (80 on hover) */}
-        <div className="absolute inset-0 flex items-center transition-opacity duration-1000 opacity-80 md:opacity-40 md:group-hover:opacity-80">
+        <div className="absolute inset-0 flex items-center transition-opacity duration-1000 opacity-80">
           <div className="flex w-fit gap-4 animate-marquee whitespace-nowrap">
             {[...portfolioPreview, ...portfolioPreview].map((src, i) => (
               <div
@@ -29,7 +30,7 @@ const PortfolioBar = () => {
                   alt="Bridal HD Makeup look for Indian wedding by Anjali Makeover, Anjali Makeup artist"
                   fill
                   fetchPriority="high"
-                  className="object-cover transition-all duration-700 rounded-sm grayscale-0 md:grayscale md:group-hover:grayscale-0"
+                  className="object-cover transition-all duration-700 rounded-sm"
                 />
               </div>
             ))}

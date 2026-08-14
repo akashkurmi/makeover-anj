@@ -27,7 +27,7 @@ const InstagramIcon = ({ size }: { size: number }) => (
 
 export function ProductCard({ item, onOpenLightbox }: ProductCardProps) {
   return (
-    <div className="relative group overflow-hidden rounded-sm bg-zinc-900 aspect-[9/16]">
+    <div className="relative group overflow-hidden rounded-sm bg-stone-200 aspect-[9/16]">
       {/* Main Image Click Area */}
       <div
         onClick={() => onOpenLightbox(item)}
@@ -44,7 +44,7 @@ export function ProductCard({ item, onOpenLightbox }: ProductCardProps) {
 
         {/* Updated Hover Overlay with Price */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
-          <h3 className="text-white text-[9px] uppercase tracking-[0.2em] drop-shadow-md mb-1">
+          <h3 className="text-stone-900 text-[9px] uppercase tracking-[0.2em] drop-shadow-md mb-1">
             {item.name}
           </h3>
           {/* 
@@ -52,7 +52,7 @@ export function ProductCard({ item, onOpenLightbox }: ProductCardProps) {
           {item.pricePerDay && (
             <p className="text-pink-500 font-serif italic text-sm">
               ₹{item.pricePerDay.toLocaleString()}
-              <span className="text-[7px] text-zinc-400 not-italic ml-1 uppercase tracking-tighter">
+              <span className="text-[7px] text-stone-700 not-italic ml-1 uppercase tracking-tighter">
                 / Day
               </span>
             </p>
@@ -66,7 +66,7 @@ export function ProductCard({ item, onOpenLightbox }: ProductCardProps) {
           href={item.instaLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="absolute top-2 right-2 z-20 p-1.5 bg-black/60 backdrop-blur-md rounded-full text-white hover:text-pink-500 hover:bg-white transition-all duration-300 transform md:translate-y-[-10px] md:opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
+          className="absolute top-2 right-2 z-20 p-1.5 bg-white/80 backdrop-blur-md rounded-full text-stone-900 hover:text-pink-500 hover:bg-white transition-all duration-300 transform md:translate-y-[-10px] md:opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
           onClick={(e) => e.stopPropagation()}
         >
           <InstagramIcon size={20} />

@@ -106,7 +106,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-stone-50`}
       >
         {/* Next.js Script component handles the injection order automatically */}
         <Script
@@ -119,7 +119,7 @@ export default function RootLayout({
         <MenuBar />
         <main>{children}</main>
 
-        <section className="mt-[5px] p-0 border-t border-zinc-900 bg-zinc-950/50">
+        <section className="mt-[5px] p-0 border-t border-stone-300 bg-stone-100/50">
           <Footer />
         </section>
       </body>
