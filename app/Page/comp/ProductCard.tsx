@@ -27,7 +27,7 @@ const InstagramIcon = ({ size }: { size: number }) => (
 
 export function ProductCard({ item, onOpenLightbox }: ProductCardProps) {
   return (
-    <div className="relative group overflow-hidden rounded-sm bg-zinc-900 aspect-[9/16]">
+    <div className="relative group overflow-hidden bg-[#1E1813] border border-[#3D342B]/50 hover:border-[#C4A16A]/60 aspect-[9/16] transition-all duration-500">
       {/* Main Image Click Area */}
       <div
         onClick={() => onOpenLightbox(item)}
@@ -43,20 +43,10 @@ export function ProductCard({ item, onOpenLightbox }: ProductCardProps) {
         />
 
         {/* Updated Hover Overlay with Price */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
-          <h3 className="text-white text-[9px] uppercase tracking-[0.2em] drop-shadow-md mb-1">
+        <div className="absolute inset-0 bg-gradient-to-t from-[#120F0C]/85 via-transparent to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+          <h3 className="text-[#F2EDE5] text-[10px] uppercase tracking-[0.25em] drop-shadow-md mb-1 font-sans">
             {item.name}
           </h3>
-          {/* 
-          PRICE DISPLAY
-          {item.pricePerDay && (
-            <p className="text-pink-500 font-serif italic text-sm">
-              ₹{item.pricePerDay.toLocaleString()}
-              <span className="text-[7px] text-zinc-400 not-italic ml-1 uppercase tracking-tighter">
-                / Day
-              </span>
-            </p>
-          )} */}
         </div>
       </div>
 
@@ -66,10 +56,10 @@ export function ProductCard({ item, onOpenLightbox }: ProductCardProps) {
           href={item.instaLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="absolute top-2 right-2 z-20 p-1.5 bg-black/60 backdrop-blur-md rounded-full text-white hover:text-pink-500 hover:bg-white transition-all duration-300 transform md:translate-y-[-10px] md:opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
+          className="absolute top-2 right-2 z-20 p-2 bg-[#120F0C]/75 backdrop-blur-md rounded-full text-[#A69C91] hover:text-[#120F0C] hover:bg-[#C4A16A] transition-all duration-300 transform md:translate-y-[-10px] md:opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
           onClick={(e) => e.stopPropagation()}
         >
-          <InstagramIcon size={20} />
+          <InstagramIcon size={16} />
         </Link>
       )}
     </div>

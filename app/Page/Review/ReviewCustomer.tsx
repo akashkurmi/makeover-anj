@@ -1,30 +1,31 @@
+"use client";
 import React, { useState } from "react";
-import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import ReviewCard from "./ReviewCard";
 
 const reviews = [
   {
     name: "Priya Sharma",
-    role: "Bridal Client",
-    text: "Anj transformed me for my big day! The makeup was flawless and stayed perfect for 12 hours. Highly recommended!",
+    role: "Bangalore Wedding",
+    text: "Anjali transformed me for my wedding day! The HD makeup was truly weightless and stayed immaculate across 14 hours of ceremonies and photography. The compliments haven't stopped.",
     stars: 5,
   },
   {
     name: "Sneha Kapoor",
-    role: "Fashion Shoot",
-    text: "Professional, punctual, and an incredible eye for detail. The glow she achieved was exactly what I wanted.",
+    role: "Fashion & Editorial Shoot",
+    text: "Incredible eye for bone structure and skin textures. She achieved that coveted celebrity glass-skin glow without looking heavy. Punctual, professional, and a true artist.",
     stars: 5,
   },
   {
     name: "Riya Varma",
-    role: "Party Makeup",
-    text: "I've never felt more beautiful. She really knows how to enhance your natural features without making it look heavy.",
+    role: "Sangeet & Reception",
+    text: "I have never felt more radiant. She listens deeply to what you envision and elevates it with subtle champagne accents and gorgeous hair sculpting.",
     stars: 5,
   },
   {
     name: "Ananya Iyer",
-    role: "Bridal Client",
-    text: "The best makeover experience ever. She listens to what you want and executes it perfectly.",
+    role: "Destination Bride, Udaipur",
+    text: "The ultimate luxury bridal experience. Anjali traveled with us for our destination wedding and handled all my ceremony looks with serenity and perfection.",
     stars: 5,
   },
 ];
@@ -44,9 +45,6 @@ export default function TestimonialSection() {
     );
   };
 
-  // Logic to determine visible reviews
-  // On Desktop: Slice 3 reviews (with wrap-around logic)
-  // On Mobile: Only the current review
   const getVisibleReviews = () => {
     const visible = [];
     for (let i = 0; i < 3; i++) {
@@ -56,76 +54,102 @@ export default function TestimonialSection() {
   };
 
   return (
-    <section className="bg-black py-20 border-t border-white/5 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 md:px-12">
-        {/* Centered Heading */}
-        <div className="text-center mb-16">
-          <h2 className="text-white text-4xl md:text-6xl font-serif italic">
-            Voices of Beauty
+    <section className="bg-[#120F0C] py-16 sm:py-24 lg:py-36 border-b border-[#3D342B]/60 overflow-hidden max-w-full">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+        {/* SECTION HEADER */}
+        <div className="text-center mb-12 sm:mb-16 lg:mb-20 space-y-3 sm:space-y-4">
+          <div className="flex items-center justify-center space-x-2.5">
+            <span className="h-px w-6 sm:w-8 bg-[#C4A16A]" />
+            <p className="text-[9.5px] sm:text-[11px] lg:text-xs uppercase tracking-[0.3em] sm:tracking-[0.35em] text-[#C4A16A] font-sans">
+              VOICES OF BEAUTY
+            </p>
+            <span className="h-px w-6 sm:w-8 bg-[#C4A16A]" />
+          </div>
+
+          <h2 className="text-3xl xs:text-4xl sm:text-6xl lg:text-7xl font-serif font-light text-[#F2EDE5] leading-[1.08] tracking-tight">
+            Client <span className="italic font-normal text-[#C4A16A]">stories.</span>
           </h2>
-          <p className="text-pink-500 uppercase tracking-[0.3em] text-[10px] mt-2 font-bold">
-            What my clients say
-          </p>
         </div>
 
-        {/* Carousel Wrapper */}
-        <div className="relative group px-4 md:px-16">
-          {/* LEFT ARROW */}
+        {/* CAROUSEL WRAPPER WITH TOUCH CONTROLS */}
+        <div className="relative px-0 sm:px-10 lg:px-14">
+          {/* LEFT ARROW (Min 44x44px touch target) */}
           <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 p-2 md:p-4 text-white/50 hover:text-pink-500 transition-all duration-300 bg-zinc-900/50 rounded-full backdrop-blur-sm border border-white/5 hover:border-pink-500/50"
-            aria-label="Previous"
+            className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 z-20 min-w-[44px] min-h-[44px] items-center justify-center p-3 text-[#F2EDE5]/70 hover:text-[#120F0C] active:text-[#120F0C] bg-[#1E1813] hover:bg-[#C4A16A] active:bg-[#C4A16A] transition-all border border-[#3D342B] shadow-xl touch-target"
+            aria-label="Previous client review"
           >
-            <ChevronLeft size={28} strokeWidth={1} />
+            <ChevronLeft size={18} />
           </button>
 
-          {/* RIGHT ARROW */}
+          {/* RIGHT ARROW (Min 44x44px touch target) */}
           <button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 p-2 md:p-4 text-white/50 hover:text-pink-500 transition-all duration-300 bg-zinc-900/50 rounded-full backdrop-blur-sm border border-white/5 hover:border-pink-500/50"
-            aria-label="Next"
+            className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 z-20 min-w-[44px] min-h-[44px] items-center justify-center p-3 text-[#F2EDE5]/70 hover:text-[#120F0C] active:text-[#120F0C] bg-[#1E1813] hover:bg-[#C4A16A] active:bg-[#C4A16A] transition-all border border-[#3D342B] shadow-xl touch-target"
+            aria-label="Next client review"
           >
-            <ChevronRight size={28} strokeWidth={1} />
+            <ChevronRight size={18} />
           </button>
 
-          {/* Grid Content */}
+          {/* REVIEWS GRID: 1 card on mobile, 3 cards on desktop */}
           <div className="relative">
-            {/* Desktop: Grid of 3 */}
+            {/* Desktop: 3 Cards */}
             <div className="hidden md:grid grid-cols-3 gap-6">
               {getVisibleReviews().map((review, index) => (
-                <div
-                  key={`desktop-${index}`}
-                  className="animate-in fade-in duration-700"
-                >
+                <div key={`desktop-${index}`} className="animate-in fade-in duration-500">
                   <ReviewCard review={review} />
                 </div>
               ))}
             </div>
 
-            {/* Mobile: Single Card */}
-            <div className="md:hidden animate-in slide-in-from-right-5 duration-500">
+            {/* Mobile: 1 Card */}
+            <div className="md:hidden">
               <ReviewCard review={reviews[currentIndex]} />
             </div>
           </div>
+
+          {/* MOBILE ARROWS ROW BELOW CARD */}
+          <div className="flex sm:hidden items-center justify-between mt-6 px-2">
+            <button
+              onClick={prevSlide}
+              className="min-w-[48px] min-h-[48px] flex items-center justify-center p-3 bg-[#1E1813] border border-[#3D342B] text-[#F2EDE5] hover:text-[#C4A16A] active:bg-[#C4A16A] active:text-[#120F0C] touch-target"
+              aria-label="Previous review"
+            >
+              <ChevronLeft size={20} />
+            </button>
+
+            <span className="text-xs font-serif italic text-[#C4A16A]">
+              0{currentIndex + 1} / 0{reviews.length}
+            </span>
+
+            <button
+              onClick={nextSlide}
+              className="min-w-[48px] min-h-[48px] flex items-center justify-center p-3 bg-[#1E1813] border border-[#3D342B] text-[#F2EDE5] hover:text-[#C4A16A] active:bg-[#C4A16A] active:text-[#120F0C] touch-target"
+              aria-label="Next review"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
         </div>
 
-        {/* Pagination Dots */}
-        <div className="flex justify-center gap-3 mt-12">
+        {/* PAGINATION DOTS */}
+        <div className="flex justify-center items-center gap-3 mt-8 sm:mt-12">
           {reviews.map((_, i) => (
             <button
-              name="move-display"
-              aria-label="move-display"
               key={i}
               onClick={() => setCurrentIndex(i)}
-              className={`h-1 transition-all duration-500 ${
-                i === currentIndex ? "w-12 bg-pink-500" : "w-3 bg-zinc-800"
-              }`}
-            />
+              aria-label={`Go to review ${i + 1}`}
+              className="min-h-[30px] flex items-center"
+            >
+              <span
+                className={`block h-1 transition-all duration-300 ${
+                  i === currentIndex ? "w-8 bg-[#C4A16A]" : "w-2.5 bg-[#3D342B] hover:bg-[#A69C91]"
+                }`}
+              />
+            </button>
           ))}
         </div>
       </div>
     </section>
   );
 }
-
-// Sub-component for the Review Card to keep code clean

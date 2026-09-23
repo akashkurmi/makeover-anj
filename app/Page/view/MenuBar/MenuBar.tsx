@@ -5,204 +5,246 @@ import {
   MessageCircleCode,
   Youtube,
   X,
-  Home,
-  User,
-  Briefcase,
-  ReceiptIndianRupee,
+  Menu,
   Sparkles,
   ArrowRight,
+  Phone,
+  MessageCircle,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
-const lehengaThumb = "/anjali-makeover-collection.png";
-
-const pageLinks = [
-  { name: "Home", href: "/", icon: Home },
-  { name: "Portfolio", href: "/Page/Portfolio", icon: Briefcase },
-  { name: "Pricing", href: "/Page/Pricing", icon: ReceiptIndianRupee },
-  { name: "About", href: "/Page/About", icon: User },
-];
-
-const socialLinks = [
-  {
-    icon: Instagram,
-    label: "Instagram",
-    href: "https://www.instagram.com/anjalimakeover7879/",
-    desc: "anjali gour anjalimakeover7879",
-    color: "hover:text-pink-500",
-  },
-  {
-    icon: Youtube,
-    label: "YouTube",
-    href: "https://www.youtube.com/@anjaligourmakeover",
-    desc: "anjali gour anjalimakeover7879",
-    color: "hover:text-gray-400",
-  },
-  {
-    icon: MessageCircleCode,
-    label: "Threads",
-    href: "https://www.threads.com/@anjalimakeover7879",
-    desc: "anjali gour anjalimakeover7879",
-    color: "hover:text-blue-500",
-  },
+const navLinks = [
+  { name: "SERVICES", href: "/#services", subtitle: "Bridal, Hair & Event Menus" },
+  { name: "BRIDAL", href: "/#bridal", subtitle: "The Bridal Edit & Packages" },
+  { name: "GALLERY", href: "/#gallery", subtitle: "Signature Portfolios & Artistry" },
+  { name: "ABOUT", href: "/#about", subtitle: "The Anjali Signature Story" },
+  { name: "COLLECTION", href: "/Page/Gayatri-Collection", subtitle: "Couture Bridal Lehengas" },
 ];
 
 export default function MenuBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setIsOpen(false);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Close menu if resized to desktop width (>= 1024px)
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsOpen(false);
+      }
+    };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Prevent background scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
+    } else {
+      document.body.style.overflow = "unset";
+      document.body.style.touchAction = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+      document.body.style.touchAction = "auto";
+    };
+  }, [isOpen]);
+
   return (
     <>
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] md:hidden animate-in fade-in duration-300"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
-
-      {/* MENU BUTTON */}
-      <div className="fixed top-3 right-3 z-[70]">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="p-2 bg-zinc-900/80 backdrop-blur rounded-full border border-zinc-800 text-white hover:border-pink-500 transition-all active:scale-95 shadow-2xl flex items-center justify-center group"
-        >
-          {isOpen ? (
-            <X size={24} className="animate-in spin-in-90 duration-300" />
-          ) : (
-            <div className="relative w-6 h-6 transition-transform duration-500 group-hover:scale-110">
-              <Image
-                src="/icons/burger-menu.png"
-                alt="Menu"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
-          )}
-        </button>
-
-        {/* DESKTOP POPUP (Dropdown) */}
-        {isOpen && (
-          <div className="hidden md:block absolute right-0 mt-4 w-48 bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-200">
-            <div className="flex flex-col py-2">
-              {pageLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="px-4 py-3 text-sm font-medium text-zinc-300 hover:bg-zinc-800 hover:text-pink-500 transition-colors"
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* MOBILE DRAWER */}
-      <div
-        className={`fixed inset-y-0 left-0 z-[60] w-72 bg-black border-r border-zinc-900 transform ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-500 ease-in-out md:hidden shadow-[10px_0_30px_rgba(0,0,0,0.5)]`}
+      {/* FIXED LUXURY HEADER */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+          isScrolled
+            ? "bg-[#120F0C]/95 backdrop-blur-md border-b border-[#3D342B]/80 py-3 sm:py-3.5 shadow-[0_10px_30px_rgba(0,0,0,0.6)]"
+            : "bg-gradient-to-b from-[#120F0C]/90 via-[#120F0C]/60 to-transparent backdrop-blur-[2px] border-b border-[#3D342B]/30 py-4 sm:py-5"
+        }`}
       >
-        <div className="flex flex-col h-full p-8 pt-20">
-          <div className="space-y-6 mb-12">
-            <p className="text-zinc-600 text-[10px] uppercase tracking-[0.3em] font-bold">
-              Navigation
-            </p>
-            {pageLinks.map((link) => (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between">
+          {/* BRAND LOGO */}
+          <Link
+            href="/"
+            onClick={() => setIsOpen(false)}
+            className="group flex flex-col items-start tracking-wider select-none py-1"
+          >
+            <span className="font-serif text-xl sm:text-2xl lg:text-3xl tracking-[0.25em] text-[#F2EDE5] group-hover:text-[#C4A16A] transition-colors font-light">
+              ANJALI
+            </span>
+            <span className="text-[7.5px] sm:text-[8px] lg:text-[9px] uppercase tracking-[0.35em] text-[#A69C91] -mt-0.5 group-hover:text-[#D4B47F] transition-colors font-sans">
+              LUXURY BEAUTY STUDIO
+            </span>
+          </Link>
+
+          {/* DESKTOP NAVIGATION (1024px+ only to prevent awkward wrapping on tablet) */}
+          <nav className="hidden lg:flex items-center space-x-8 xl:space-x-10">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="text-[11px] font-sans tracking-[0.25em] uppercase text-[#A69C91] hover:text-[#F2EDE5] transition-colors duration-300 relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#C4A16A] hover:after:w-full after:transition-all after:duration-300"
+              >
+                {link.name}
+              </Link>
+            ))}
+          </nav>
+
+          {/* DESKTOP BOOK BUTTON */}
+          <div className="hidden lg:flex items-center space-x-6">
+            <Link
+              href="/#booking"
+              className="inline-flex items-center justify-center px-6 py-2.5 text-[11px] uppercase tracking-[0.25em] font-sans text-[#F2EDE5] border border-[#C4A16A] hover:bg-[#C4A16A] hover:text-[#120F0C] transition-all duration-300 shadow-[0_0_15px_rgba(196,161,106,0.1)] active:scale-95 touch-target"
+            >
+              BOOK
+            </Link>
+          </div>
+
+          {/* MOBILE & TABLET HAMBURGER BUTTON (Min 48x48px Touch Target) */}
+          <div className="lg:hidden flex items-center">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close menu" : "Open navigation menu"}
+              aria-expanded={isOpen}
+              className="min-w-[48px] min-h-[48px] p-3 flex items-center justify-center text-[#F2EDE5] hover:text-[#C4A16A] active:text-[#C4A16A] transition-colors touch-target focus:outline-none"
+            >
+              {isOpen ? (
+                <X size={26} strokeWidth={1.5} className="text-[#C4A16A]" />
+              ) : (
+                <div className="flex items-center space-x-2">
+                  <span className="text-[10px] uppercase tracking-[0.25em] text-[#C4A16A] hidden xs:inline font-sans font-medium">
+                    MENU
+                  </span>
+                  <Menu size={24} strokeWidth={1.5} />
+                </div>
+              )}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* FULL-SCREEN MOBILE & TABLET LUXURY DRAWER */}
+      <div
+        className={`fixed inset-0 z-50 bg-[#120F0C] lg:hidden transition-all duration-300 ease-in-out flex flex-col justify-between overflow-y-auto ${
+          isOpen
+            ? "opacity-100 pointer-events-auto translate-x-0"
+            : "opacity-0 pointer-events-none translate-x-full"
+        }`}
+        style={{ paddingBottom: "max(1.5rem, env(safe-area-inset-bottom))" }}
+      >
+        {/* TOP BAR INSIDE DRAWER */}
+        <div className="px-6 sm:px-10 pt-5 pb-4 border-b border-[#3D342B]/60 flex items-center justify-between">
+          <Link
+            href="/"
+            onClick={() => setIsOpen(false)}
+            className="flex flex-col items-start"
+          >
+            <span className="font-serif text-xl tracking-[0.25em] text-[#F2EDE5]">
+              ANJALI
+            </span>
+            <span className="text-[7.5px] uppercase tracking-[0.35em] text-[#A69C91] -mt-0.5">
+              LUXURY BEAUTY STUDIO
+            </span>
+          </Link>
+
+          <button
+            onClick={() => setIsOpen(false)}
+            aria-label="Close navigation"
+            className="min-w-[48px] min-h-[48px] flex items-center justify-center text-[#A69C91] hover:text-[#C4A16A] active:text-[#C4A16A] touch-target"
+          >
+            <X size={28} strokeWidth={1.5} className="text-[#C4A16A]" />
+          </button>
+        </div>
+
+        {/* MENU NAVIGATION LINKS */}
+        <div className="px-6 sm:px-10 py-6 flex-1 flex flex-col justify-center space-y-3">
+          <p className="text-[9px] uppercase tracking-[0.35em] text-[#C4A16A] font-medium font-sans">
+            SELECT SECTION
+          </p>
+
+          <nav className="flex flex-col space-y-2">
+            {navLinks.map((link, idx) => (
               <Link
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-4 text-2xl font-serif italic text-white hover:text-pink-500 transition-all"
+                className="group flex items-center justify-between py-3.5 border-b border-[#3D342B]/40 active:border-[#C4A16A] touch-target"
               >
-                <link.icon size={20} className="text-pink-500" />
-                {link.name}
+                <div>
+                  <div className="flex items-baseline space-x-3">
+                    <span className="text-xs font-sans text-[#C4A16A] font-light">
+                      0{idx + 1}
+                    </span>
+                    <span className="text-2xl sm:text-3xl font-serif text-[#F2EDE5] group-hover:text-[#C4A16A] group-active:text-[#C4A16A] transition-colors font-light tracking-wide">
+                      {link.name}
+                    </span>
+                  </div>
+                  <p className="text-[10px] text-[#A69C91] font-sans pl-7 tracking-wider font-light">
+                    {link.subtitle}
+                  </p>
+                </div>
+                <ArrowRight size={16} className="text-[#C4A16A] opacity-70 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
               </Link>
             ))}
-          </div>
+          </nav>
 
-          <div className=" ">
+          {/* PRIMARY BOOKING TOUCH ACTION */}
+          <div className="pt-4">
             <Link
-              href="/Page/Gayatri-Collection"
-              className="group block"
+              href="/#booking"
               onClick={() => setIsOpen(false)}
+              className="w-full min-h-[50px] flex items-center justify-center space-x-3 text-xs uppercase tracking-[0.3em] font-sans font-medium text-[#120F0C] bg-[#C4A16A] hover:bg-[#D4B47F] active:bg-[#D4B47F] transition-all shadow-xl active:scale-[0.99] touch-target"
             >
-              <div className="flex items-center bg-white/5 backdrop-blur-xl border border-white/10 pl-4 pr-1.5 py-1.5 rounded-full hover:border-pink-500/50 hover:bg-white/10 transition-all duration-500">
-                <Sparkles
-                  size={14}
-                  className="text-pink-500 mr-3 group-hover:rotate-12 transition-transform"
-                />
-
-                <div className="flex flex-col pr-4 border-r border-white/10">
-                  <h2 className="text-[11px] md:text-xs font-serif italic text-white tracking-wider">
-                    The Gayatri{" "}
-                    <span className="not-italic font-sans text-[8px] uppercase opacity-50 ml-1">
-                      Collection
-                    </span>
-                  </h2>
-                </div>
-
-                <div className="relative h-8 w-8 ml-2 overflow-hidden rounded-full border border-white/20">
-                  <Image
-                    src={lehengaThumb}
-                    alt="Gayatri"
-                    fill
-                    className="object-cover group-hover:grayscale-0 scale-110 transition-all duration-700"
-                  />
-                </div>
-
-                <div className="w-0 group-hover:w-5 overflow-hidden transition-all duration-300">
-                  <ArrowRight size={12} className="text-pink-500 ml-1" />
-                </div>
-              </div>
+              <span>BOOK APPOINTMENT</span>
+              <ArrowRight size={14} />
             </Link>
           </div>
-          <div className="h-[1px] bg-zinc-900 w-full mb-10" />
-          <div className="space-y-6">
-            <p className="text-zinc-600 text-[10px] uppercase tracking-[0.3em] font-bold">
-              Socials
-            </p>
-            <div className="flex flex-col gap-5">
-              {socialLinks.map((link) => (
-                <Link
-                  aria-label={`instagram: ${link.desc}`}
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  className="flex items-center gap-4 text-zinc-400 hover:text-white transition-colors group"
-                >
-                  <link.icon size={22} className={link.color} />
-                  <span className="text-sm tracking-wide">{link.label}</span>
-                </Link>
-              ))}
-            </div>
-          </div>
         </div>
-      </div>
 
-      {/* DESKTOP SIDEBAR */}
-      <div className="hidden md:flex fixed top-8 left-8 flex-col gap-8 z-50">
-        {socialLinks.map((link) => (
-          <Link
-            aria-label={link.desc}
-            key={link.label}
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`group relative transition-all hover:-translate-y-1 ${link.color} text-white`}
-          >
-            <link.icon size={22} />
-          </Link>
-        ))}
+        {/* BOTTOM QUICK CONTACT STRIP */}
+        <div className="px-6 sm:px-10 pt-4 border-t border-[#3D342B]/50 space-y-3">
+          <div className="grid grid-cols-3 gap-2">
+            <Link
+              href="https://wa.me/917879458655"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="min-h-[44px] flex items-center justify-center space-x-1.5 p-2.5 bg-[#1B1510] border border-[#3D342B] text-xs text-[#F2EDE5] hover:text-[#C4A16A] touch-target"
+            >
+              <MessageCircle size={15} className="text-[#C4A16A]" />
+              <span className="text-[10px] uppercase tracking-wider">WhatsApp</span>
+            </Link>
+
+            <Link
+              href="tel:+917879458655"
+              className="min-h-[44px] flex items-center justify-center space-x-1.5 p-2.5 bg-[#1B1510] border border-[#3D342B] text-xs text-[#F2EDE5] hover:text-[#C4A16A] touch-target"
+            >
+              <Phone size={15} className="text-[#C4A16A]" />
+              <span className="text-[10px] uppercase tracking-wider">Call</span>
+            </Link>
+
+            <Link
+              href="https://www.instagram.com/anjalimakeover7879/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="min-h-[44px] flex items-center justify-center space-x-1.5 p-2.5 bg-[#1B1510] border border-[#3D342B] text-xs text-[#F2EDE5] hover:text-[#C4A16A] touch-target"
+            >
+              <Instagram size={15} className="text-[#C4A16A]" />
+              <span className="text-[10px] uppercase tracking-wider">Insta</span>
+            </Link>
+          </div>
+
+          <p className="text-[10px] text-[#A69C91] text-center tracking-wider font-light">
+            Bangalore, India • Certified Lakmé Academy
+          </p>
+        </div>
       </div>
     </>
   );

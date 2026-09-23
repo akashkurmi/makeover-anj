@@ -1,10 +1,9 @@
-"use client";
 import Home from "./Page/Home/Home";
 
 export default function Page() {
   return (
-    <main className="relative min-h-screen bg-black text-white selection:bg-pink-500">
+    <div className="relative min-h-screen bg-[#120F0C] text-[#F2EDE5] selection:bg-[#C4A16A] selection:text-[#120F0C]">
       <Home />
-    </main>
+    </div>
   );
 }

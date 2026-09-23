@@ -1,6 +1,6 @@
 import { Instagram, MessageCircleCode, Youtube } from "lucide-react";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Cormorant_Garamond, Montserrat } from "next/font/google";
 import Link from "next/link";
 import Script from "next/script";
 import "./globals.css";
@@ -9,14 +9,19 @@ import MenuBar from "./Page/view/MenuBar/MenuBar";
 
 const domain = "https://anjalimakeover.co.in";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const cormorantGaramond = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -104,9 +109,9 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}
+        className={`${cormorantGaramond.variable} ${montserrat.variable} antialiased bg-[#120F0C] text-[#F2EDE5] font-sans selection:bg-[#C4A16A] selection:text-[#120F0C]`}
       >
         {/* Next.js Script component handles the injection order automatically */}
         <Script
@@ -118,10 +123,7 @@ export default function RootLayout({
         </Script>
         <MenuBar />
         <main>{children}</main>
-
-        <section className="mt-[5px] p-0 border-t border-zinc-900 bg-zinc-950/50">
-          <Footer />
-        </section>
+        <Footer />
       </body>
     </html>
   );

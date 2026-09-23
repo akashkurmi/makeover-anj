@@ -1,58 +1,112 @@
 @import "tailwindcss";
 
+@theme {
+  --color-dark: #120F0C;
+  --color-dark-2: #17120E;
+  --color-dark-surface: #1B1510;
+  --color-dark-card: #211A15;
+  --color-cream: #F2EDE5;
+  --color-cream-2: #EBE4DA;
+  --color-gold: #C4A16A;
+  --color-gold-light: #D4B47F;
+  --color-gold-dark: #A88349;
+  --color-muted: #A69C91;
+  --color-muted-dark: #6E6459;
+  --color-border: #3D342B;
+  --color-border-light: #52463B;
+
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-montserrat), "Montserrat", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #120F0C;
+  --foreground: #F2EDE5;
+  --color-dark: #120F0C;
+  --color-dark-2: #17120E;
+  --color-dark-surface: #1B1510;
+  --color-dark-card: #211A15;
+  --color-cream: #F2EDE5;
+  --color-cream-2: #EBE4DA;
+  --color-gold: #C4A16A;
+  --color-gold-light: #D4B47F;
+  --color-gold-dark: #A88349;
+  --color-muted: #A69C91;
+  --color-muted-dark: #6E6459;
+  --color-border: #3D342B;
+  --color-border-light: #52463B;
+
+  /* Safe Area Insets for Mobile */
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+  --sar: env(safe-area-inset-right, 0px);
 }
 
 html {
   scroll-behavior: smooth;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  background-color: #120F0C;
+  color: #F2EDE5;
+  max-width: 100vw;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #120F0C;
+  color: #F2EDE5;
+  font-family: var(--font-montserrat), Montserrat, -apple-system, BlinkMacSystemFont, sans-serif;
+  max-width: 100vw;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+  padding-bottom: var(--sab);
 }
 
-/* @layer utilities {
-  .animate-marquee {
-    display: flex;
-    width: max-content; */
-    /* 30s is the speed - change to 20s to make it faster */
-    /* animation: marquee 60s linear infinite;
-  } */
-
-  /* Stops the movement when someone hovers with a mouse */
-  /* .group:hover .animate-marquee {
-    animation-play-state: paused;
-  } */
-
-  /* @keyframes marquee {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      /* This moves the track by exactly half its width */
-      /* transform: translateX(-50%);
-    }
+/* Ensure inputs on mobile NEVER trigger automatic iOS safari zoom by ensuring >= 16px */
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
   }
-} */ 
+}
 
+/* Custom luxury scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #120F0C;
+}
+::-webkit-scrollbar-thumb {
+  background: #3D342B;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C4A16A;
+}
+
+/* Touch target helper */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Subtle luxury animations & helpers */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #F2EDE5 0%, #C4A16A 50%, #D4B47F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.luxury-border-glow {
+  transition: all 0.5s ease;
+}
+.luxury-border-glow:hover {
+  border-color: #C4A16A;
+  box-shadow: 0 0 25px rgba(196, 161, 106, 0.12);
+}
 
 @keyframes scan {
   0% { top: 0%; opacity: 0; }
@@ -71,10 +125,4 @@ body {
 
 .animate-marquee-fast {
   animation: marquee-fast 8s linear infinite;
-}
-@media (hover: none) {
-  /* On touch devices, the animation remains steady */
-  .animate-marquee {
-    animation-duration: 40s;
-  }
 }

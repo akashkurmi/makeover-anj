@@ -72,30 +72,30 @@ const GayatriCollection = () => {
   });
 
   return (
-    <div className="bg-black min-h-screen text-white font-sans">
+    <div className="bg-[#120F0C] min-h-screen text-[#F2EDE5] font-sans">
       {/* --- HEADER SECTION --- */}
-      <section className="pt-24 pb-12 px-6 text-center border-b border-white/5">
+      <section className="pt-28 pb-12 px-6 text-center border-b border-[#3D342B]/60">
         <div className="flex items-center justify-center gap-2 mb-3">
-          <Sparkles size={14} className="text-pink-500" />
-          <span className="text-[10px] uppercase tracking-[0.5em] text-gray-400">
+          <Sparkles size={14} className="text-[#C4A16A]" />
+          <span className="text-[10px] uppercase tracking-[0.4em] text-[#A69C91]">
             Anjali Makeover Presents
           </span>
         </div>
-        <h1 className="text-5xl md:text-7xl font-light tracking-tighter uppercase mb-6">
-          The <span className="font-serif italic text-pink-500">Gayatri</span>{" "}
+        <h1 className="text-4xl md:text-7xl font-serif font-light tracking-tight uppercase mb-6 text-[#F2EDE5]">
+          The <span className="italic font-normal text-[#C4A16A]">Gayatri</span>{" "}
           Collection
         </h1>
 
         {/* Location Selector */}
         <div className="relative inline-flex items-center group">
-          <MapPin size={14} className="absolute left-3 text-pink-500" />
+          <MapPin size={14} className="absolute left-3.5 text-[#C4A16A]" />
           <select
             value={location}
             onChange={(e) => setLocation(e.target.value)}
-            className="bg-zinc-900 border border-white/10 text-gray-300 text-[10px] uppercase tracking-[0.2em] rounded-full py-2 pl-10 pr-8 appearance-none focus:outline-none focus:border-pink-500 cursor-pointer transition-all"
+            className="bg-[#1E1813] border border-[#3D342B] text-[#F2EDE5] text-[10px] uppercase tracking-[0.2em] rounded-full py-2 pl-10 pr-8 appearance-none focus:outline-none focus:border-[#C4A16A] cursor-pointer transition-all"
           >
-            <option value="Khurai">Khurai</option>
-            <option value="Bangalore">Bangalore</option>
+            <option value="Khurai" className="bg-[#120F0C]">Khurai</option>
+            <option value="Bangalore" className="bg-[#120F0C]">Bangalore</option>
           </select>
         </div>
       </section>
@@ -103,15 +103,15 @@ const GayatriCollection = () => {
       <main className="max-w-7xl mx-auto px-6 py-12">
         {location === "Bangalore" ? (
           <div className="py-32 flex flex-col items-center justify-center text-center">
-            <MapPin size={32} className="text-pink-500 mb-6" />
-            <h2 className="text-xl uppercase tracking-widest">
+            <MapPin size={32} className="text-[#C4A16A] mb-6" />
+            <h2 className="text-xl uppercase tracking-widest text-[#F2EDE5]">
               Branch coming soon
             </h2>
           </div>
         ) : loading ? (
           <div className="flex flex-col items-center justify-center py-20">
-            <Loader2 className="animate-spin text-pink-500 mb-4" size={32} />
-            <p className="text-[10px] uppercase tracking-widest text-gray-500">
+            <Loader2 className="animate-spin text-[#C4A16A] mb-4" size={32} />
+            <p className="text-[10px] uppercase tracking-widest text-[#A69C91]">
               Loading Collection...
             </p>
           </div>
@@ -121,9 +121,9 @@ const GayatriCollection = () => {
             <div className="md:hidden mb-8">
               <button
                 onClick={() => setIsMobileFilterOpen(true)}
-                className="w-full flex items-center justify-center gap-3 py-4 border border-white/10 bg-zinc-900/50 rounded-lg text-[10px] uppercase tracking-[0.3em] hover:bg-zinc-900 transition-colors"
+                className="w-full flex items-center justify-center gap-3 py-4 border border-[#3D342B] bg-[#1E1813] rounded-sm text-[10px] uppercase tracking-[0.3em] hover:border-[#C4A16A] transition-colors text-[#F2EDE5]"
               >
-                <SlidersHorizontal size={16} className="text-pink-500" />
+                <SlidersHorizontal size={16} className="text-[#C4A16A]" />
                 Filter Collection
               </button>
             </div>
@@ -209,7 +209,7 @@ const GayatriCollection = () => {
 
               {/* Thumbnails & Info */}
               <div className="mt-8 text-center">
-                <h2 className="text-[10px] uppercase tracking-[0.5em] text-pink-500 mb-2">
+                <h2 className="text-[10px] uppercase tracking-[0.4em] text-[#C4A16A] mb-2 font-medium">
                   {selectedItem.name}
                 </h2>
 
@@ -221,8 +221,8 @@ const GayatriCollection = () => {
                       onClick={() => setCurrentIndex(idx)}
                       className={`w-12 h-16 relative overflow-hidden border transition-all ${
                         currentIndex === idx
-                          ? "border-pink-500 opacity-100 scale-110"
-                          : "border-transparent opacity-40"
+                          ? "border-[#C4A16A] opacity-100 scale-110"
+                          : "border-transparent opacity-40 hover:opacity-80"
                       }`}
                     >
                       <Image
@@ -242,17 +242,17 @@ const GayatriCollection = () => {
 
       {/* --- MOBILE FILTER OVERLAY --- */}
       {isMobileFilterOpen && (
-        <div className="fixed inset-0 z-[100] bg-black p-8 overflow-y-auto animate-in fade-in slide-in-from-bottom duration-300">
+        <div className="fixed inset-0 z-[100] bg-[#120F0C] p-8 overflow-y-auto animate-in fade-in slide-in-from-bottom duration-300">
           <div className="flex justify-between items-center mb-12">
             <div className="flex items-center gap-2">
-              <SlidersHorizontal size={14} className="text-pink-500" />
-              <span className="text-xs uppercase tracking-[0.3em] text-white">
+              <SlidersHorizontal size={14} className="text-[#C4A16A]" />
+              <span className="text-xs uppercase tracking-[0.3em] text-[#F2EDE5]">
                 Filters
               </span>
             </div>
             <button
               onClick={() => setIsMobileFilterOpen(false)}
-              className="p-2 hover:bg-white/10 rounded-full transition-colors"
+              className="p-2 text-[#A69C91] hover:text-[#C4A16A] transition-colors"
             >
               <X size={24} />
             </button>
@@ -271,7 +271,7 @@ const GayatriCollection = () => {
 
           <button
             onClick={() => setIsMobileFilterOpen(false)}
-            className="fixed bottom-8 left-8 right-8 py-4 bg-pink-600 text-white text-xs uppercase tracking-[0.4em] font-bold shadow-2xl"
+            className="fixed bottom-8 left-8 right-8 py-4 bg-[#C4A16A] text-[#120F0C] text-xs uppercase tracking-[0.3em] font-medium shadow-2xl"
           >
             Show {filteredOutfits.length} Results
           </button>
