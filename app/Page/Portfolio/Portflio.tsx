@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, X, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, X, Instagram, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 
 const categories = ["All", "Bridal", "Fashion", "Party"];
@@ -266,18 +266,16 @@ export default function PortfolioPage() {
             </div>
 
             {/* Instagram Link Overlay */}
-            {item.link && (
-              <Link
-                href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="View look on Instagram"
-                className="absolute top-2 right-2 z-20 min-w-[36px] min-h-[36px] p-2 bg-[#120F0C]/80 backdrop-blur-md rounded-full text-[#A69C91] hover:text-[#120F0C] active:text-[#120F0C] hover:bg-[#C4A16A] active:bg-[#C4A16A] transition-all flex items-center justify-center touch-target"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <ArrowUpRight size={13} />
-              </Link>
-            )}
+            <Link
+              href={item.link || "https://www.instagram.com/anjalimakeover7879/"}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View look on Instagram"
+              className="absolute top-2 right-2 z-20 min-w-[36px] min-h-[36px] w-9 h-9 sm:w-10 sm:h-10 p-2 bg-[#120F0C]/80 backdrop-blur-md rounded-full text-[#A69C91] hover:text-[#120F0C] active:text-[#120F0C] hover:bg-[#C4A16A] active:bg-[#C4A16A] transition-all flex items-center justify-center border border-[#3D342B]/60 hover:border-[#C4A16A] shadow-md group/insta touch-target"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Instagram size={15} className="transition-transform duration-300 group-hover/insta:scale-110" />
+            </Link>
           </div>
         ))}
       </div>

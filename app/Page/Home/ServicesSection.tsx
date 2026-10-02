@@ -80,42 +80,40 @@ export default function ServicesSection() {
               key={item.id}
               id={item.id}
               href={item.href}
-              className="group relative aspect-square bg-[#17120E] border border-[#3D342B]/60 hover:border-[#C4A16A]/80 transition-all duration-500 overflow-hidden cursor-pointer shadow-xl active:scale-[0.99] scroll-mt-24"
+              className="group relative aspect-square bg-[#17120E] border border-[#3D342B]/80 hover:border-[#C4A16A] transition-all duration-500 overflow-hidden cursor-pointer shadow-xl hover:shadow-[0_12px_36px_rgba(196,161,106,0.2)] active:scale-[0.99] scroll-mt-24"
             >
-              {/* Service Background Image - clearly visible yet refined */}
+              {/* Service Background Image - brighter and more highlighted */}
               <Image
                 src={item.image}
                 alt={item.title}
                 fill
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
-                className="object-cover object-center opacity-60 group-hover:opacity-75 transition-all duration-700 ease-out group-hover:scale-105"
+                className="object-cover object-center opacity-75 group-hover:opacity-90 transition-all duration-700 ease-out group-hover:scale-105"
               />
 
-              {/* Balanced Dark Overlays for Image Visibility & Text Contrast */}
-              <div className="absolute inset-0 bg-[#120F0C]/35 group-hover:bg-[#120F0C]/25 transition-colors duration-500" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#120F0C]/85 via-transparent to-[#120F0C]/60" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(18,15,12,0.75)_0%,_rgba(18,15,12,0.3)_60%,_transparent_100%)] pointer-events-none" />
+              {/* Refined gradient overlay: clean upper image visibility + text contrast at bottom */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#120F0C]/90 via-[#120F0C]/25 to-[#120F0C]/20 group-hover:from-[#120F0C]/85 group-hover:via-[#120F0C]/15 transition-colors duration-500" />
 
               {/* Subtle top gold accent line on hover */}
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C4A16A] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out z-20" />
 
-              {/* Card Content: Title centered horizontally & vertically; Explore CTA at bottom */}
-              <div className="absolute inset-0 p-4 xs:p-5 sm:p-6 flex flex-col justify-between items-center text-center z-10">
-                {/* Top Spacer for optical vertical centering */}
-                <div className="h-5 sm:h-6 w-full" aria-hidden="true" />
+              {/* Card Content: Title positioned slightly below center; Explore CTA at bottom */}
+              <div className="absolute inset-0 p-3.5 xs:p-4 sm:p-5 flex flex-col justify-between items-center text-center z-10">
+                {/* Top spacer allowing service imagery to be showcased clearly */}
+                <div className="flex-[1.5] w-full" aria-hidden="true" />
 
-                {/* 1. SERVICE TITLE — VISUAL CENTER */}
-                <div className="flex-1 flex flex-col items-center justify-center px-2">
-                  <h3 className="text-2xl xs:text-3xl sm:text-3xl lg:text-3xl xl:text-4xl font-serif font-semibold text-[#F2EDE5] group-hover:text-[#C4A16A] transition-colors duration-300 tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+                {/* 1. SERVICE TITLE — SLIGHTLY BELOW CENTER */}
+                <div className="flex flex-col items-center justify-center px-1 pb-1">
+                  <h3 className="text-2xl xs:text-3xl sm:text-3xl lg:text-3xl xl:text-4xl font-serif font-semibold text-[#F2EDE5] group-hover:text-[#C4A16A] transition-colors duration-300 tracking-wide drop-shadow-[0_3px_12px_rgba(0,0,0,0.95)]">
                     {item.title}
                   </h3>
                 </div>
 
-                {/* 5. EXPLORE / RATE MENU CTA — NEAR BOTTOM */}
-                <div className="h-5 sm:h-6 flex items-center justify-center">
-                  <span className="inline-flex items-center space-x-1.5 text-[11px] xs:text-xs sm:text-xs font-sans font-medium tracking-[0.2em] uppercase text-[#C4A16A] group-hover:text-[#D4B47F] transition-colors duration-300">
+                {/* 2. EXPLORE CTA — BOTTOM */}
+                <div className="flex-1 flex items-end justify-center pb-0.5">
+                  <span className="inline-flex items-center space-x-1.5 text-[10px] xs:text-[11px] sm:text-xs font-sans font-medium tracking-[0.2em] uppercase text-[#C4A16A] group-hover:text-[#F2EDE5] transition-colors duration-300 bg-[#120F0C]/65 backdrop-blur-sm px-3 py-1 rounded-full border border-[#C4A16A]/30 group-hover:border-[#C4A16A]">
                     <span>Explore</span>
-                    <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">→</span>
+                    <span className="text-xs sm:text-sm transition-transform duration-300 group-hover:translate-x-1">→</span>
                   </span>
                 </div>
               </div>

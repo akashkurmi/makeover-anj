@@ -62,13 +62,12 @@ export default function AboutSection() {
                 </span>
               </div>
 
-              {/* Mobile Title with Accordion Toggle Button in front of it */}
-              <div className="w-full sm:block">
+              {/* Mobile Title with Accordion Toggle Button (Hidden on desktop & tablet) */}
+              <div className="w-full">
                 <button
                   type="button"
                   onClick={() => setIsDescOpen(!isDescOpen)}
-                  className="sm:hidden text-left w-full flex items-center justify-between group py-1 cursor-pointer"
-                  style={{ display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center" }}
+                  className="flex sm:hidden items-center justify-between w-full text-left group py-1 cursor-pointer"
                   aria-expanded={isDescOpen}
                   aria-label={isDescOpen ? "Collapse studio description" : "Expand studio description"}
                 >
@@ -87,7 +86,7 @@ export default function AboutSection() {
                   </span>
                 </button>
 
-                {/* Desktop & Tablet Heading */}
+                {/* Desktop & Tablet Heading (No accordion button) */}
                 <h2 className="hidden sm:block text-5xl md:text-6xl lg:text-7xl font-serif font-light text-[#120F0C] leading-[1.08] tracking-tight">
                   Beauty, <br />
                   <span className="italic font-normal text-[#A88349]">elevated.</span>
