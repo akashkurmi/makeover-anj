@@ -1,9 +1,12 @@
 "use client";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 
 export default function AboutSection() {
+  const [isDescOpen, setIsDescOpen] = useState(false);
+
   return (
     <section
       id="about"
@@ -41,7 +44,7 @@ export default function AboutSection() {
 
               {/* Badge */}
               <div className="absolute -bottom-4 -left-3 sm:-bottom-5 sm:-left-5 z-20 bg-[#120F0C] text-[#F2EDE5] px-4 py-3 sm:p-5 shadow-xl border border-[#3D342B]">
-                <p className="text-xl sm:text-2xl font-serif italic text-[#C4A16A]">500+</p>
+                <p className="text-xl sm:text-2xl font-serif italic text-[#C4A16A]">100+</p>
                 <p className="text-[7.5px] sm:text-[8px] uppercase tracking-[0.25em] text-[#A69C91]">
                   Bridal Transformations
                 </p>
@@ -59,15 +62,55 @@ export default function AboutSection() {
                 </span>
               </div>
 
-              <h2 className="text-3xl xs:text-4xl sm:text-6xl lg:text-7xl font-serif font-light text-[#120F0C] leading-[1.08] tracking-tight">
-                Beauty, <br />
-                <span className="italic font-normal text-[#A88349]">elevated.</span>
-              </h2>
+              {/* Mobile Title with Accordion Toggle Button in front of it */}
+              <div className="w-full sm:block">
+                <button
+                  type="button"
+                  onClick={() => setIsDescOpen(!isDescOpen)}
+                  className="sm:hidden text-left w-full flex items-center justify-between group py-1 cursor-pointer"
+                  style={{ display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center" }}
+                  aria-expanded={isDescOpen}
+                  aria-label={isDescOpen ? "Collapse studio description" : "Expand studio description"}
+                >
+                  <h2 className="text-3xl xs:text-4xl font-serif font-light text-[#120F0C] leading-[1.08] tracking-tight">
+                    Beauty, <br />
+                    <span className="italic font-normal text-[#A88349]">elevated.</span>
+                  </h2>
+
+                  <span className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full border border-[#C4A16A]/60 bg-[#EBE4DA] text-[#A88349] group-hover:border-[#C4A16A] group-active:bg-[#C4A16A] group-active:text-[#120F0C] flex items-center justify-center transition-all duration-300 shadow-sm shrink-0 ml-4">
+                    <ChevronDown
+                      size={20}
+                      className={`transition-transform duration-300 ${
+                        isDescOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </span>
+                </button>
+
+                {/* Desktop & Tablet Heading */}
+                <h2 className="hidden sm:block text-5xl md:text-6xl lg:text-7xl font-serif font-light text-[#120F0C] leading-[1.08] tracking-tight">
+                  Beauty, <br />
+                  <span className="italic font-normal text-[#A88349]">elevated.</span>
+                </h2>
+              </div>
             </div>
 
             <div className="w-12 sm:w-16 h-px bg-[#C4A16A]/60" />
 
-            <div className="space-y-4 sm:space-y-5 text-[#4A423A] text-sm sm:text-base lg:text-lg font-sans font-light leading-relaxed max-w-xl">
+            {/* MOBILE DESCRIPTION (CLOSED BY DEFAULT, TOGGLED VIA TITLE ACCORDION BUTTON) */}
+            {isDescOpen && (
+              <div className="sm:hidden space-y-3 text-[#4A423A] text-xs font-sans font-light leading-relaxed animate-in fade-in duration-300">
+                <p>
+                  Led by <span className="text-[#120F0C] font-normal">Anjali Gour</span>, a certified Lakmé Academy professional, our studio embraces the philosophy that makeup is an editorial craft—a thoughtful dialogue between facial architecture, natural radiance, and individual spirit.
+                </p>
+                <p className="text-[11.5px] text-[#6E6459] italic font-serif leading-relaxed border-l-2 border-[#A88349]/50 pl-3">
+                  “True beauty never wears a mask; it is an effortless illumination of who you are at your most unforgettable moment.”
+                </p>
+              </div>
+            )}
+
+            {/* DESKTOP & TABLET DESCRIPTION (ALWAYS OPEN) */}
+            <div className="hidden sm:block space-y-4 sm:space-y-5 text-[#4A423A] text-sm sm:text-base lg:text-lg font-sans font-light leading-relaxed max-w-xl">
               <p>
                 Led by <span className="text-[#120F0C] font-normal">Anjali Gour</span>, a certified Lakmé Academy professional, our studio embraces the philosophy that makeup is an editorial craft—a thoughtful dialogue between facial architecture, natural radiance, and individual spirit.
               </p>
@@ -76,8 +119,8 @@ export default function AboutSection() {
               </p>
             </div>
 
-            {/* EDITORIAL HIGHLIGHTS: Stacked on small mobile, 3-col on tablet/desktop */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 pt-4 border-t border-[#3D342B]/15">
+            {/* EDITORIAL HIGHLIGHTS: 2 columns */}
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 pt-4 border-t border-[#3D342B]/15">
               <div className="space-y-0.5">
                 <p className="text-xs font-serif italic text-[#A88349]">01 / Artistry</p>
                 <h4 className="text-xs sm:text-sm font-sans uppercase tracking-widest text-[#120F0C] font-medium">
@@ -95,16 +138,6 @@ export default function AboutSection() {
                 </h4>
                 <p className="text-[11px] sm:text-xs text-[#6E6459] font-light">
                   Master academy trained precision
-                </p>
-              </div>
-
-              <div className="space-y-0.5">
-                <p className="text-xs font-serif italic text-[#A88349]">03 / Travel</p>
-                <h4 className="text-xs sm:text-sm font-sans uppercase tracking-widest text-[#120F0C] font-medium">
-                  Pan-India Service
-                </h4>
-                <p className="text-[11px] sm:text-xs text-[#6E6459] font-light">
-                  Bespoke on-location bridal vanity
                 </p>
               </div>
             </div>

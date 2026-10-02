@@ -10,7 +10,7 @@ type LocationKey = keyof PriceData;
 const locations = Object.keys(priceData) as LocationKey[];
 
 export default function PricingPage() {
-  const [selectedlocation, setSeletedLocation] = useState(locations[0]);
+  const [selectedlocation, setSeletedLocation] = useState(locations[1]);
 
   return (
     <div className="bg-[#120F0C] text-[#F2EDE5] min-h-screen py-20 sm:py-24 px-4 sm:px-8 lg:px-12 max-w-full overflow-hidden">

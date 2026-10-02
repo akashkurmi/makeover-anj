@@ -92,9 +92,6 @@ export default function Footer() {
               <Link href="/#services" className="hover:text-[#C4A16A] active:text-[#C4A16A] py-1 transition-colors">
                 Services
               </Link>
-              <Link href="/#bridal" className="hover:text-[#C4A16A] active:text-[#C4A16A] py-1 transition-colors">
-                Bridal Edit
-              </Link>
               <Link href="/Page/Portfolio" className="hover:text-[#C4A16A] active:text-[#C4A16A] py-1 transition-colors">
                 Portfolio
               </Link>

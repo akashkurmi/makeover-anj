@@ -18,7 +18,7 @@ const heroSlides = [
     titleLine2: "Becomes Art",
     desc: "Tailored hair, makeup, and bridal beauty in a world of timeless luxury.",
     tag: "Signature Bridal & Editorial",
-    position: "object-[65%_18%] sm:object-[60%_20%] lg:object-center",
+    position: "object-[65%_10%] sm:object-[60%_15%] md:object-[60%_18%] lg:object-center",
   },
   {
     image: "/highlight/2.jpg",
@@ -27,7 +27,7 @@ const heroSlides = [
     titleLine2: "Unique As You",
     desc: "Certified Lakmé Academy mastery specializing in high-definition radiance and flawless endurance.",
     tag: "Royal Heritage Glamour",
-    position: "object-[60%_15%] sm:object-[55%_20%] lg:object-center",
+    position: "object-[55%_6%] xs:object-[55%_8%] sm:object-[55%_12%] md:object-[55%_16%] lg:object-center",
   },
   {
     image: "/images/_5.jpg",
@@ -36,7 +36,7 @@ const heroSlides = [
     titleLine2: "Your Moment",
     desc: "Bespoke on-location vanity services across Bangalore and premier destination venues throughout India.",
     tag: "Couture Reception Artistry",
-    position: "object-[55%_18%] sm:object-[50%_20%] lg:object-center",
+    position: "object-[55%_10%] sm:object-[50%_14%] md:object-[50%_18%] lg:object-center",
   },
 ];
 
@@ -80,8 +80,8 @@ export default function Home() {
         ))}
 
         {/* GRADIENTS: Bottom-up for mobile readability, Left-to-right for desktop */}
-        {/* Mobile & Tablet Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#120F0C] from-25% via-[#120F0C]/85 via-60% to-[#120F0C]/25 lg:hidden z-10" />
+        {/* Mobile & Tablet Gradient Overlay: Fades to transparent at top so bride's face is 100% visible */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#120F0C] from-25% via-[#120F0C]/75 via-50% to-transparent lg:hidden z-10 pointer-events-none" />
         {/* Desktop Gradient Overlays */}
         <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-[#120F0C] via-[#120F0C]/85 to-transparent z-10 w-3/4" />
         <div className="hidden lg:block absolute inset-0 bg-gradient-to-t from-[#120F0C] via-transparent to-[#120F0C]/40 z-10" />
@@ -115,68 +115,79 @@ export default function Home() {
         </div>
 
         {/* MAIN HERO CONTENT */}
-        <div className="relative z-20 max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 w-full pt-28 pb-14 sm:pb-16 lg:py-0">
-          <div className="max-w-2xl space-y-4 sm:space-y-6">
+        <div className="relative z-20 max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 w-full pt-20 xs:pt-24 sm:pt-28 md:pt-32 pb-5 xs:pb-6 sm:pb-8 lg:py-0">
+          <div className="max-w-2xl space-y-2.5 xs:space-y-3 sm:space-y-4 lg:space-y-6">
             {/* Small uppercase eyebrow */}
-            <div className="flex items-center space-x-2.5">
-              <span className="h-px w-6 sm:w-8 bg-[#C4A16A]" />
-              <p className="text-[9.5px] sm:text-[11px] lg:text-xs uppercase tracking-[0.3em] sm:tracking-[0.35em] text-[#C4A16A] font-sans font-medium">
+            <div className="flex items-center space-x-2">
+              <span className="h-px w-5 sm:w-8 bg-[#C4A16A]" />
+              <p className="text-[9px] xs:text-[10px] sm:text-[11px] lg:text-xs uppercase tracking-[0.25em] sm:tracking-[0.35em] text-[#C4A16A] font-sans font-medium">
                 {slide.subtitle}
               </p>
             </div>
 
-            {/* Responsive Editorial Heading: Fluid Mobile Clamp */}
-            <h1 className="text-[2.6rem] xs:text-[3.2rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] font-serif font-light text-[#F2EDE5] leading-[1.04] tracking-tight">
-              {slide.titleLine1} <br />
-              <span className="italic font-normal text-[#C4A16A]">
+            {/* Responsive Editorial Heading: Compact on Mobile, Medium on Tablet, Large on Desktop */}
+            <h1 className="text-[1.85rem] xs:text-[2.15rem] sm:text-4xl md:text-5xl lg:text-7xl xl:text-[5.5rem] font-serif font-light text-[#F2EDE5] leading-[1.12] sm:leading-[1.08] lg:leading-[1.03] tracking-tight">
+              <span className="block">{slide.titleLine1}</span>
+              <span className="italic font-normal text-[#C4A16A] block">
                 {slide.titleLine2}
               </span>
             </h1>
 
             {/* Small gold horizontal line */}
-            <div className="w-12 sm:w-16 h-px bg-[#C4A16A]" />
+            <div className="w-10 sm:w-16 h-px bg-[#C4A16A]/80" />
 
             {/* Description */}
-            <p className="text-xs sm:text-sm lg:text-base text-[#A69C91] font-sans font-light leading-relaxed max-w-lg">
+            <p className="text-[11.5px] xs:text-xs sm:text-sm lg:text-base text-[#BDB2A5] font-sans font-light leading-relaxed max-w-md lg:max-w-lg">
               {slide.desc}
             </p>
 
-            {/* Touch-Friendly Action Buttons: Full-width on mobile */}
-            <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+            {/* ACTION BUTTONS: Primary Book Appointment + Side-by-side Services & Gallery */}
+            <div className="pt-1.5 sm:pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-2 xs:gap-2.5 sm:gap-3">
               <Link
                 href="/#booking"
-                className="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center space-x-3 px-7 py-3.5 bg-[#C4A16A] hover:bg-[#D4B47F] active:bg-[#D4B47F] text-[#120F0C] font-sans font-medium text-xs uppercase tracking-[0.25em] transition-all duration-300 shadow-xl active:scale-[0.98] touch-target"
+                className="w-full sm:w-auto min-h-[44px] xs:min-h-[46px] sm:min-h-[48px] inline-flex items-center justify-center space-x-2 px-5 sm:px-7 py-2.5 sm:py-3 bg-[#C4A16A] hover:bg-[#D4B47F] active:bg-[#D4B47F] text-[#120F0C] font-sans font-medium text-[11px] xs:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em] transition-all duration-300 shadow-xl active:scale-[0.98] touch-target"
               >
                 <span>BOOK APPOINTMENT</span>
-                <ArrowRight size={14} />
+                <ArrowRight size={13} className="shrink-0" />
               </Link>
 
-              <Link
-                href="/#services"
-                className="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center space-x-3 px-7 py-3.5 bg-transparent border border-[#C4A16A]/70 hover:border-[#C4A16A] hover:bg-[#C4A16A]/10 text-[#F2EDE5] font-sans text-xs uppercase tracking-[0.25em] transition-all duration-300 active:scale-[0.98] touch-target"
-              >
-                <span>EXPLORE SERVICES</span>
-                <ArrowRight size={14} className="text-[#C4A16A]" />
-              </Link>
+              {/* SECOND CTA SECTION: TWO SIDE-BY-SIDE BUTTONS (SERVICES & GALLERY) */}
+              <div className="grid grid-cols-2 gap-2 xs:gap-2.5 sm:gap-3 w-full sm:w-auto sm:flex sm:items-center">
+                <Link
+                  href="/#services"
+                  className="min-h-[44px] xs:min-h-[46px] sm:min-h-[48px] inline-flex items-center justify-center space-x-1.5 sm:space-x-2 px-3 sm:px-5 py-2.5 sm:py-3 bg-[#17120E]/70 sm:bg-transparent backdrop-blur-sm sm:backdrop-blur-none border border-[#C4A16A]/70 hover:border-[#C4A16A] hover:bg-[#C4A16A]/15 text-[#F2EDE5] hover:text-[#C4A16A] active:text-[#C4A16A] font-sans text-[10px] xs:text-[11px] sm:text-xs uppercase tracking-[0.16em] xs:tracking-[0.2em] transition-all duration-300 active:scale-[0.98] touch-target"
+                >
+                  <span>SERVICES</span>
+                  <ArrowRight size={13} className="text-[#C4A16A] shrink-0" />
+                </Link>
+
+                <Link
+                  href="/#gallery"
+                  className="min-h-[44px] xs:min-h-[46px] sm:min-h-[48px] inline-flex items-center justify-center space-x-1.5 sm:space-x-2 px-3 sm:px-5 py-2.5 sm:py-3 bg-[#17120E]/70 sm:bg-transparent backdrop-blur-sm sm:backdrop-blur-none border border-[#C4A16A]/70 hover:border-[#C4A16A] hover:bg-[#C4A16A]/15 text-[#F2EDE5] hover:text-[#C4A16A] active:text-[#C4A16A] font-sans text-[10px] xs:text-[11px] sm:text-xs uppercase tracking-[0.16em] xs:tracking-[0.2em] transition-all duration-300 active:scale-[0.98] touch-target"
+                >
+                  <span>GALLERY</span>
+                  <ArrowRight size={13} className="text-[#C4A16A] shrink-0" />
+                </Link>
+              </div>
             </div>
 
             {/* MOBILE GAYATRI COLLECTION LINK */}
-            <div className="pt-2 lg:hidden">
+            <div className="pt-0.5 xs:pt-1 lg:hidden">
               <Link
                 href="/Page/Gayatri-Collection"
-                className="inline-flex items-center space-x-2 text-[10px] uppercase tracking-[0.2em] text-[#A69C91] hover:text-[#C4A16A] py-1"
+                className="inline-flex items-center space-x-1.5 text-[9.5px] xs:text-[10px] uppercase tracking-[0.18em] text-[#C4A16A] hover:text-[#D4B47F] active:text-[#D4B47F] py-0.5"
               >
-                <Sparkles size={12} className="text-[#C4A16A]" />
+                <Sparkles size={11} className="text-[#C4A16A]" />
                 <span>Explore The Gayatri Bridal Collection →</span>
               </Link>
             </div>
           </div>
         </div>
 
-        {/* BOTTOM HERO CONTROLS: Touch-friendly Slide Switcher */}
-        <div className="relative lg:absolute lg:bottom-8 z-20 px-5 sm:px-8 lg:px-12 pb-6 lg:pb-0 w-full flex items-center justify-between">
-          {/* SLIDE COUNTER (Min 44px Touch Target) */}
-          <div className="flex items-center space-x-3 bg-[#120F0C]/80 backdrop-blur-md px-3.5 py-2 border border-[#3D342B]/60 rounded-sm">
+        {/* BOTTOM HERO CONTROLS: Tablet & Desktop Only (Completely hidden on mobile) */}
+        <div className="hidden md:flex absolute bottom-6 lg:bottom-8 z-20 px-6 sm:px-8 lg:px-12 w-full items-center justify-between pointer-events-none">
+          {/* SLIDE COUNTER (Tablet/Desktop Only) */}
+          <div className="flex items-center space-x-3 bg-[#120F0C]/85 backdrop-blur-md px-3.5 py-2 border border-[#3D342B]/60 rounded-sm pointer-events-auto shadow-lg">
             <span className="text-xs font-serif italic text-[#C4A16A]">
               0{currentSlide + 1}
             </span>
@@ -207,7 +218,7 @@ export default function Home() {
           </div>
 
           {/* DESKTOP SCROLL INDICATOR */}
-          <div className="hidden lg:flex flex-col items-center space-y-2">
+          <div className="hidden lg:flex flex-col items-center space-y-2 pointer-events-auto">
             <span className="text-[8px] uppercase tracking-[0.4em] text-[#A69C91] font-sans">
               Scroll
             </span>
@@ -227,14 +238,14 @@ export default function Home() {
       <ServicesSection />
 
       {/* ============================================================ */}
-      {/* 8. BRIDAL SECTION: THE BRIDAL EDIT */}
-      {/* ============================================================ */}
-      <BridalSection />
-
-      {/* ============================================================ */}
-      {/* 9. GALLERY SECTION: EDITORIAL MASONRY & LIGHTBOX */}
+      {/* 8. GALLERY SECTION: EDITORIAL MASONRY & LIGHTBOX */}
       {/* ============================================================ */}
       <Highlight />
+
+      {/* ============================================================ */}
+      {/* 9. BRIDAL SECTION: THE BRIDAL EDIT */}
+      {/* ============================================================ */}
+      <BridalSection />
 
       {/* ============================================================ */}
       {/* 10. REVIEWS SECTION: VOICES OF BEAUTY */}

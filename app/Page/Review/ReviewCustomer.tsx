@@ -71,26 +71,8 @@ export default function TestimonialSection() {
           </h2>
         </div>
 
-        {/* CAROUSEL WRAPPER WITH TOUCH CONTROLS */}
-        <div className="relative px-0 sm:px-10 lg:px-14">
-          {/* LEFT ARROW (Min 44x44px touch target) */}
-          <button
-            onClick={prevSlide}
-            className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 z-20 min-w-[44px] min-h-[44px] items-center justify-center p-3 text-[#F2EDE5]/70 hover:text-[#120F0C] active:text-[#120F0C] bg-[#1E1813] hover:bg-[#C4A16A] active:bg-[#C4A16A] transition-all border border-[#3D342B] shadow-xl touch-target"
-            aria-label="Previous client review"
-          >
-            <ChevronLeft size={18} />
-          </button>
-
-          {/* RIGHT ARROW (Min 44x44px touch target) */}
-          <button
-            onClick={nextSlide}
-            className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 z-20 min-w-[44px] min-h-[44px] items-center justify-center p-3 text-[#F2EDE5]/70 hover:text-[#120F0C] active:text-[#120F0C] bg-[#1E1813] hover:bg-[#C4A16A] active:bg-[#C4A16A] transition-all border border-[#3D342B] shadow-xl touch-target"
-            aria-label="Next client review"
-          >
-            <ChevronRight size={18} />
-          </button>
-
+        {/* CAROUSEL WRAPPER */}
+        <div className="relative">
           {/* REVIEWS GRID: 1 card on mobile, 3 cards on desktop */}
           <div className="relative">
             {/* Desktop: 3 Cards */}
@@ -108,23 +90,23 @@ export default function TestimonialSection() {
             </div>
           </div>
 
-          {/* MOBILE ARROWS ROW BELOW CARD */}
-          <div className="flex sm:hidden items-center justify-between mt-6 px-2">
+          {/* BOTTOM NAVIGATION CONTROLS (Below the review card) */}
+          <div className="flex items-center justify-between sm:justify-center sm:gap-8 mt-6 sm:mt-8 px-2 max-w-xs mx-auto sm:max-w-none">
             <button
               onClick={prevSlide}
-              className="min-w-[48px] min-h-[48px] flex items-center justify-center p-3 bg-[#1E1813] border border-[#3D342B] text-[#F2EDE5] hover:text-[#C4A16A] active:bg-[#C4A16A] active:text-[#120F0C] touch-target"
+              className="min-w-[48px] min-h-[48px] flex items-center justify-center p-3 bg-[#1E1813] border border-[#3D342B] text-[#F2EDE5] hover:text-[#C4A16A] active:bg-[#C4A16A] active:text-[#120F0C] transition-colors touch-target shadow-lg"
               aria-label="Previous review"
             >
               <ChevronLeft size={20} />
             </button>
 
-            <span className="text-xs font-serif italic text-[#C4A16A]">
+            <span className="text-xs sm:text-sm font-serif italic text-[#C4A16A]">
               0{currentIndex + 1} / 0{reviews.length}
             </span>
 
             <button
               onClick={nextSlide}
-              className="min-w-[48px] min-h-[48px] flex items-center justify-center p-3 bg-[#1E1813] border border-[#3D342B] text-[#F2EDE5] hover:text-[#C4A16A] active:bg-[#C4A16A] active:text-[#120F0C] touch-target"
+              className="min-w-[48px] min-h-[48px] flex items-center justify-center p-3 bg-[#1E1813] border border-[#3D342B] text-[#F2EDE5] hover:text-[#C4A16A] active:bg-[#C4A16A] active:text-[#120F0C] transition-colors touch-target shadow-lg"
               aria-label="Next review"
             >
               <ChevronRight size={20} />

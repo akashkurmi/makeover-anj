@@ -139,16 +139,16 @@ export default function Highlight() {
             </h2>
           </div>
 
-          <div className="md:text-right">
-            <p className="text-xs font-sans text-[#A69C91] tracking-wider mb-2 font-light">
+          <div className="flex flex-col md:items-end gap-3 sm:gap-4">
+            <p className="text-xs sm:text-sm font-sans text-[#A69C91] tracking-wider font-light md:text-right max-w-sm">
               Signature transformations captured on brides and fashion muses.
             </p>
             <Link
               href="/Page/Portfolio"
-              className="inline-flex items-center space-x-2 text-[11px] uppercase tracking-[0.25em] text-[#C4A16A] hover:text-[#F2EDE5] active:text-[#F2EDE5] transition-colors py-1.5 touch-target"
+              className="w-full xs:w-auto inline-flex items-center justify-center space-x-2.5 px-6 sm:px-7 py-3 sm:py-3.5 bg-[#C4A16A] hover:bg-[#D4B47F] active:bg-[#D4B47F] text-[#120F0C] font-sans font-medium text-[11px] sm:text-xs uppercase tracking-[0.22em] border border-[#E0C392]/40 transition-all duration-300 shadow-[0_4px_20px_rgba(196,161,106,0.25)] hover:shadow-[0_8px_30px_rgba(196,161,106,0.45)] active:scale-[0.98] group touch-target min-h-[46px]"
             >
-              <span>View Full Gallery</span>
-              <ArrowUpRight size={14} className="text-[#C4A16A]" />
+              <span>VIEW FULL GALLERY</span>
+              <ArrowUpRight size={15} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200 shrink-0 text-[#120F0C]" />
             </Link>
           </div>
         </div>
