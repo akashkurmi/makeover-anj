@@ -1,11 +1,16 @@
+import type { Metadata } from "next";
 import Home from "./Home";
 
-const page = () => {
-  return (
-    <>
-      <Home />
-    </>
-  );
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
-export default page;
+export default function Page() {
+  return <Home />;
+}
