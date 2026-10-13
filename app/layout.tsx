@@ -1,53 +1,98 @@
-import { Instagram, MessageCircleCode, Youtube } from "lucide-react";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import Link from "next/link";
-import Script from "next/script";
+import { Cormorant_Garamond, Montserrat } from "next/font/google";
 import "./globals.css";
 import Footer from "./Page/comp/footer/Footer";
 import MenuBar from "./Page/view/MenuBar/MenuBar";
+import JsonLd from "@/components/seo/JsonLd";
+import {
+  createLocalBusinessSchema,
+  createWebSiteSchema,
+  SITE_URL,
+} from "@/lib/seo/schema";
 
-const domain = "https://anjalimakeover.co.in";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const cormorantGaramond = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Anjali Makeover | Best Bridal Makeup Artist in Bangalore",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Anjali Makeover | Best Bridal Makeup Artist & Studio in Khurai, Sagar",
+    template: "%s | Anjali Makeover",
+  },
   description:
-    "Certified Lakmé Academy professional specializing in Bridal, HD, Fashion and Party Makeup transformations.",
+    "Certified Lakmé Academy bridal makeup artist & beauty studio in Khurai, Sagar (Madhya Pradesh). Specializing in HD & Airbrush bridal makeup, engagement, party makeup, and destination wedding vanity.",
+  keywords: [
+    "makeup artist in Khurai",
+    "makeup artist Khurai",
+    "bridal makeup artist Khurai",
+    "bridal makeup Khurai",
+    "makeup studio in Khurai",
+    "makeup studio Khurai",
+    "Anjali Makeover Khurai",
+    "Anjali Makeup Studio Khurai",
+    "bridal makeup artist in Sagar",
+    "makeup artist in Sagar Madhya Pradesh",
+    "bridal makeup in Sagar",
+    "party makeup in Khurai",
+    "engagement makeup in Khurai",
+    "wedding makeup in Khurai",
+    "pre-wedding makeup in Khurai",
+    "hair styling Khurai",
+    "beauty and makeup services Khurai",
+    "Anjali Gour",
+  ],
+  authors: [{ name: "Anjali Gour", url: SITE_URL }],
+  creator: "Anjali Gour",
+  publisher: "Anjali Makeover",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
-    title: "Anjali Makeover | Professional Bridal Artistry",
+    title: "Anjali Makeover | Best Bridal Makeup Artist in Khurai, Sagar",
     description:
-      "Transforming your special day with flawless HD & Airbrush Makeup. Certified by Lakmé Academy.",
-    url: domain,
+      "Certified Lakmé Academy professional specializing in flawless HD & Airbrush bridal makeup transformations in Khurai, Sagar (MP).",
+    url: SITE_URL,
     siteName: "Anjali Makeover",
     images: [
       {
-        url: `${domain}/anjHome.png`, // UPDATED PREVIEW IMAGE
+        url: `${SITE_URL}/anjHome.png`,
         width: 1200,
         height: 630,
-        alt: "Anjali Makeover Signature Look",
+        alt: "Anjali Makeover - Bridal Makeup Studio Khurai, Sagar",
       },
     ],
     locale: "en_IN",
     type: "website",
   },
-
-  // Twitter Card
   twitter: {
     card: "summary_large_image",
-    title: "Anjali Makeover | Bridal Makeup Bangalore",
+    title: "Anjali Makeover | Bridal Makeup Artist Khurai, Sagar",
     description:
-      "Certified Lakmé Academy professional for your dream bridal look.",
-    images: [`${domain}/anjHome.png`], // UPDATED
+      "Certified Lakmé Academy professional for your dream bridal look in Khurai, Sagar (MP).",
+    images: [`${SITE_URL}/anjHome.png`],
   },
 };
 
@@ -56,72 +101,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "BeautySalon",
-        "@id": `${domain}/#organization`,
-        name: "Anjali Makeover",
-        url: domain,
-        telephone: "+917879458655",
-        image: `${domain}/images/_5.jpg`,
-        sameAs: [
-          "https://www.instagram.com/anjalimakeover7879/",
-          "https://www.youtube.com/@anjaligourmakeover",
-          "https://www.threads.net/@anjalimakeover7879",
-        ],
-        address: {
-          "@type": "PostalAddress",
-          postalCode: "560036",
-          addressLocality: "Bangalore",
-          addressRegion: "KA",
-          addressCountry: "IN",
-        },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "5",
-          reviewCount: "200",
-        },
-      },
-      {
-        "@type": "Service",
-        serviceType: "Bridal Makeup",
-        provider: { "@id": `${domain}/#organization` },
-        description:
-          "Professional HD and Airbrush bridal makeup services including hairstyling and draping.",
-        areaServed: "Bangalore",
-      },
-      {
-        "@type": "Service",
-        serviceType: "Party & Event Makeup",
-        provider: { "@id": `${domain}/#organization` },
-        description:
-          "Glamorous party and event makeup for bridesmaids, guests, and special occasions.",
-        areaServed: "Bangalore",
-      },
-    ],
-  };
+  // Canonical root schemas: LocalBusiness / BeautySalon + WebSite
+  const rootSchema = [createLocalBusinessSchema(), createWebSiteSchema()];
 
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}
+        className={`${cormorantGaramond.variable} ${montserrat.variable} antialiased bg-[#120F0C] text-[#F2EDE5] font-sans selection:bg-[#C4A16A] selection:text-[#120F0C]`}
       >
-        {/* Next.js Script component handles the injection order automatically */}
-        <Script
-          id="schema-markup"
-          type="application/ld+json"
-          strategy="beforeInteractive"
-        >
-          {JSON.stringify(jsonLd)}
-        </Script>
+        <JsonLd schema={rootSchema} />
         <MenuBar />
         <main>{children}</main>
-
-        <section className="mt-[5px] p-0 border-t border-zinc-900 bg-zinc-950/50">
-          <Footer />
-        </section>
+        <Footer />
       </body>
     </html>
   );

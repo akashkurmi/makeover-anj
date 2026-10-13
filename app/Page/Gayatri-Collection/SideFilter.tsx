@@ -33,7 +33,7 @@ const SidebarFilter = ({
     <div className="space-y-10">
       {/* Category Filter */}
       <div>
-        <h3 className="text-[10px] uppercase tracking-[0.4em] text-pink-500 mb-6 font-bold">
+        <h3 className="text-[10px] uppercase tracking-[0.4em] text-[#C4A16A] mb-6 font-medium">
           Category
         </h3>
         <ul className="space-y-4">
@@ -46,15 +46,15 @@ const SidebarFilter = ({
               <div
                 className={`w-3 h-3 border transition-all ${
                   selectedCategory === cat
-                    ? "bg-pink-500 border-pink-500"
-                    : "border-white/20 group-hover:border-pink-500"
+                    ? "bg-[#C4A16A] border-[#C4A16A]"
+                    : "border-white/20 group-hover:border-[#C4A16A]"
                 }`}
               />
               <span
                 className={`text-xs font-light uppercase tracking-widest transition-colors ${
                   selectedCategory === cat
-                    ? "text-white"
-                    : "text-gray-400 group-hover:text-white"
+                    ? "text-[#F2EDE5]"
+                    : "text-[#A69C91] group-hover:text-[#F2EDE5]"
                 }`}
               >
                 {cat}
