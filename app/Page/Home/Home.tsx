@@ -162,7 +162,7 @@ export default function Home() {
                 </Link>
 
                 <Link
-                  href="/#gallery"
+                  href="/Page/Portfolio"
                   className="min-h-[44px] xs:min-h-[46px] sm:min-h-[48px] inline-flex items-center justify-center space-x-1.5 sm:space-x-2 px-3 sm:px-5 py-2.5 sm:py-3 bg-[#17120E]/70 sm:bg-transparent backdrop-blur-sm sm:backdrop-blur-none border border-[#C4A16A]/70 hover:border-[#C4A16A] hover:bg-[#C4A16A]/15 text-[#F2EDE5] hover:text-[#C4A16A] active:text-[#C4A16A] font-sans text-[10px] xs:text-[11px] sm:text-xs uppercase tracking-[0.16em] xs:tracking-[0.2em] transition-all duration-300 active:scale-[0.98] touch-target"
                 >
                   <span>GALLERY</span>

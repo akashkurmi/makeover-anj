@@ -31,7 +31,7 @@ const navLinks = [
   },
   {
     name: "GALLERY",
-    href: "/#gallery",
+    href: "/Page/Portfolio",
     subtitle: "Signature Portfolios & Artistry",
   },
   {
