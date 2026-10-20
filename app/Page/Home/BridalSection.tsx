@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Check, ArrowRight } from "lucide-react";
+import { scrollToSection } from "@/lib/scroll";
 
 const bridalFeatures = [
   "Personalized consultation & bridal look trial",
@@ -87,6 +88,7 @@ export default function BridalSection() {
             <div className="pt-4 sm:pt-6">
               <Link
                 href="/#booking"
+                onClick={(e) => scrollToSection("booking", e)}
                 className="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center space-x-3 px-8 py-3.5 sm:py-4 bg-[#120F0C] text-[#F2EDE5] text-xs uppercase tracking-[0.25em] font-sans font-medium hover:bg-[#C4A16A] hover:text-[#120F0C] active:bg-[#C4A16A] active:text-[#120F0C] transition-all duration-300 shadow-xl active:scale-[0.98] touch-target"
               >
                 <span>ENQUIRE FOR BRIDAL</span>

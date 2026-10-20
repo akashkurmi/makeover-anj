@@ -2,6 +2,7 @@
 import { ChangeEvent, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { scrollToSection } from "@/lib/scroll";
 import priceData from "./priceData.json";
 
 type PriceData = typeof priceData;
@@ -116,6 +117,7 @@ export default function PricingPage() {
 
                 <Link
                   href="/#booking"
+                  onClick={(e) => scrollToSection("booking", e)}
                   className="min-h-[44px] px-5 py-2.5 text-[10px] uppercase tracking-[0.2em] text-[#120F0C] bg-[#C4A16A] hover:bg-[#D4B47F] active:bg-[#D4B47F] transition-all font-medium shrink-0 flex items-center justify-center touch-target"
                 >
                   Book Look
@@ -134,6 +136,7 @@ export default function PricingPage() {
         <div className="mt-12 sm:mt-16 text-center">
           <Link
             href="/#booking"
+            onClick={(e) => scrollToSection("booking", e)}
             className="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center space-x-3 px-8 py-3.5 sm:py-4 bg-[#C4A16A] text-[#120F0C] text-xs uppercase tracking-[0.3em] font-sans font-medium hover:bg-[#D4B47F] active:bg-[#D4B47F] transition-all shadow-xl touch-target"
           >
             <span>RESERVE APPOINTMENT</span>

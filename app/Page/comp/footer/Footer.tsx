@@ -2,6 +2,7 @@
 import { Instagram, Youtube, MessageCircleCode, Phone, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { scrollToSection } from "@/lib/scroll";
 
 export default function Footer() {
   const instaLink = "https://www.instagram.com/anjalimakeover7879/";
@@ -89,7 +90,11 @@ export default function Footer() {
 
             {/* QUICK TOUCH NAVIGATION LINKS */}
             <div className="pt-2 flex flex-wrap gap-x-5 gap-y-2.5 text-[11px] uppercase tracking-[0.2em] text-[#A69C91]">
-              <Link href="/#services" className="hover:text-[#C4A16A] active:text-[#C4A16A] py-1 transition-colors">
+              <Link
+                href="/#services"
+                onClick={(e) => scrollToSection("services", e)}
+                className="hover:text-[#C4A16A] active:text-[#C4A16A] py-1 transition-colors"
+              >
                 Services
               </Link>
               <Link href="/Page/Portfolio" className="hover:text-[#C4A16A] active:text-[#C4A16A] py-1 transition-colors">

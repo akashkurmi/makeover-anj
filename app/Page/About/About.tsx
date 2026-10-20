@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { MapPin, CheckCircle2, Globe, Plane, ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { scrollToSection } from "@/lib/scroll";
 
 export default function About() {
   return (
@@ -71,7 +72,7 @@ export default function About() {
               </p>
 
               <blockquote className="border-l-2 border-[#C4A16A] pl-3.5 sm:pl-4 py-1 text-[#F2EDE5] font-serif italic text-base sm:text-lg">
-                "Makeup should never be a mask; it is a mirror that reflects your most radiant, timeless self."
+                &ldquo;Makeup should never be a mask; it is a mirror that reflects your most radiant, timeless self.&rdquo;
               </blockquote>
 
               <p>
@@ -197,6 +198,7 @@ export default function About() {
           <div className="flex justify-center">
             <Link
               href="/#booking"
+              onClick={(e) => scrollToSection("booking", e)}
               className="w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center space-x-3 px-8 py-3.5 sm:py-4 bg-[#C4A16A] text-[#120F0C] text-xs uppercase tracking-[0.3em] font-medium hover:bg-[#D4B47F] active:bg-[#D4B47F] transition-all shadow-xl touch-target"
             >
               <span>INQUIRE WITH ANJALI</span>

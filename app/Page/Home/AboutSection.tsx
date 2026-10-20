@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
+import { scrollToSection } from "@/lib/scroll";
 
 export default function AboutSection() {
   const [isDescOpen, setIsDescOpen] = useState(false);
@@ -155,6 +156,7 @@ export default function AboutSection() {
 
               <Link
                 href="/#booking"
+                onClick={(e) => scrollToSection("booking", e)}
                 className="text-xs uppercase tracking-[0.25em] font-medium text-[#A88349] hover:text-[#120F0C] active:text-[#120F0C] transition-colors py-2 touch-target"
               >
                 Reserve Date →

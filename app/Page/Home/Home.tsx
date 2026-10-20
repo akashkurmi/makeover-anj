@@ -9,6 +9,7 @@ import BridalSection from "./BridalSection";
 import Highlight from "./Highlight";
 import TestimonialSection from "../Review/ReviewCustomer";
 import Bookingform from "../view/booking/Bookingform";
+import { scrollToSection } from "@/lib/scroll";
 
 const heroSlides = [
   {
@@ -48,6 +49,28 @@ export default function Home() {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
     }, 7000);
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (window.location.hash) {
+        const hash = window.location.hash.replace("#", "");
+        window.history.replaceState(null, "", window.location.pathname);
+        if (hash === "booking" || hash === "services") {
+          setTimeout(() => {
+            scrollToSection(hash);
+          }, 150);
+        }
+      }
+
+      const target = sessionStorage.getItem("scroll_to_section");
+      if (target) {
+        sessionStorage.removeItem("scroll_to_section");
+        setTimeout(() => {
+          scrollToSection(target);
+        }, 150);
+      }
+    }
   }, []);
 
   const slide = heroSlides[currentSlide];
@@ -145,6 +168,7 @@ export default function Home() {
             <div className="pt-1.5 sm:pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-2 xs:gap-2.5 sm:gap-3">
               <Link
                 href="/#booking"
+                onClick={(e) => scrollToSection("booking", e)}
                 className="w-full sm:w-auto min-h-[44px] xs:min-h-[46px] sm:min-h-[48px] inline-flex items-center justify-center space-x-2 px-5 sm:px-7 py-2.5 sm:py-3 bg-[#C4A16A] hover:bg-[#D4B47F] active:bg-[#D4B47F] text-[#120F0C] font-sans font-medium text-[11px] xs:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em] transition-all duration-300 shadow-xl active:scale-[0.98] touch-target"
               >
                 <span>BOOK APPOINTMENT</span>
@@ -155,6 +179,7 @@ export default function Home() {
               <div className="grid grid-cols-2 gap-2 xs:gap-2.5 sm:gap-3 w-full sm:w-auto sm:flex sm:items-center">
                 <Link
                   href="/#services"
+                  onClick={(e) => scrollToSection("services", e)}
                   className="min-h-[44px] xs:min-h-[46px] sm:min-h-[48px] inline-flex items-center justify-center space-x-1.5 sm:space-x-2 px-3 sm:px-5 py-2.5 sm:py-3 bg-[#17120E]/70 sm:bg-transparent backdrop-blur-sm sm:backdrop-blur-none border border-[#C4A16A]/70 hover:border-[#C4A16A] hover:bg-[#C4A16A]/15 text-[#F2EDE5] hover:text-[#C4A16A] active:text-[#C4A16A] font-sans text-[10px] xs:text-[11px] sm:text-xs uppercase tracking-[0.16em] xs:tracking-[0.2em] transition-all duration-300 active:scale-[0.98] touch-target"
                 >
                   <span>SERVICES</span>

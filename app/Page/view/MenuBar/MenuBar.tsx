@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { scrollToSection } from "@/lib/scroll";
 
 const serviceSubLinks = [
   { name: "Makeup", tag: "Bridal, HD & Airbrush", href: "/#services-makeup" },
@@ -189,7 +190,10 @@ export default function MenuBar() {
                         <div className="mt-2 pt-2 border-t border-[#3D342B]/60 px-3 py-1 flex items-center justify-between">
                           <Link
                             href="/#services"
-                            onClick={() => setServicesOpen(false)}
+                            onClick={(e) => {
+                              setServicesOpen(false);
+                              scrollToSection("services", e);
+                            }}
                             className="text-[10px] uppercase tracking-[0.2em] text-[#C4A16A] hover:text-[#F2EDE5] transition-colors font-sans flex items-center space-x-1"
                           >
                             <span>All Services</span>
@@ -213,6 +217,11 @@ export default function MenuBar() {
                 <Link
                   key={link.name}
                   href={link.href}
+                  onClick={(e) => {
+                    if (link.href.startsWith("/#")) {
+                      scrollToSection(link.href.replace("/#", ""), e);
+                    }
+                  }}
                   className="text-[11px] font-sans tracking-[0.25em] uppercase text-[#A69C91] hover:text-[#F2EDE5] transition-colors duration-300 relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[#C4A16A] hover:after:w-full after:transition-all after:duration-300"
                 >
                   {link.name}
@@ -225,6 +234,7 @@ export default function MenuBar() {
           <div className="hidden lg:flex items-center space-x-6">
             <Link
               href="/#booking"
+              onClick={(e) => scrollToSection("booking", e)}
               className="inline-flex items-center justify-center px-6 py-2.5 text-[11px] uppercase tracking-[0.25em] font-sans text-[#F2EDE5] border border-[#C4A16A] hover:bg-[#C4A16A] hover:text-[#120F0C] transition-all duration-300 shadow-[0_0_15px_rgba(196,161,106,0.1)] active:scale-95 touch-target"
             >
               BOOK
@@ -346,7 +356,12 @@ export default function MenuBar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => {
+                    setIsOpen(false);
+                    if (link.href.startsWith("/#")) {
+                      scrollToSection(link.href.replace("/#", ""), e);
+                    }
+                  }}
                   className="group flex items-center justify-between py-3.5 border-b border-[#3D342B]/40 active:border-[#C4A16A] touch-target"
                 >
                   <div>
@@ -375,7 +390,10 @@ export default function MenuBar() {
           <div className="pt-4">
             <Link
               href="/#booking"
-              onClick={() => setIsOpen(false)}
+              onClick={(e) => {
+                setIsOpen(false);
+                scrollToSection("booking", e);
+              }}
               className="w-full min-h-[50px] flex items-center justify-center space-x-3 text-xs uppercase tracking-[0.3em] font-sans font-medium text-[#120F0C] bg-[#C4A16A] hover:bg-[#D4B47F] active:bg-[#D4B47F] transition-all shadow-xl active:scale-[0.99] touch-target"
             >
               <span>BOOK APPOINTMENT</span>
