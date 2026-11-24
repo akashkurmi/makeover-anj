@@ -22,6 +22,10 @@ export default function OtherServicesSection({
         <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#F2EDE5] mt-2">
           {title}
         </h2>
+        <div className="mt-3.5 inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-[11px] font-sans font-semibold uppercase tracking-wider bg-[#C4A16A]/15 text-[#C4A16A] border border-[#C4A16A]/40">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#C4A16A] animate-pulse" />
+          <span>Upcoming Soon &bull; Anjali Makeup Studio Khurai, MP</span>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-5xl mx-auto">
