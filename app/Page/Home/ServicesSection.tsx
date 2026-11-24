@@ -8,25 +8,25 @@ const services = [
     id: "services-makeup",
     title: "Makeup",
     image: "/service/makeup.jpg",
-    href: "/Page/Pricing",
+    href: "/Page/Pricing/makeup",
   },
   {
     id: "services-hair",
     title: "Hair",
     image: "/service/hair.jpg",
-    href: "/Page/Pricing",
+    href: "/Page/Pricing/hair",
   },
   {
     id: "services-skin",
     title: "Skin",
     image: "/service/skin.jpg",
-    href: "/Page/Pricing",
+    href: "/Page/Pricing/skin",
   },
   {
     id: "services-nails",
     title: "Nails",
     image: "/service/nails.jpg",
-    href: "/Page/Pricing",
+    href: "/Page/Pricing/nails",
   },
 ];
 
