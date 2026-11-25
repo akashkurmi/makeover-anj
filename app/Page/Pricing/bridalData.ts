@@ -1,7 +1,7 @@
 export interface IndividualBridalService {
   id: string;
   name: string;
-  price: number;
+  price: number | string;
   priceFormatted: string;
   description: string;
   lensAndLashes: string;
@@ -46,9 +46,9 @@ export const individualBridalServices: IndividualBridalService[] = [
   },
   {
     id: "hd-bridal-makeup",
-    name: "HD Bridal Makeup",
-    price: 8000,
-    priceFormatted: "₹8,000",
+    name: "HD/Ultra-HD Bridal Makeup",
+    price: "8000-10000",
+    priceFormatted: "₹8,000 - ₹10,000",
     description: "High-definition micro-fine pigments crafted for crystal-clear 4K close-up photography and natural skin-texture radiance.",
     lensAndLashes: "Included",
     draping: "Included",

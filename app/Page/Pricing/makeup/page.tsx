@@ -10,7 +10,7 @@ import {
 export const metadata: Metadata = {
   title: "Bridal Makeup Pricing & Wedding Packages in Khurai | Anjali Makeover",
   description:
-    "Explore transparent bridal makeup prices and multi-function wedding packages by Anjali Makeover in Khurai, Sagar, MP. HD Bridal (₹8,000), Airbrush (₹16,000), and complete packages from ₹13,500.",
+    "Explore transparent bridal makeup prices and multi-function wedding packages by Anjali Makeover in Khurai, Sagar, MP. HD/Ultra-HD Bridal (₹8,000 - ₹10,000), Airbrush (₹16,000), and complete packages from ₹13,500.",
   alternates: {
     canonical: "/Page/Pricing/makeup",
   },

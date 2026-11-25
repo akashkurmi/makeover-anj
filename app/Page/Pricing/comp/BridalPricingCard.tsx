@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import { Check, Minus, MessageCircle, Sparkles } from "lucide-react";
 import { IndividualBridalService, getWhatsAppInquiryUrl } from "../bridalData";
 
@@ -35,28 +34,15 @@ export default function BridalPricingCard({ service }: BridalPricingCardProps) {
         </div>
       )}
 
-      {/* Card Header & Photo */}
+      {/* Card Header */}
       <div>
-        <div className="flex items-start justify-between gap-3 mb-4">
-          <div>
-            <h3 className="font-serif text-lg sm:text-xl font-medium text-[#F2EDE5] group-hover:text-[#C4A16A] transition-colors duration-200">
-              {service.name}
-            </h3>
-            <p className="text-xs text-[#A69C91] font-sans font-light mt-1 line-clamp-2 leading-relaxed">
-              {service.description}
-            </p>
-          </div>
-          {service.image && (
-            <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-lg overflow-hidden shrink-0 border border-[#3D342B]">
-              <Image
-                src={service.image}
-                alt={`${service.name} look by Anjali Makeover Khurai`}
-                fill
-                sizes="64px"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-          )}
+        <div className="mb-4">
+          <h3 className="font-serif text-lg sm:text-xl font-medium text-[#F2EDE5] group-hover:text-[#C4A16A] transition-colors duration-200">
+            {service.name}
+          </h3>
+          <p className="text-xs text-[#A69C91] font-sans font-light mt-1 leading-relaxed">
+            {service.description}
+          </p>
         </div>
 
         {/* Prominent Price */}
